@@ -1,0 +1,34 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        window.onload = function () 
+        {
+            document.getElementById("arrive_time").value = (new Date()).toISOString();
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+    Instructions
+{% endblock %}
+
+{% block content %}
+
+    <!-- form field for page load time. Value attribute gets set by script on window load,
+        and the form gets returned here -->
+    <input type="hidden" name="time_Instructions" id="arrive_time"/>
+
+    <h3>
+        Money and Image Motivation: Donations
+    </h3>
+    <p>
+        Insert your instructions here.
+
+        Do you want to put all instructions in this document, or do a page of instructions before each round?
+    </p>
+
+    {% next_button %}
+
+{% endblock %}

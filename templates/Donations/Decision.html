@@ -1,0 +1,55 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        window.onload = function () 
+        {
+            document.getElementById("arrive_time").value = (new Date()).toISOString();
+        }
+
+        calc_money_kept = function()
+        {
+            //how to access form field value inside template?
+            // var donated = document.getElementById('donated').value
+            // var kept = 10.0 - donated
+            document.getElementById('kept').value = 0
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+    Decision {{ round_num }} -- {{ mode }}, rebate: {{ rebate }}%. 
+
+{% endblock %}
+
+{% block content %}
+
+    <!-- form field for page load time. Value attribute gets set by script on window load,
+        and the form gets returned here -->
+    <input type="hidden" name="time_Decision" id="arrive_time"/>
+    <input type="hidden" name="money_kept" id="kept"/>
+
+    <p>
+        Insert some instructions, list of charities, links, etc here.
+
+        We need to add a list of charities and a choice of which one to donate to.
+    </p>
+
+    {% formfield player.money_donated label="How much would you like to donate?" %}
+
+    <div>
+        <button id="submit" class="btn btn-primary btn-large next-button" 
+            style="float: right;" onclick="calc_money_kept()">Submit Decision</button>
+    </div>
+
+{% endblock %}
+
+
+{% comment %}
+
+    {% formfield player.money_donated label="How much would you like to donate?" %}
+
+    For titles, we dont need to say private mode because the instrucitons will make it clear
+
+{% endcomment %}
