@@ -1,0 +1,51 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        window.onload = function () 
+        {
+            document.getElementById("arrive_time").value = (new Date()).toISOString();
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+    Choose your charity
+{% endblock %}
+
+{% block content %}
+
+    <!-- form field for page load time. Value attribute gets set by script on window load,
+        and the form gets returned here -->
+    <input type="hidden" name="time_Charity" id="arrive_time"/>
+    <div>
+        <p>
+            some info about charities    
+        </p>
+    </div>
+    
+    <div>
+        <a href="www.google.com">Charity 1</a>
+    </div>
+    <div>
+        <a href="www.google.com">Charity 2</a>
+    </div>
+    <div>
+        <a href="www.google.com">Charity 3</a>
+    </div>
+    <div>
+        <a href="www.google.com">Charity 4</a>
+    </div>
+    <div>
+        <a href="www.google.com">Charity 5</a>
+    </div>
+    <div>
+        <a href="www.google.com">Charity 6</a>
+    </div>
+
+    {% formfield player.charity %}
+
+    {% next_button %}
+
+{% endblock %}

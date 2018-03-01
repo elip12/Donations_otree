@@ -13,14 +13,6 @@ doc = """
 
 
 class Constants(BaseConstants):
-    name_in_url = 'Donations'
-    players_per_group = None
-    num_rounds = 6
-    endowment = c(10)
-    participation_fee = c(5)
-
-    # there are six rounds, and for right now they are all predetermined.
-    # We can change this to a config file at some point.
 
     # each round is either public or private, and has a % rebate
     round_data = [
@@ -32,13 +24,31 @@ class Constants(BaseConstants):
         {'mode': 'public', 'rebate': 1.9} 
     ]
 
+    name_in_url = 'Donations'
+    players_per_group = None
+    num_rounds = len(round_data)
+    endowment = c(10)
+    participation_fee = c(5)
+
+
 class Player(BasePlayer):
     time_Instructions = models.TextField()
+    time_Charity = models.TextField()
+    time_TaskInstructions = models.TextField()
     time_Decision = models.TextField()
     time_Results = models.TextField()
 
+    # players first choose a charity.
     # players can donate some money, keep some money, and sometimes get a rebate
     # on their donation
+    charity = models.IntegerField(
+        choices=[
+            [1, 'Charity 1'], 
+            [2, 'Charity 2'], 
+            [3, 'Charity 3'], 
+            [4, 'Charity 4'], 
+            [5, 'Charity 5'], 
+            [6, 'Charity 6']])
     money_kept = models.FloatField()
     money_donated = models.FloatField(min=0, max=10) # make only integers
 

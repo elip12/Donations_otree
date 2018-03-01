@@ -1,0 +1,53 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        window.onload = function () 
+        {
+            document.getElementById("arrive_time").value = (new Date()).toISOString();
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+    Instructions - {{ mode }} - Rebate: {{ rebate }}
+{% endblock %}
+
+{% block content %}
+
+    <!-- form field for page load time. Value attribute gets set by script on window load,
+        and the form gets returned here -->
+    <input type="hidden" name="time_TaskInstructions" id="arrive_time"/>
+
+    <h3>
+        Some other header if you want a header
+    </h3>
+
+    {% if mode == 'public' %}
+        <p>
+            Some instructions for public mode
+        </p>
+    {% elif mode == 'private' %}
+        <p>
+            Some instructions for private mode
+        </p>
+    {% endif %}
+
+    {% if rebate == 0 %}
+        <p>
+            Instructions for 0% rebate
+        </p>
+    {% elif rebate == 10 %}
+        <p>
+            Instrucitons for 10% rebate
+        </p>
+    {% elif rebate == 90 %}
+        <p>
+            Instructions for 90% rebate
+        </p>
+    {% endif %}
+
+    {% next_button %}
+
+{% endblock %}
