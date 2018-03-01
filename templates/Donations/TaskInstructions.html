@@ -21,33 +21,97 @@
     <input type="hidden" name="time_TaskInstructions" id="arrive_time"/>
 
     <h3>
-        Some other header if you want a header
+        Instructions About Modes and Rebates
     </h3>
 
     {% if mode == 'public' %}
         <p>
-            Some instructions for public mode
+            This section contains 3 periods. At the beginning of each period, you will be endowed with $10.
+            You will have the opportunity to donate some of your endowment to a charity organization.
+            If one of your decisions in this section is chosen for realization, you will receive a thank-you message
+            on your social media timeline from the charity organization.
+
+            {% if rebate == 0 %}
+                <p>
+                    Out of the $10 you are endowed with for this period, would you like to donate any to the charity of your choice?
+                    If so, how many?
+                </p>
+
+                <p>
+                    If your decision in this period is chosen for realization, you will receive the following message on your
+                    social media timeline from [Charity name]: “Thank you for donating $X to [Charity name]!”
+                </p>
+
+            {% elif rebate == 10 %}
+                <p>
+                    Out of the $10 you are endowed with for this period, would you like to donate any to the charity of your choice?
+                    If so, how many? While you are donating, the UCSC LEEPS Lab would like to offer you a rebate of 10% of your donations.
+                </p>
+
+                <p>
+                    If your decision in this period is chosen for realization, you will receive the following message on your
+                    social media timeline from [Charity name]: “Thank you for donating $X to [Charity name], with a 10% rebate
+                    offered by the UCSC LEEPS Lab!”
+                </p>
+
+            {% elif rebate == 90 %}
+                <p>
+                    Out of the $10 you are endowed with for this period, would you like to donate any to the charity of your choice?
+                    If so, how many? While you are donating, the UCSC LEEPS Lab would like to offer you a rebate of 90% of your donations.
+                </p>
+
+                <p>
+                    If your decision in this period is chosen for realization, you will receive the following message on your
+                    social media timeline from [Charity name]: “Thank you for donating $X to [Charity name], with a 90% rebate
+                    offered by the UCSC LEEPS Lab!”
+                </p>
+            {% endif %}
         </p>
+
     {% elif mode == 'private' %}
         <p>
-            Some instructions for private mode
+            This section contains 3 periods. At the beginning of each period, you will be endowed with $10.
+            You will have the opportunity to donate some of your endowment to a charity organization.
+            Your donation will be completely anonymous. If one of your decisions in this section is chosen for realization,
+            you will receive a thank-you message on your computer screen.
         </p>
-    {% endif %}
 
-    {% if rebate == 0 %}
-        <p>
-            Instructions for 0% rebate
-        </p>
-    {% elif rebate == 10 %}
-        <p>
-            Instrucitons for 10% rebate
-        </p>
-    {% elif rebate == 90 %}
-        <p>
-            Instructions for 90% rebate
-        </p>
+        {% if rebate == 0 %}
+            <p>
+                Out of the $10 you are endowed with for this period, would you like to donate any to the charity of your choice?
+                If so, how many?
+            </p>
+
+            <p>
+                If your decision in this period is chosen for realization, you will receive the following message on your
+                computer screen: “Thank you for donating $X to [Charity name]!”
+            </p>
+
+        {% elif rebate == 10 %}
+            <p>
+                Out of the $10 you are endowed with for this period, would you like to donate any to the charity of your choice?
+                If so, how many? While you are donating, the UCSC LEEPS Lab would like to offer you a rebate of 10% of your donations.
+            </p>
+
+            <p>
+                If your decision in this period is chosen for realization, you will receive the following message on your
+                computer screen: “Thank you for donating $X to [Charity name], with a 10% rebate offered by the UCSC LEEPS Lab!”
+            </p>
+
+        {% elif rebate == 90 %}
+            <p>
+                Out of the $10 you are endowed with for this period, would you like to donate any to the charity of your choice?
+                If so, how many? While you are donating, the UCSC LEEPS Lab would like to offer you a rebate of 90% of your donations.
+            </p>
+
+            <p>
+                If your decision in this period is chosen for realization, you will receive the following message on your
+                computer screen: “Thank you for donating $X to [Charity name], with a 90% rebate offered by the UCSC LEEPS Lab!”
+            </p>
+        {% endif %}
     {% endif %}
 
     {% next_button %}
 
 {% endblock %}
+<!-- In here, can we substitute the subject's choice of charity name into the [Charity name] in the treatment instructions? -->
