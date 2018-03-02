@@ -11,7 +11,8 @@
 {% endblock %}
 
 {% block title %}
-    Money and Image Motivation in Donations
+    <!--Money and Image Motivation in Donations-->
+    General Instructions
 {% endblock %}
 
 {% block content %}
@@ -20,9 +21,7 @@
         and the form gets returned here -->
     <input type="hidden" name="time_Instructions" id="arrive_time"/>
 
-    <h3>
-       General Instructions
-    </h3>
+
     <p>
         Your are now taking part in an economics experiment, which is financed by the UCSC LEEPS Lab.
         If you carefully read the following instructions, you can earn—depending on your decisions during the experiment—
@@ -39,7 +38,7 @@
         These instructions are for your private information only.
         <b>During the experiment, communication is strictly forbidden</b>. If you have questions, please ask us.
     </p>
-    {% next_button %}
+
 
     <h3>
        Detailed Information about the Experiment
@@ -62,14 +61,15 @@
         account balance + <b>$5</b> show-up fee.
     </p>
 
-    <h3>
-       The Concept of <b>Rebate</b> Revisited
-    </h3>
+    <h4>
+       The Concept of Rebate Revisited
+    </h4>
 
     <p>
         If you are offered a rebate of 60% on your donations, it means when you donate $100 to a charity, you will be
         refunded $60 to your personal account. The charity will still receive $100, but since you received a $60 rebate,
         your actual spending for donating $100 is $40.
     </p>
+{% next_button %}
 <!-- I think we should insert some control questions here -->
 {% endblock %}

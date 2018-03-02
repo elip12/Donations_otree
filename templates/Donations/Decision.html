@@ -31,9 +31,79 @@
     <input type="hidden" name="money_kept" id="kept"/>
 
     <p>
-        Insert some instructions, list of charities, links, etc here.
+        {% if mode == 'public' %}
+            {% if rebate == 0 %}
+                    <p>
+                        Out of the <b>$10</b> you are endowed with for this period, would you like to donate any to the charity of your choice?
+                        If so, how many?
+                    </p>
 
-        We need to add a list of charities and a choice of which one to donate to.
+                    <p>
+                        If your decision in this period is chosen for realization, you will receive the following message on
+                        <b>your social media timeline</b> from [Charity name]: <b>“Thank you for donating $X to [Charity name]!”</b>
+                    </p>
+
+                {% elif rebate == 10 %}
+                    <p>
+                        Out of the <b>$10</b> you are endowed with for this period, would you like to donate any to the charity of your choice?
+                        If so, how many? While you are donating, the UCSC LEEPS Lab would like to offer you <b>a rebate of 10% of your donations</b>.
+                    </p>
+
+                    <p>
+                        If your decision in this period is chosen for realization, you will receive the following message on
+                        <b>your social media timeline</b> from [Charity name]: <b>“Thank you for donating $X to [Charity name], with a 10% rebate
+                        offered by the UCSC LEEPS Lab!”</b>
+                    </p>
+
+                {% elif rebate == 90 %}
+                    <p>
+                        Out of the <b>$10</b> you are endowed with for this period, would you like to donate any to the charity of your choice?
+                        If so, how many? While you are donating, the UCSC LEEPS Lab would like to offer you <b>a rebate of 90% of your donations</b>.
+                    </p>
+
+                    <p>
+                        If your decision in this period is chosen for realization, you will receive the following message on
+                        <b>your social media timeline</b> from [Charity name]: <b>“Thank you for donating $X to [Charity name], with a 90% rebate
+                        offered by the UCSC LEEPS Lab!”</b>
+                    </p>
+                {% endif %}
+
+        {% elif mode == 'private' %}
+
+            {% if rebate == 0 %}
+                <p>
+                    Out of the <b>$10</b> you are endowed with for this period, would you like to donate any to the charity of your choice?
+                    If so, how many?
+                </p>
+
+                <p>
+                    If your decision in this period is chosen for realization, you will receive the following message on
+                    <b>your computer screen</b>: <b>“Thank you for donating $X to [Charity name]!”</b>
+                </p>
+
+            {% elif rebate == 10 %}
+                <p>
+                    Out of the <b>$10</b> you are endowed with for this period, would you like to donate any to the charity of your choice?
+                    If so, how many? While you are donating, the UCSC LEEPS Lab would like to offer you <b>a rebate of 10% of your donations</b>.
+                </p>
+
+                <p>
+                    If your decision in this period is chosen for realization, you will receive the following message on
+                    <b>your computer screen</b>: <b>“Thank you for donating $X to [Charity name], with a 10% rebate offered by the UCSC LEEPS Lab!”</b>
+                </p>
+
+            {% elif rebate == 90 %}
+                <p>
+                    Out of the <b>$10</b> you are endowed with for this period, would you like to donate any to the charity of your choice?
+                    If so, how many? While you are donating, the UCSC LEEPS Lab would like to offer you <b>a rebate of 90% of your donations</b>.
+                </p>
+
+                <p>
+                    If your decision in this period is chosen for realization, you will receive the following message on
+                    <b>your computer screen</b>: <b>“Thank you for donating $X to [Charity name], with a 90% rebate offered by the UCSC LEEPS Lab!”</b>
+                </p>
+            {% endif %}
+        {% endif %}
     </p>
 
     {% formfield player.money_donated label="How much would you like to donate?" %}
