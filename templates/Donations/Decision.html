@@ -5,7 +5,10 @@
     <script type="text/javascript">
         window.onload = function () 
         {
-            document.getElementById("arrive_time").value = (new Date()).toISOString();
+            document.getElementById('arrive_time').value = (new Date()).toISOString()
+            document.getElementById('mode').value = {{ mode | json }}
+            document.getElementById('rebate').value = {{ rebate | json }}
+            document.getElementById('charity').value = {{ charity | json }}
         }
 
         calc_money_kept = function()
@@ -13,22 +16,75 @@
             //how to access form field value inside template?
             // var donated = document.getElementById('donated').value
             // var kept = 10.0 - donated
-            document.getElementById('kept').value = 0
+            var donated = document.getElementById('donated').value
+            document.getElementById('kept').value = {{ Constants.endowment | json }} - donated
         }
     </script>
 {% endblock %}
 
 {% block title %}
-    Decision {{ round_num }} -- {{ mode }}, rebate: {{ rebate }}%. 
+    Decision {{ round_num }} - Rebate: {{ rebate }}%. 
 
 {% endblock %}
 
 {% block content %}
+    
+    <div>
+        <!-- form fields for all metadata (not directly collected from players) -->
+        <input type="hidden" name="time_Decision" id="arrive_time"/>
+        <input type="hidden" name="mode" id="mode"/>
+        <input type="hidden" name="rebate" id="rebate"/>
+        <input type="hidden" name="charity_dec" id="charity"/>
+        
+        <input type="hidden" name="money_kept" id="kept"/>
+    </div>
+    <div>
+        <p>
+            Out of the <b>${{ Constants.endowment }}</b> you are endowed with for this period, would you like to donate any to the charity of your choice?
+            {% if rebate != 0 %}
+                While you are donating, the UCSC LEEPS lab would like to offer you <b>a rebate of {{ rebate }}% of your donation</b>.
+            {% endif %}
+        </p>
+        {% if mode == 'public' %}
+            <p>
+                If your decision in this period is chosen for realization, you will receive the following message on
+                <b>your social media timeline</b> from {{ charity }}: <b>“Thank you for donating $X to {{ charity }}</b>
+                
+                {% if rebate != 0 %}
+                    <b>, with a {{ rebate }}% rebate offered by the UCSC LEEPS Lab!”</b>
+                {% else %}
+                    <b>!"</b>
+                {% endif %}
+            </p>
+        {% else %}
+            <p>
+                If your decision in this period is chosen for realization, you will receive the following message on
+                <b>your computer screen</b>: <b>“Thank you for donating $X to {{ charity }}</b>
+                
+                {% if rebate != 0 %}
+                    <b>, with a {{ rebate }}% rebate offered by the UCSC LEEPS Lab!”</b>
+                {% else %}
+                    <b>!"</b>
+                {% endif %}
+            </p>
+        {% endif %}
+        
+    </div>
+    <div>
+        <label for="donated">How much would you like to donate?</label>
+        <input type="number" name="money_donated" id="donated" max="10" min="0"/>
+    </div>
+    <div>
+        <button id="submit" class="btn btn-primary btn-large next-button" 
+            style="float: right;" onclick="calc_money_kept()">Submit Decision</button>
+    </div>
 
-    <!-- form field for page load time. Value attribute gets set by script on window load,
-        and the form gets returned here -->
-    <input type="hidden" name="time_Decision" id="arrive_time"/>
-    <input type="hidden" name="money_kept" id="kept"/>
+{% endblock %}
+
+
+{% comment %}
+
+    {% formfield player.money_donated label="How much would you like to donate?" %}
 
     <p>
         {% if mode == 'public' %}
@@ -40,7 +96,7 @@
 
                     <p>
                         If your decision in this period is chosen for realization, you will receive the following message on
-                        <b>your social media timeline</b> from [Charity name]: <b>“Thank you for donating $X to [Charity name]!”</b>
+                        <b>your social media timeline</b> from [Charity name]: <b>“Thank you for donating $X to {{ charity }}!”</b>
                     </p>
 
                 {% elif rebate == 10 %}
@@ -51,7 +107,7 @@
 
                     <p>
                         If your decision in this period is chosen for realization, you will receive the following message on
-                        <b>your social media timeline</b> from [Charity name]: <b>“Thank you for donating $X to [Charity name], with a 10% rebate
+                        <b>your social media timeline</b> from [Charity name]: <b>“Thank you for donating $X to {{ charity }}, with a 10% rebate
                         offered by the UCSC LEEPS Lab!”</b>
                     </p>
 
@@ -63,7 +119,7 @@
 
                     <p>
                         If your decision in this period is chosen for realization, you will receive the following message on
-                        <b>your social media timeline</b> from [Charity name]: <b>“Thank you for donating $X to [Charity name], with a 90% rebate
+                        <b>your social media timeline</b> from [Charity name]: <b>“Thank you for donating $X to {{ charity }}, with a 90% rebate
                         offered by the UCSC LEEPS Lab!”</b>
                     </p>
                 {% endif %}
@@ -105,21 +161,5 @@
             {% endif %}
         {% endif %}
     </p>
-
-    {% formfield player.money_donated label="How much would you like to donate?" %}
-
-    <div>
-        <button id="submit" class="btn btn-primary btn-large next-button" 
-            style="float: right;" onclick="calc_money_kept()">Submit Decision</button>
-    </div>
-
-{% endblock %}
-
-
-{% comment %}
-
-    {% formfield player.money_donated label="How much would you like to donate?" %}
-
-    For titles, we dont need to say private mode because the instrucitons will make it clear
 
 {% endcomment %}

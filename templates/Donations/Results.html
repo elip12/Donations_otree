@@ -15,22 +15,41 @@
 {% endblock %}
 
 {% block content %}
-    
-    <!-- form field for page load time. Value attribute gets set by script on window load,
-        and the form gets returned here -->
-    <input type="hidden" name="time_Results" id="arrive_time"/>
-    
-    <p>
-        We need to add which charity the player donated to and a thank you message.
-        <!-- The message should depend on which round was chosen-->
-    </p>
-
-    <h5>
-        Round {{ pr }} was chosen as the paying round.
-    </h5>
-    <h5>
-        Your payoff is {{ player.payoff }}.
-    </h5>
+    <div>
+        <!-- form field for page load time. Value attribute gets set by script on window load,
+            and the form gets returned here -->
+        <input type="hidden" name="time_Results" id="arrive_time"/>
+    </div>
+    <div>
+        <h5>
+            Round {{ pr }} was chosen as the paying round.
+        </h5>
+    </div>
+    <div>
+        {% if donation != 0 and mode == 'private'%}
+            <p>
+                {% if rebate != 0 %}
+                    <b>Thank you for donating ${{ donation }} to {{ charity }}, with a {{ rebate }}% rebate offered by the UCSC LEEPS Lab!</b>
+                {% else %}
+                    <b>Thank you for donating ${{ donation }} to {{ charity }}!</b>
+                {% endif %}
+            </p>
+        {% elif donation != 0 %}
+            <p>
+                You will receive the following message on your social media timeline from {{ charity }}:
+                {% if rebate != 0 %}
+                    <b>“Thank you for donating ${{ donation }} to {{ charity }}, with a {{ rebate }}% rebate offered by the UCSC LEEPS Lab!”</b>
+                {% else %}
+                    <b>“Thank you for donating ${{ donation }} to {{ charity }}!"</b>
+                {% endif %}
+            </p>
+        {% endif %}
+    </div>
+    <div>
+        <h5>
+            Your payoff is {{ payoff }}.
+        </h5>
+    </div>
 
     {% next_button %}
 

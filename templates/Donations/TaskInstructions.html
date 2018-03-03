@@ -20,17 +20,17 @@
         and the form gets returned here -->
     <input type="hidden" name="time_TaskInstructions" id="arrive_time"/>
 
-    {% if mode == 'public' %}
+    {% if mode == 'Public' %}
         <p>
-            This section contains <b>3</b> periods. At the beginning of each period, you will be endowed with <b>$10</b>.
+            This section contains <b>3</b> periods. At the beginning of each period, you will be endowed with <b>${{ Constants.endowment }}</b>.
             You will have the opportunity to donate some of your endowment to a charity organization.
             If one of your decisions in this section is chosen for realization, you will receive a thank-you message
             on <b>your social media timeline</b> from the charity organization.
         </p>
 
-    {% elif mode == 'private' %}
+    {% elif mode == 'Private' %}
         <p>
-            This section contains <b>3</b> periods. At the beginning of each period, you will be endowed with <b>$10</b>.
+            This section contains <b>3</b> periods. At the beginning of each period, you will be endowed with <b>${{ Constants.endowment }}</b>.
             You will have the opportunity to donate some of your endowment to a charity organization.
             Your donation will be completely anonymous. If one of your decisions in this section is chosen for realization,
             you will receive a thank-you message on <b>your computer screen, only visible to you</b>.
@@ -39,6 +39,5 @@
     {% endif %}
 
     {% next_button %}
-<!-- In here, can we substitute the subject's choice of charity name into the [Charity name] in the treatment instructions? -->
-<!-- Can we only display the task instruction once for all 3 public choices, then once for all 3 private choices?-->
+
 {% endblock %}

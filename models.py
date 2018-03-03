@@ -27,8 +27,17 @@ class Constants(BaseConstants):
     name_in_url = 'Donations'
     players_per_group = None
     num_rounds = len(round_data)
-    endowment = c(10)
-    participation_fee = c(5)
+    endowment = 10
+    participation_fee = 5
+
+    # otree dropdown menu only returns intgers, here we map them
+    # to strings representing the charity names
+    charity_map = {
+        1: 'Save the Dinosaurs',
+        2: 'World Multistrata Agroforestry Fund',
+        3: 'Combjellies Are People Too!',
+        4: 'Washed Up Movie Stars Rehab Fund'
+    }
 
 
 class Player(BasePlayer):
@@ -43,23 +52,28 @@ class Player(BasePlayer):
     # on their donation
     charity = models.IntegerField(
         choices=[
-            [1, 'Charity 1'], 
-            [2, 'Charity 2'], 
-            [3, 'Charity 3'], 
-            [4, 'Charity 4'], 
-            [5, 'Charity 5'], 
-            [6, 'Charity 6']])
+            # these names can be changed to anything
+            [1, Constants.charity_map[1]], 
+            [2, Constants.charity_map[2]], 
+            [3, Constants.charity_map[3]], 
+            [4, Constants.charity_map[4]]])
+
     money_kept = models.FloatField()
-    money_donated = models.FloatField(min=0, max=10) # make only integers
+    money_donated = models.FloatField() # make only integers
+    mode = models.TextField()
+    rebate = models.FloatField()
+    charity_dec = models.TextField()
 
     # pr is the paying round: this is randomly chosen 
     # in the Results class in Pages.py
     def set_payoffs(self, pr):
         # gets money kept in paying round
         kept = self.in_round(pr).money_kept
+        donated = self.in_round(pr).money_donated
+        rebate = Constants.round_data[pr - 1]['rebate']
 
         # multiplies money kept by rebate to get total payoff
-        self.payoff = kept * Constants.round_data[pr - 1]['rebate']
+        self.payoff = kept + (donated * (rebate - 1))
     
 class Subsession(BaseSubsession):
     pass

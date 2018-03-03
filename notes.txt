@@ -1,0 +1,11 @@
+TODO: control questions, survey at end
+
+public setting: results page
+    tell players that there will be a message posted on their facebook
+    give name on facebook in results page
+
+MAKE SHIT READ IN SHIT FROM CONFIG
+MAYBE AUTOMATE PERMUTATIONS?
+
+do charity formatting
+also make payoff not be in results bc reloading page can change result

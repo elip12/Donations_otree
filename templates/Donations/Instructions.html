@@ -25,7 +25,7 @@
     <p>
         Your are now taking part in an economics experiment, which is financed by the UCSC LEEPS Lab.
         If you carefully read the following instructions, you can earn—depending on your decisions during the experiment—
-        a considerable amount of money, which will, together with the show-up fee of $5, be paid out to you in cash
+        a considerable amount of money, which will, together with the show-up fee of ${{ Constants.participation_fee }}, be paid out to you in cash
         immediately after the experiment. It is very important to read these instructions very carefully.
     </p>
 
@@ -45,7 +45,7 @@
     </h3>
 
     <p>
-        At the beginning of each period each participant is endowed with <b>$10</b>. Your task is to decide how to spend your endowment.
+        At the beginning of each period each participant is endowed with <b>${{ Constants.endowment }}</b>. Your task is to decide how to spend your endowment.
         There are two possibilities:
     </p>
 
@@ -55,10 +55,10 @@
     </ol>
 
     <p>
-        In making your decisions, make sure that your donation does not exceed the initial endowment of <b>$10</b>.
+        In making your decisions, make sure that your donation does not exceed the initial endowment of <b>${{ Constants.endowment }}</b>.
         After you’ve made decisions in all 6 periods, the experimenter will <b>randomly choose one period to realize your
         donation decisions</b> and calculate the balance in your personal account. Your final payment will be your personal
-        account balance + <b>$5</b> show-up fee.
+        account balance + <b>${{ Constants.participation_fee }}</b> show-up fee.
     </p>
 
     <h4>
