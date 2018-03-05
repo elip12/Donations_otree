@@ -3,7 +3,71 @@
 # There will never be more than 12 participants.
 # Each participant is given a participant code by the room
 
+# this is a static list that is copied out of to get the sets we want for experiments
+'''
+perms = [
+            # pub and pri rebates in same order
+            # this is the base permutation
+            [['pub', 0.0],   ['pub', 0.1],    ['pub', 0.9],    ['pri', 0.0],    ['pri', 0.1],    ['pri', 0.9]],
+            [['pub', 0.0],   ['pub', 0.9],    ['pub', 0.1],    ['pri', 0.0],    ['pri', 0.9],    ['pri', 0.1]],
+            [['pub', 0.1],   ['pub', 0.0],    ['pub', 0.9],    ['pri', 0.1],    ['pri', 0.0],    ['pri', 0.9]],
+            [['pub', 0.1],   ['pub', 0.9],    ['pub', 0.0],    ['pri', 0.1],    ['pri', 0.9],    ['pri', 0.0]],
+            [['pub', 0.9],   ['pub', 0.0],    ['pub', 0.1],    ['pri', 0.9],    ['pri', 0.0],    ['pri', 0.1]],
+            [['pub', 0.9],   ['pub', 0.1],    ['pub', 0.0],    ['pri', 0.9],    ['pri', 0.1],    ['pri', 0.0]],
+            [['pri', 0.0],   ['pri', 0.1],    ['pri', 0.9],    ['pub', 0.0],    ['pub', 0.1],    ['pub', 0.9]],
+            [['pri', 0.0],   ['pri', 0.9],    ['pri', 0.1],    ['pub', 0.0],    ['pub', 0.9],    ['pub', 0.1]],
+            [['pri', 0.1],   ['pri', 0.0],    ['pri', 0.9],    ['pub', 0.1],    ['pub', 0.0],    ['pub', 0.9]],
+            [['pri', 0.1],   ['pri', 0.9],    ['pri', 0.0],    ['pub', 0.1],    ['pub', 0.9],    ['pub', 0.0]],
+            [['pri', 0.9],   ['pri', 0.0],    ['pri', 0.1],    ['pub', 0.9],    ['pub', 0.0],    ['pub', 0.1]],
+            [['pri', 0.9],   ['pri', 0.1],    ['pri', 0.0],    ['pub', 0.9],    ['pub', 0.1],    ['pub', 0.0]], 
 
+            # cols 4 and 5 switched
+            [['pub', 0.0],   ['pub', 0.1],    ['pub', 0.9],    ['pri', 0.1],    ['pri', 0.0],    ['pri', 0.9]],
+            [['pub', 0.0],   ['pub', 0.9],    ['pub', 0.1],    ['pri', 0.9],    ['pri', 0.0],    ['pri', 0.1]],
+            [['pub', 0.1],   ['pub', 0.0],    ['pub', 0.9],    ['pri', 0.0],    ['pri', 0.1],    ['pri', 0.9]],
+            [['pub', 0.1],   ['pub', 0.9],    ['pub', 0.0],    ['pri', 0.9],    ['pri', 0.1],    ['pri', 0.0]],
+            [['pub', 0.9],   ['pub', 0.0],    ['pub', 0.1],    ['pri', 0.0],    ['pri', 0.9],    ['pri', 0.1]],
+            [['pub', 0.9],   ['pub', 0.1],    ['pub', 0.0],    ['pri', 0.1],    ['pri', 0.9],    ['pri', 0.0]],
+            [['pri', 0.0],   ['pri', 0.1],    ['pri', 0.9],    ['pub', 0.1],    ['pub', 0.0],    ['pub', 0.9]],
+            [['pri', 0.0],   ['pri', 0.9],    ['pri', 0.1],    ['pub', 0.9],    ['pub', 0.0],    ['pub', 0.1]],
+            [['pri', 0.1],   ['pri', 0.0],    ['pri', 0.9],    ['pub', 0.0],    ['pub', 0.1],    ['pub', 0.9]],
+            [['pri', 0.1],   ['pri', 0.9],    ['pri', 0.0],    ['pub', 0.9],    ['pub', 0.1],    ['pub', 0.0]],
+            [['pri', 0.9],   ['pri', 0.0],    ['pri', 0.1],    ['pub', 0.0],    ['pub', 0.9],    ['pub', 0.1]],
+            [['pri', 0.9],   ['pri', 0.1],    ['pri', 0.0],    ['pub', 0.1],    ['pub', 0.9],    ['pub', 0.0]],
+
+            # cols 5 and 6 switched
+            [['pub', 0.0],   ['pub', 0.1],    ['pub', 0.9],    ['pri', 0.0],    ['pri', 0.9],    ['pri', 0.1]],
+            [['pub', 0.0],   ['pub', 0.9],    ['pub', 0.1],    ['pri', 0.0],    ['pri', 0.1],    ['pri', 0.9]],
+            [['pub', 0.1],   ['pub', 0.0],    ['pub', 0.9],    ['pri', 0.1],    ['pri', 0.9],    ['pri', 0.0]],
+            [['pub', 0.1],   ['pub', 0.9],    ['pub', 0.0],    ['pri', 0.1],    ['pri', 0.0],    ['pri', 0.9]],
+            [['pub', 0.9],   ['pub', 0.0],    ['pub', 0.1],    ['pri', 0.9],    ['pri', 0.1],    ['pri', 0.0]],
+            [['pub', 0.9],   ['pub', 0.1],    ['pub', 0.0],    ['pri', 0.9],    ['pri', 0.0],    ['pri', 0.1]],
+            [['pri', 0.0],   ['pri', 0.1],    ['pri', 0.9],    ['pub', 0.0],    ['pub', 0.9],    ['pub', 0.1]],
+            [['pri', 0.0],   ['pri', 0.9],    ['pri', 0.1],    ['pub', 0.0],    ['pub', 0.1],    ['pub', 0.9]],
+            [['pri', 0.1],   ['pri', 0.0],    ['pri', 0.9],    ['pub', 0.1],    ['pub', 0.9],    ['pub', 0.0]],
+            [['pri', 0.1],   ['pri', 0.9],    ['pri', 0.0],    ['pub', 0.1],    ['pub', 0.0],    ['pub', 0.9]],
+            [['pri', 0.9],   ['pri', 0.0],    ['pri', 0.1],    ['pub', 0.9],    ['pub', 0.1],    ['pub', 0.0]],
+            [['pri', 0.9],   ['pri', 0.1],    ['pri', 0.0],    ['pub', 0.9],    ['pub', 0.0],    ['pub', 0.1]],
+
+            # cols 4 and 6 switched
+            [['pub', 0.0],   ['pub', 0.1],    ['pub', 0.9],    ['pri', 0.1],    ['pri', 0.9],    ['pri', 0.0]],
+            [['pub', 0.0],   ['pub', 0.9],    ['pub', 0.1],    ['pri', 0.9],    ['pri', 0.1],    ['pri', 0.0]],
+            [['pub', 0.1],   ['pub', 0.0],    ['pub', 0.9],    ['pri', 0.0],    ['pri', 0.9],    ['pri', 0.1]],
+            [['pub', 0.1],   ['pub', 0.9],    ['pub', 0.0],    ['pri', 0.9],    ['pri', 0.0],    ['pri', 0.1]],
+            [['pub', 0.9],   ['pub', 0.0],    ['pub', 0.1],    ['pri', 0.0],    ['pri', 0.1],    ['pri', 0.9]],
+            [['pub', 0.9],   ['pub', 0.1],    ['pub', 0.0],    ['pri', 0.1],    ['pri', 0.0],    ['pri', 0.9]],
+            [['pri', 0.0],   ['pri', 0.1],    ['pri', 0.9],    ['pub', 0.1],    ['pub', 0.9],    ['pub', 0.0]],
+            [['pri', 0.0],   ['pri', 0.9],    ['pri', 0.1],    ['pub', 0.9],    ['pub', 0.1],    ['pub', 0.0]],
+            [['pri', 0.1],   ['pri', 0.0],    ['pri', 0.9],    ['pub', 0.0],    ['pub', 0.9],    ['pub', 0.1]],
+            [['pri', 0.1],   ['pri', 0.9],    ['pri', 0.0],    ['pub', 0.9],    ['pub', 0.0],    ['pub', 0.1]],
+            [['pri', 0.9],   ['pri', 0.0],    ['pri', 0.1],    ['pub', 0.0],    ['pub', 0.1],    ['pub', 0.9]],
+            [['pri', 0.9],   ['pri', 0.1],    ['pri', 0.0],    ['pub', 0.1],    ['pub', 0.0],    ['pub', 0.9]]
+
+            # there are to my knowledge no other ways to permutate this here data
+        ]
+'''
+
+# this is where models will look for the current experiment data. When you are done with it, put it at the bottom, commented out
 data =  [
             [['pub', 0.0],   ['pub', 0.1],    ['pub', 0.9],    ['pri', 0.0],    ['pri', 0.1],    ['pri', 0.9]],
             [['pub', 0.0],   ['pub', 0.9],    ['pub', 0.1],    ['pri', 0.0],    ['pri', 0.9],    ['pri', 0.1]],
@@ -20,7 +84,7 @@ data =  [
         ]
 
 # exports data to a csv format
-def export_csv(fname):
+def export_csv(fname, data):
     with open(fname + '.csv', 'w') as f:
 
         # write header for csv
@@ -53,4 +117,14 @@ def export_data():
                 period[0] = 'private'
             period[1] += 1.0
     return data
+
+'''
+This is where old experiment data goes. 
+Before you put it here, you can export it to CSV format 
+if you want, passing in the current date and session
+as the filename and data as the data.
+
+
+
+'''
 
