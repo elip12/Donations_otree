@@ -1,7 +1,6 @@
 from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
-import random
 
 class Instructions(Page):
     form_model = 'player'
@@ -28,15 +27,15 @@ class TaskInstructions(Page):
         if rn == 1:
             return True
         else:
-            mode = Constants.round_data[rn - 1]['mode']
-            prev_mode = Constants.round_data[rn - 2]['mode']
+            mode = Constants.round_data[self.participant.id_in_session - 1][rn - 1][0]
+            prev_mode = Constants.round_data[self.participant.id_in_session - 1][rn - 2][0]
             if not (mode == prev_mode):
                 return True
             return False
 
     def vars_for_template(self):
         return {
-            'mode': Constants.round_data[self.round_number - 1]['mode'].capitalize(),
+            'mode': Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][0].capitalize(),
         }
 
 # Decision page. Includes instrucitons, and returns some input form fields for ease of recording data
@@ -46,8 +45,8 @@ class Decision(Page):
 
     def vars_for_template(self):
         return {
-            'mode': Constants.round_data[self.round_number - 1]['mode'],
-            'rebate': round((Constants.round_data[self.round_number - 1]['rebate'] - 1) * 100),
+            'mode': Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][0],
+            'rebate': round((Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][1] - 1) * 100),
             'round_num': self.round_number,
             'charity': Constants.charity_map[self.player.in_round(1).charity]
         }
@@ -65,8 +64,8 @@ class Results(Page):
 
     def vars_for_template(self):
 
-        # get paying round
-        pr = random.randrange(1, Constants.num_rounds + 1, 1)
+        # set payoffs
+        pr = self.participant.vars['pr']
         self.player.set_payoffs(pr)
         payoff = self.player.payoff
         donation = self.player.in_round(pr).money_donated
@@ -75,8 +74,8 @@ class Results(Page):
         # automatically passed to templates
         return {
             'pr': pr,
-            'mode': Constants.round_data[pr - 1]['mode'],
-            'rebate': round((Constants.round_data[pr - 1]['rebate'] - 1) * 100),
+            'mode': Constants.round_data[self.participant.id_in_session - 1][pr - 1][0],
+            'rebate': round((Constants.round_data[self.participant.id_in_session - 1][pr - 1][1] - 1) * 100),
             'charity': Constants.charity_map[self.player.in_round(1).charity],
             'payoff': payoff,
             'donation': round(donation)

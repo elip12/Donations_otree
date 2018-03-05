@@ -43,6 +43,14 @@ def export_csv(fname):
             f.write('\n')
 
 # exports data to models.py
+# formats data to make it easier for models.py to parse it
 def export_data():
+    for player in data:
+        for period in player:
+            if period[0] == 'pub':
+                period[0] = 'public'
+            elif period[0] == 'pri':
+                period[0] = 'private'
+            period[1] += 1.0
     return data
 

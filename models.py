@@ -2,6 +2,8 @@ from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
     Currency as c, currency_range
 )
+from . import config
+import random
 
 
 author = 'Eli Pandolfo'
@@ -15,18 +17,11 @@ doc = """
 class Constants(BaseConstants):
 
     # each round is either public or private, and has a % rebate
-    round_data = [
-        {'mode': 'private', 'rebate': 1.0},
-        {'mode': 'private', 'rebate': 1.1},
-        {'mode': 'private', 'rebate': 1.9},
-        {'mode': 'public', 'rebate': 1.0},
-        {'mode': 'public', 'rebate': 1.1},        
-        {'mode': 'public', 'rebate': 1.9} 
-    ]
+    round_data = config.export_data()
 
     name_in_url = 'Donations'
     players_per_group = None
-    num_rounds = len(round_data)
+    num_rounds = len(round_data[0])
     endowment = 10
     participation_fee = 5
 
@@ -70,13 +65,17 @@ class Player(BasePlayer):
         # gets money kept in paying round
         kept = self.in_round(pr).money_kept
         donated = self.in_round(pr).money_donated
-        rebate = Constants.round_data[pr - 1]['rebate']
+        rebate = Constants.round_data[self.participant.id_in_session - 1][pr - 1][1]
 
         # multiplies money kept by rebate to get total payoff
         self.payoff = kept + (donated * (rebate - 1))
     
 class Subsession(BaseSubsession):
-    pass
+    
+    def creating_session(self):
+        # set paying round
+        for p in self.get_players():
+            p.participant.vars['pr'] = random.randrange(1, Constants.num_rounds + 1, 1)
 
 
 class Group(BaseGroup):
