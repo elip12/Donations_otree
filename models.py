@@ -28,10 +28,10 @@ class Constants(BaseConstants):
     # otree dropdown menu only returns intgers, here we map them
     # to strings representing the charity names
     charity_map = {
-        1: 'Save the Dinosaurs',
-        2: 'World Multistrata Agroforestry Fund',
-        3: 'Combjellies Are People Too!',
-        4: 'Washed Up Movie Stars Rehab Fund'
+        1: 'Santa Cruz Education Foundation',
+        2: 'Año Nuevo Research at UCSC',
+        3: 'Santa Cruz Homeless Garden Project',
+        4: 'Santa Cruz Humane Society'
     }
 
 
