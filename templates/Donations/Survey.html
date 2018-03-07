@@ -1,0 +1,63 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        window.onload = function () 
+        {
+            document.getElementById("arrive_time").value = (new Date()).toISOString()
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+    Survey
+{% endblock %}
+
+{% block content %}
+    <div>
+        <input type="hidden" name="time_Survey" id="arrive_time"/>
+    </div>
+    <div>
+        <div>
+            <p>
+                1. What is your gender?
+            </p>
+            {% formfield player.s1 label=None %}
+        </div>
+        <div>
+            <p>
+                2. On a scale from 1 to 10, with 1 being the lowest and 10 being the highest, how much do you care about the missions of the charity of your choice?
+            </p>
+            {% formfield player.s2 label=None %}
+        </div>
+        <div>
+            <p>
+                3. If Alex donated $20 without any rebate, split 10 points between the following states. You should assign more points to the statement that you agree more on. 
+            </p>
+            {% formfield player.s3a label='Alex is donating because he cares about the charity and its mission' %}
+            {% formfield player.s3b label='Alex is donating because of the rebate' %}
+        </div>
+        <div>
+            <p>
+                4. If Alex donated $20 with a rebate of 5%, split 10 points between the following states. You should assign more points to the statement that you agree more on. 
+            </p>
+            {% formfield player.s4a label='Alex is donating because he cares about the charity and its mission' %}
+            {% formfield player.s4b label='Alex is donating because of the rebate' %}
+        </div>
+        <div>
+            <p>
+                5. If Alex donated $20 with a rebate of 95%, split 10 points between the following states. You should assign more points to the statement that you agree more on.
+            </p>
+            {% formfield player.s5a label='Alex is donating because he cares about the charity and its mission' %}
+            {% formfield player.s5b label='Alex is donating because of the rebate' %}
+        </div>
+    </div>
+
+    <div>
+        <button id="submit" class="btn btn-primary btn-large next-button" style="float: left;">Submit</button>
+    </div>
+
+{% endblock %}
+
+

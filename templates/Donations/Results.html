@@ -5,7 +5,12 @@
     <script type="text/javascript">
         window.onload = function () 
         {
-            document.getElementById("arrive_time").value = (new Date()).toISOString();
+            document.getElementById("arrive_time").value = (new Date()).toISOString()
+            document.getElementById('pr').value = {{ pr | json }}
+            document.getElementById('mode').value = {{ mode | json }}
+            document.getElementById('charity').value = {{ charity | json }}
+            document.getElementById('rebate').value = {{ rebate | json }}
+            document.getElementById('donation').value = {{ donation | json }}
         }
     </script>
 {% endblock %}
@@ -16,9 +21,12 @@
 
 {% block content %}
     <div>
-        <!-- form field for page load time. Value attribute gets set by script on window load,
-            and the form gets returned here -->
         <input type="hidden" name="time_Results" id="arrive_time"/>
+        <input type="hidden" name="chosen_pr" id="pr"/>
+        <input type="hidden" name="chosen_mode" id="mode"/>
+        <input type="hidden" name="chosen_charity" id="charity"/>
+        <input type="hidden" name="chosen_rebate" id="rebate"/>
+        <input type="hidden" name="chosen_donation" id="donation"/>
     </div>
     <div>
         <h5>

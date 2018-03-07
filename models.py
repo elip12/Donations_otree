@@ -36,28 +36,53 @@ class Constants(BaseConstants):
 
 
 class Player(BasePlayer):
-    time_Instructions = models.TextField()
-    time_Charity = models.TextField()
-    time_TaskInstructions = models.TextField()
-    time_Decision = models.TextField()
-    time_Results = models.TextField()
+    time_Facebook = models.LongStringField()
+    time_Instructions = models.LongStringField()
+    time_ControlQuestions = models.LongStringField()
+    time_Charity = models.LongStringField()
+    time_TaskInstructions = models.LongStringField()
+    time_Decision = models.LongStringField()
+    time_Results = models.LongStringField()
+    time_Survey = models.LongStringField()
 
     # players first choose a charity.
-    # players can donate some money, keep some money, and sometimes get a rebate
-    # on their donation
+    # otree's dropdown menus need to return an integer
     charity = models.IntegerField(
         choices=[
             # these names can be changed to anything
-            [1, Constants.charity_map[1]], 
-            [2, Constants.charity_map[2]], 
-            [3, Constants.charity_map[3]], 
+            [1, Constants.charity_map[1]],
+            [2, Constants.charity_map[2]],
+            [3, Constants.charity_map[3]],
             [4, Constants.charity_map[4]]])
 
     money_kept = models.FloatField()
-    money_donated = models.FloatField() # make only integers
-    mode = models.TextField()
+    money_donated = models.IntegerField()
+    mode = models.LongStringField()
     rebate = models.FloatField()
-    charity_dec = models.TextField()
+
+    # this is the charity's name. It gets returned in Decision and results
+    charity_dec = models.LongStringField()
+
+    #facebook page
+    fb = models.StringField()
+    fb_user = models.StringField()
+
+    # results page
+    chosen_pr = models.IntegerField()
+    chosen_mode = models.StringField()
+    chosen_charity = models.StringField()
+    chosen_rebate = models.FloatField()
+    chosen_donation = models.FloatField()
+
+    # survey
+    s1 = models.StringField()
+    s2 = models.IntegerField(min=1, max=10)
+    s3a = models.IntegerField()
+    s3b = models.IntegerField()
+    s4a = models.IntegerField()
+    s4b = models.IntegerField()
+    s5a = models.IntegerField()
+    s5b = models.IntegerField()
 
     # pr is the paying round: this is randomly chosen 
     # in the Results class in Pages.py

@@ -1,0 +1,32 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        window.onload = function () 
+        {
+            document.getElementById("arrive_time").value = (new Date()).toISOString()
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+    Social Media Information
+{% endblock %}
+
+{% block content %}
+
+    <!-- form field for page load time. Value attribute gets set by script on window load,
+        and the form gets returned here -->
+    <input type="hidden" name="time_Facebook" id="arrive_time"/>
+
+    <p>
+        Some instructions.
+    </p>
+
+    {% formfield player.fb %}
+    {% formfield player.fb_user %}
+    
+{% next_button %}
+
+{% endblock %}
