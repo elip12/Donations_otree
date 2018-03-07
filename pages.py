@@ -4,7 +4,7 @@ from .models import Constants
 
 class Facebook(Page):
     form_model = 'player'
-    form_fields = ['time_Facebook', 'fb', 'fb_user']
+    form_fields = ['time_Facebook', 'FB_name', 'FB_ID']
 
     def is_displayed(self):
         return self.round_number == 1
@@ -100,7 +100,7 @@ class Survey(Page):
     form_fields = ['time_Survey', 's1', 's2', 's3a', 's3b', 's4a', 's4b', 's5a', 's5b']
 
     def is_displayed(self):
-        return self.round_number == 1
+        return self.round_number == Constants.num_rounds
 
     def error_message(self, values):
         if values['s3a'] + values['s3b'] != 10 or values['s4a'] + values['s4b'] != 10 or values['s5a'] + values['s5b'] != 10:

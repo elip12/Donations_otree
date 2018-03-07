@@ -64,8 +64,8 @@ class Player(BasePlayer):
     charity_dec = models.LongStringField()
 
     #facebook page
-    fb = models.StringField()
-    fb_user = models.StringField()
+    FB_name = models.StringField()
+    FB_ID = models.StringField()
 
     # results page
     chosen_pr = models.IntegerField()
