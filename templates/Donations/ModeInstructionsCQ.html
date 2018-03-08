@@ -1,0 +1,106 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree %}
+
+{% comment %}
+    <!--
+        Principal maintainer: Eli Pandolfo <epandolf@ucsc.edu>
+        Contributors: Rachel Zhang <rzhang37@ucsc.edu>
+    -->
+{% endcomment %}
+
+{% block title %}
+    <h1>
+        Mode Instructions
+    </h1>
+{% endblock %}
+
+{% block styles %}
+   
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+
+        var toggle = true
+
+        check_answers = function()
+        {
+
+            var a1 = document.getElementById('choice1')
+
+            toggle = true
+
+            if (a1.checked)
+            {
+                var i1 = document.getElementById('incorrect1')
+                i1.innerHTML = "Incorrect: this is what happens in private mode"
+                toggle = false
+            }
+            else
+                document.getElementById('incorrect1').innerHTML = ""            
+        }
+
+        window.onload = function() 
+        {
+            document.getElementById("arrive_time").value = (new Date()).toISOString()
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    
+    <input type="hidden" name="time_ModeInstructionsCQ" id="arrive_time"/>
+
+    <h4>
+       Public vs Private Modes
+    </h4>
+
+    <p>
+        public instructions
+    </p>
+    <p>
+        private instructions
+    </p>
+
+    <div>
+        <h5>
+            You must answer correctly before proceeding to the paying task. rachel, please change any aspect of this you want
+        </h5>
+    </div>
+    <br>
+    <div>
+        <h5>
+            Suppose you donate $100 with a 90% rebate in public mode.
+        </h5>
+        <br>
+        <p>
+            What will happen after the experiment?
+        </p>
+        <div>
+            <p id="incorrect1" style="color: red;"></p>
+            <input type="radio" id="choice1" name="choice" value="1">
+            <label for="choice1">You will receive a thank-you message on your computer screen, visible only to you.</label>
+            <br>
+            <input type="radio" id="choice2" name="choice" value="2">
+            <label for="choice2">You will receive a thank-you message on your social media timeline from your chosen charity</label>
+        </div>
+        
+
+    </div>
+    <hr>
+
+    <div>
+        <button id="submit" class="btn btn-primary btn-large next-button" style="float: left;">Submit</button>
+    </div>
+
+    <script type="text/javascript">
+    $(document).ready(function() 
+    {
+        $('.next-button').click(function()
+        {
+            check_answers()
+            return toggle
+        })
+    })
+    </script>
+{% endblock %}

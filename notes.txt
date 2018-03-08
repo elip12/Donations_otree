@@ -1,8 +1,12 @@
-TODO: control questions, survey at end
 
-public setting: results page
-    tell players that there will be a message posted on their facebook
-    give name on facebook in results page
+Eli:
+    - dont let prev values appear in form fills
+        - if no good way, restarting the app every time might fix it
+    
+    - go over instrucitons and send feedback - email
 
-ctl ?s right after gen instrucitons, along w concept of rebate revisited
-MEET RACHEL IN LAB AT 2 TOMORROW
+Rachel:
+    - update charity descriptions, add logos
+    - make font bigger
+
+

@@ -31,6 +31,13 @@ class Charity(Page):
     def is_displayed(self):
         return self.round_number == 1
 
+class ModeInstructionsCQ(Page):
+    form_model = 'player'
+    form_fields = ['time_ModeInstructionsCQ']
+
+    def is_displayed(self):
+        return self.round_number == 1
+
 class TaskInstructions(Page):
     form_model = 'player'
     form_fields = ['time_TaskInstructions']
@@ -108,10 +115,10 @@ class Survey(Page):
 
 
 page_sequence = [
-    Facebook,
     Instructions,
     ControlQuestions,
     Charity,
+    ModeInstructionsCQ,
     TaskInstructions,
     Decision,
     Results,

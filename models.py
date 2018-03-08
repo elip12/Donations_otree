@@ -40,6 +40,7 @@ class Player(BasePlayer):
     time_Instructions = models.LongStringField()
     time_ControlQuestions = models.LongStringField()
     time_Charity = models.LongStringField()
+    time_ModeInstructionsCQ = models.LongStringField()
     time_TaskInstructions = models.LongStringField()
     time_Decision = models.LongStringField()
     time_Results = models.LongStringField()
