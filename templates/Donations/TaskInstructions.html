@@ -24,16 +24,26 @@
         <p>
             This section contains <b>3</b> periods. At the beginning of each period, you will be endowed with <b>${{ Constants.endowment }}</b>.
             You will have the opportunity to donate some of your endowment to a charity organization.
-            If one of your decisions in this section is chosen for realization, you will receive a thank-you message
-            on <b>your social media timeline</b> from the charity organization.
+            If one of your decisions in this section is chosen for realization <b>AND</b>:
+            <ul>
+                <li> If you donated a <b>positive</b> amount <b>(>$0)</b> in that decision, you will <b>receive a thank-you message</b> on
+                <b>your social media timeline</b> from the LEEPS Lab with the charity being tagged, and <b>information on the rebate</b> you received.
+                </li>
+                <li> If you <b>did not</b> donate any amount <b>($0)</b> in that decision, you will <b>not receive any messages</b> on <b>your social media timeline</b></li>
+            </ul>
         </p>
 
     {% elif mode == 'Private' %}
         <p>
             This section contains <b>3</b> periods. At the beginning of each period, you will be endowed with <b>${{ Constants.endowment }}</b>.
             You will have the opportunity to donate some of your endowment to a charity organization.
-            Your donation will be completely anonymous. If one of your decisions in this section is chosen for realization,
-            you will receive a thank-you message on <b>your computer screen, only visible to you</b>.
+            If one of your decisions in this section is chosen for realization <b>AND</b>:
+            <ul>
+                <li> If you donated a <b>positive</b> amount <b>(>$0)</b> in that decision, you will <b>receive a thank-you message</b> on
+                <b>your computer screen</b> from the LEEPS Lab with the charity name mentioned in the message, and <b>information on the rebate</b> you received.
+                </li>
+                <li> If you <b>did not</b> donate any amount <b>($0)</b> in that decision, you will <b>not receive any messages</b> on <b>your computer screen</b></li>
+            </ul>
         </p>
 
     {% endif %}

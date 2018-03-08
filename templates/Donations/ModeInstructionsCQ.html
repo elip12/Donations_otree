@@ -52,25 +52,44 @@
     <input type="hidden" name="time_ModeInstructionsCQ" id="arrive_time"/>
 
     <h4>
-       Public vs Private Modes
+        Public Mode
     </h4>
 
     <p>
-        public instructions
-    </p>
-    <p>
-        private instructions
+        This section contains <b>3</b> periods. At the beginning of each period, you will be endowed with <b>${{ Constants.endowment }}</b>.
+        You will have the opportunity to donate some of your endowment to a charity organization.
+        If one of your decisions in this section is chosen for realization <b>AND</b>:
+        <ul>
+    <li> If you donated a <b>positive</b> amount <b>(>$0)</b> in that decision, you will <b>receive</b> a <b>thank-you message</b> with
+        <b>information about your rebate</b> on <b>your social media timeline</b> from the LEEPS Lab with the charity being tagged.
+    <li> If you <b>did not</b> donate any amount <b>($0)</b> in that decision, you will <b>not receive</b> any messages on <b>your social media timeline</b></li>
+        </ul>
     </p>
 
+    <h4>
+        Private Mode
+    </h4>
+    <p>
+        This section contains <b>3</b> periods. At the beginning of each period, you will be endowed with <b>${{ Constants.endowment }}</b>.
+        You will have the opportunity to donate some of your endowment to a charity organization.
+        If one of your decisions in this section is chosen for realization <b>AND</b>:
+        <ul>
+    <li> If you donated a <b>positive</b> amount <b>(>$0)</b> in that decision, you will <b>receive</b> a <b>thank-you message</b> with
+        <b>information about your rebate</b> on <b>your computer screen</b> (only visible to you) from the LEEPS Lab with the charity name mentioned in the message.
+    <li> If you <b>did not</b> donate any amount <b>($0)</b> in that decision, you will <b>not receive</b> any messages on <b>your computer screen.</b></li>
+        </ul>
+    </p>
+
+    <br>
     <div>
-        <h5>
-            You must answer correctly before proceeding to the paying task. rachel, please change any aspect of this you want
-        </h5>
+        <h4>
+            You must answer correctly before proceeding to the paying task.
+        </h4>
     </div>
     <br>
     <div>
         <h5>
-            Suppose you donate $100 with a 90% rebate in public mode.
+            1. Suppose you donated $100 with a 50% rebate in public mode.
         </h5>
         <br>
         <p>
@@ -79,13 +98,35 @@
         <div>
             <p id="incorrect1" style="color: red;"></p>
             <input type="radio" id="choice1" name="choice" value="1">
-            <label for="choice1">You will receive a thank-you message on your computer screen, visible only to you.</label>
+            <label for="choice1">You will receive a thank-you message on your computer screen with rebate information, visible only to you.</label>
+
+            <p id="incorrect1" style="color: red;"></p>
+            <input type="radio" id="choice1" name="choice" value="1">
+            <label for="choice1">You will receive a thank-you message on your social media timeline without rebate information.</label>
+
             <br>
             <input type="radio" id="choice2" name="choice" value="2">
-            <label for="choice2">You will receive a thank-you message on your social media timeline from your chosen charity</label>
+            <label for="choice2">You will receive a thank-you message on your social media timeline with rebate information.</label>
         </div>
-        
+    </div>
 
+    <div>
+        <h5>
+            2. Suppose you donated $0 with a 50% rebate in public mode.
+        </h5>
+        <br>
+        <p>
+            What will happen after the experiment?
+        </p>
+        <div>
+            <p id="incorrect1" style="color: red;"></p>
+            <input type="radio" id="choice1" name="choice" value="1">
+            <label for="choice1">You will receive a thank-you message on your social media timeline with rebate information.</label>
+
+            <br>
+            <input type="radio" id="choice2" name="choice" value="2">
+            <label for="choice2">You will not receive any messages on your social media timeline</label>
+        </div>
     </div>
     <hr>
 

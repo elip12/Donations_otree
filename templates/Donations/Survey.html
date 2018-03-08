@@ -27,27 +27,60 @@
         </div>
         <div>
             <p>
-                2. On a scale from 1 to 10, with 1 being the lowest and 10 being the highest, how much do you care about the missions of the charity of your choice?
+                2. What is your age?
+            </p>
+            {% formfield player.s1 label=None %}
+        </div>
+        <div>
+            <p>
+                3. What is your field of study?
+            </p>
+            {% formfield player.s1 label=None %}
+        </div>
+        <div>
+            <p>
+                4. What is the zip code you grew up in?
+            </p>
+            {% formfield player.s1 label=None %}
+        </div>
+        <div>
+            <p class="question">5. Do you or your family usually donate to charities?</p>
+            <ul class="answers">
+                <input type="radio" name="q1" value="a" id="q1a"><label for="q1a">Yes</label><br/>
+                <input type="radio" name="q1" value="b" id="q1b"><label for="q1b">No</label><br/>
+            </ul>
+        </div>
+        <div>
+            <p class="question">6. Are you working now?</p>
+            <ul class="answers">
+                <input type="radio" name="q1" value="a" id="q1a"><label for="q1a">No</label><br/>
+                <input type="radio" name="q1" value="b" id="q1b"><label for="q1b">Yes, part-time</label><br/>
+                <input type="radio" name="q1" value="b" id="q1b"><label for="q1b">Yes, full-time</label><br/>
+            </ul>
+        </div>
+        <div>
+            <p>
+                7. On a scale from 1 to 10, with 1 being the lowest and 10 being the highest, how much do you care about the missions of the charity of your choice?
             </p>
             {% formfield player.s2 label=None %}
         </div>
         <div>
             <p>
-                3. If Alex donated $20 without any rebate, split 10 points between the following states. You should assign more points to the statement that you agree more on. 
+                8. If Alex donated $20 without any rebate, split 10 points between the following states. You should assign more points to the statement that you agree more on.
             </p>
             {% formfield player.s3a label='Alex is donating because he cares about the charity and its mission' %}
             {% formfield player.s3b label='Alex is donating because of the rebate' %}
         </div>
         <div>
             <p>
-                4. If Alex donated $20 with a rebate of 5%, split 10 points between the following states. You should assign more points to the statement that you agree more on. 
+                9. If Alex donated $20 with a rebate of 5%, split 10 points between the following states. You should assign more points to the statement that you agree more on.
             </p>
             {% formfield player.s4a label='Alex is donating because he cares about the charity and its mission' %}
             {% formfield player.s4b label='Alex is donating because of the rebate' %}
         </div>
         <div>
             <p>
-                5. If Alex donated $20 with a rebate of 95%, split 10 points between the following states. You should assign more points to the statement that you agree more on.
+                10. If Alex donated $20 with a rebate of 95%, split 10 points between the following states. You should assign more points to the statement that you agree more on.
             </p>
             {% formfield player.s5a label='Alex is donating because he cares about the charity and its mission' %}
             {% formfield player.s5b label='Alex is donating because of the rebate' %}
