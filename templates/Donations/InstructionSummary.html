@@ -1,0 +1,43 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree %}
+
+{% comment %}
+    <!--
+        Insert this page after the ModeInstructionsCQ.html and before the 1st decision
+    -->
+{% endcomment %}
+
+{% block title %}
+    <h1>
+        Instruction Summary
+    </h1>
+{% endblock %}
+
+{% block styles %}
+
+{% endblock %}
+
+
+{% block content %}
+
+    <input type="hidden" name="time_ModeInstructionsCQ" id="arrive_time"/>
+    <p>
+        <b>Before</b> you start making the <b>6</b> decisions about how to spend your endowment (you will have <b>$10</b>
+        for <b>each</b> decision)
+    </p>
+
+    <h5>
+        Keep in mind that your decisions will affect 3 major things:
+    </h5>
+
+    <p>
+        <ol>
+            <li>The <b>donation</b> {{ charity }} receives</li>
+            <li>Your <b>actual spending</b> with the rebate you receive in that decision period</li>
+            <li>Whether you <b>will</b> receive a message with <b>rebate information</b> (for <b>positive</b> donation)
+                <b>visible to your friends</b> (FB) or <b>visible only to you</b> (computer
+        screen); or you <b>will not</b> receive any messages (for <b>$0</b> donation)</li>
+        </ol>
+    </p>
+
+{% endblock %}
