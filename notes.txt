@@ -1,12 +1,41 @@
 
 Eli:
-    - dont let prev values appear in form fills
-        - if no good way, restarting the app every time might fix it
-    
-    - go over instrucitons and send feedback - email
+    - might make some sliders for survey 10 pt split
 
 Rachel:
     - update charity descriptions, add logos
     - make font bigger
+    - fix any typos
+
+Feedback:
+
+    - I edited everything a fair amount. Feel free to remove or change anything I added.
+    - I mention the bold text several times. I think theres enough bold text that it becomes confusing and overwhelming when trying to read the sentence.
+        Needs to be spare to have an effect.
+
+    General Instructions
+        - I think you should briefly mention the concept of rebates and the public/private treamtents in the general instructions, and say they will be discussed mre depth later in the experiment.
+
+    Control Questions
+        - I am leaving 'revisited' in the title because I assume you are going to add something about about rebates in the general instructions. If not, take out the revisited since it is the first time we are talking about them.
+
+    Charity
+        - You need to change almost all of this, with detailed information about each charity, and update the intro.
+
+    Mode Instrucitons
+        - I'm not sure how much I like the title mode instructions. Cant think of anything better right now.
+        - I think the amount of bold text is excessive
+
+    InstructionSummary
+        - again with the bold
+        - I think the third bullet is too long/unclear. maybe split it into 2 sentences.
+
+    Decision
+        - I dont think the second paragraph is necessary.
+        - If you do keep it, tone down the bold a little bit.
+
+    Results
+        - need to change the results message to say 
+
 
 

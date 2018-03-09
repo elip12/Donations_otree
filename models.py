@@ -27,37 +27,32 @@ class Constants(BaseConstants):
 
     # otree dropdown menu only returns intgers, here we map them
     # to strings representing the charity names
-    charity_map = {
-        1: 'Santa Cruz Education Foundation',
-        2: 'Año Nuevo Research at UCSC',
-        3: 'Santa Cruz Homeless Garden Project',
-        4: 'Santa Cruz Humane Society'
-    }
+    charities = [
+        'Santa Cruz Education Foundation',
+        'Año Nuevo Research at UCSC',
+        'Santa Cruz Homeless Garden Project',
+        'Santa Cruz Humane Society'
+    ]
 
 
 class Player(BasePlayer):
-    time_Facebook = models.LongStringField()
+    #time_Facebook = models.LongStringField()
     time_Instructions = models.LongStringField()
     time_ControlQuestions = models.LongStringField()
     time_Charity = models.LongStringField()
     time_ModeInstructionsCQ = models.LongStringField()
-    time_TaskInstructions = models.LongStringField()
+    time_InstructionSummary = models.LongStringField()
+    #time_TaskInstructions = models.LongStringField()
     time_Decision = models.LongStringField()
     time_Results = models.LongStringField()
     time_Survey = models.LongStringField()
 
     # players first choose a charity.
     # otree's dropdown menus need to return an integer
-    charity = models.IntegerField(
-        choices=[
-            # these names can be changed to anything
-            [1, Constants.charity_map[1]],
-            [2, Constants.charity_map[2]],
-            [3, Constants.charity_map[3]],
-            [4, Constants.charity_map[4]]])
+    charity = models.IntegerField()
 
-    money_kept = models.FloatField()
-    money_donated = models.IntegerField()
+    money_kept = models.FloatField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+    money_donated = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
     mode = models.LongStringField()
     rebate = models.FloatField()
 
@@ -65,8 +60,8 @@ class Player(BasePlayer):
     charity_dec = models.LongStringField()
 
     #facebook page
-    FB_name = models.StringField()
-    FB_ID = models.StringField()
+    FB_name = models.StringField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+    FB_ID = models.StringField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
 
     # results page
     chosen_pr = models.IntegerField()
@@ -76,14 +71,27 @@ class Player(BasePlayer):
     chosen_donation = models.FloatField()
 
     # survey
-    s1 = models.StringField()
-    s2 = models.IntegerField(min=1, max=10)
-    s3a = models.IntegerField()
-    s3b = models.IntegerField()
-    s4a = models.IntegerField()
-    s4b = models.IntegerField()
-    s5a = models.IntegerField()
-    s5b = models.IntegerField()
+    s1 = models.StringField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+    s2 = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+    s3 = models.StringField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+    s4 = models.StringField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+    s5 = models.BooleanField(
+        choices=[[0, 'No'], [1, 'Yes']],
+        widget=widgets.RadioSelect)
+    s6 = models.IntegerField(
+        choices=[
+            [0, 'No'],
+            [1, 'Yes, part-time'],
+            [2, 'Yes, full-time']],
+        widget=widgets.RadioSelect)
+    s7 = models.IntegerField(min=1, max=10, widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+    s8 = models.IntegerField(widget=widgets.RadioSelect)
+    s9a = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+    s9b = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+    s10a = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+    s10b = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+    s11a = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+    s11b = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
 
     # pr is the paying round: this is randomly chosen 
     # in the Results class in Pages.py
@@ -102,6 +110,7 @@ class Subsession(BaseSubsession):
         # set paying round
         for p in self.get_players():
             p.participant.vars['pr'] = random.randrange(1, Constants.num_rounds + 1, 1)
+            p.participant.vars['charities'] = random.sample(Constants.charities, k=len(Constants.charities))
 
 
 class Group(BaseGroup):

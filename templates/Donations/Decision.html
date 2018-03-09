@@ -23,7 +23,7 @@
 {% endblock %}
 
 {% block title %}
-    Decision {{ round_num }} - Rebate: {{ rebate }}%. 
+    Decision {{ round_num }} - {{ mode }}, Rebate: {{ rebate }}%. 
 
 {% endblock %}
 
@@ -40,27 +40,30 @@
     </div>
     <div>
         <p>
-            Out of the <b>${{ Constants.endowment }}</b> you are endowed with for this period, would you like to donate any to the charity of your choice?
+            Out of the <b>${{ Constants.endowment }}</b> you are endowed with for this period,
+            would you like to donate any to the charity of your choice?
             {% if rebate != 0 %}
-                While you are donating, the UCSC LEEPS lab would like to offer you <b>a rebate of {{ rebate }}% of your donation</b>.
+                While you are donating, the UCSC LEEPS lab would like to offer you <b>a rebate of
+                {{ rebate }}% of your donation</b>.
             {% else %}
                 You will not receive any rebates of your donation.
             {% endif %}
         </p>
-        {% if mode == 'public' %}
+        {% if mode == 'Public' %}
             <p>
                 If your decision in this period is chosen for realization AND:
                 <ul>
-                    <li> If you donated a <b>positive</b> amount <b>(>$0)</b> in this decision, you will receive
-                        the following message on <b>your social media timeline</b> from the LEEPS Lab:
-                        <b>“Thank you for donating $X to {{ charity }}</b>
+                    <li> If you donated a <b>positive</b> amount in this decision,
+                        you will receive the following message on <b>your social media timeline</b>
+                        from the LEEPS Lab:
                         {% if rebate != 0 %}
-                            <b>, with a {{ rebate }}% rebate offered by the UCSC LEEPS Lab!”</b>
+                            <b>“Thank you for donating $X to {{ charity }}, with a {{ rebate }}%
+                            rebate offered by the UCSC LEEPS Lab!”</b>
                         {% else %}
-                            <b>!"</b>
+                            <b>“Thank you for donating $X to {{ charity }}!"</b>
                         {% endif %}
                     </li>
-                    <li> If you <b>did not</b> donate any amount <b>($0)</b> in this decision, you will
+                    <li> If you <b>did not</b> donate any amount in this decision, you will
                         <b>not receive any messages</b> on <b>your social media timeline</b></li>
                 </ul>
             </p>
@@ -68,16 +71,17 @@
             <p>
                 If your decision in this period is chosen for realization AND:
                 <ul>
-                    <li> If you donated a <b>positive</b> amount <b>(>$0)</b> in this decision, you will receive
-                        the following message on <b>your computer screen</b>: <b>“Thank you for donating $X to {{ charity }}</b>
+                    <li> If you donated a <b>positive</b> amount in this decision,
+                        you will receive the following message on <b>your computer screen</b>:
                         {% if rebate != 0 %}
-                            <b>, with a {{ rebate }}% rebate offered by the UCSC LEEPS Lab!”</b>
+                            <b>“Thank you for donating $X to {{ charity }}, with a {{ rebate }}%
+                            rebate offered by the UCSC LEEPS Lab!”</b>
                         {% else %}
-                            <b>!"</b>
+                            <b>“Thank you for donating $X to {{ charity }}!"</b>
                         {% endif %}
                     </li>
                     <li>
-                        If you <b>did not</b> donate any amount <b>($0)</b> in this decision, you will
+                        If you <b>did not</b> donate any amount in this decision, you will
                         <b>not receive any messages</b> on <b>your computer screen</b></li>
                     </li>
                 </ul>

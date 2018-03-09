@@ -26,18 +26,29 @@
         check_answers = function()
         {
 
-            var a1 = document.getElementById('choice1')
+            var a3 = document.getElementById('choice3')
+            var a5 = document.getElementById('choice5')
 
             toggle = true
 
-            if (a1.checked)
+            if (!a3.checked)
             {
                 var i1 = document.getElementById('incorrect1')
-                i1.innerHTML = "Incorrect: this is what happens in private mode"
+                i1.innerHTML = "Please try again"
                 toggle = false
             }
             else
-                document.getElementById('incorrect1').innerHTML = ""            
+                document.getElementById('incorrect1').innerHTML = ""
+
+            if (!a5.checked)
+            {
+                var i2 = document.getElementById('incorrect2')
+                i2.innerHTML = "Please try again"
+                toggle = false
+            }
+            else
+                document.getElementById('incorrect2').innerHTML = ""
+
         }
 
         window.onload = function() 
@@ -56,13 +67,21 @@
     </h4>
 
     <p>
-        This section contains <b>3</b> periods. At the beginning of each period, you will be endowed with <b>${{ Constants.endowment }}</b>.
-        You will have the opportunity to donate some of your endowment to a charity organization.
-        If one of your decisions in this section is chosen for realization <b>AND</b>:
+        This section contains <b>3</b> periods. At the beginning of each period, you will be 
+        endowed with <b>${{ Constants.endowment }}</b>. You will have the opportunity to donate 
+        some of your endowment to a charity organization. If one of your decisions in this section 
+        is chosen for realization <b>AND</b>:
         <ul>
-    <li> If you donated a <b>positive</b> amount <b>(>$0)</b> in that decision, you will <b>receive</b> a <b>thank-you message</b> with
-        <b>information about your rebate</b> on <b>your social media timeline</b> from the LEEPS Lab with the charity being tagged.
-    <li> If you <b>did not</b> donate any amount <b>($0)</b> in that decision, you will <b>not receive</b> any messages on <b>your social media timeline</b></li>
+            <li>
+                If you donated a <b>positive</b> amount in that decision, 
+                you will <b>receive</b> a <b>thank-you message</b> with <b>information about your 
+                rebate</b> on <b>your social media timeline</b> from the LEEPS Lab with the charity
+                being tagged.
+            </li>
+            <li>
+                If you <b>did not</b> donate any amount in that decision, 
+                you will <b>not receive</b> any messages on <b>your social media timeline</b>
+            </li>
         </ul>
     </p>
 
@@ -70,13 +89,21 @@
         Private Mode
     </h4>
     <p>
-        This section contains <b>3</b> periods. At the beginning of each period, you will be endowed with <b>${{ Constants.endowment }}</b>.
-        You will have the opportunity to donate some of your endowment to a charity organization.
-        If one of your decisions in this section is chosen for realization <b>AND</b>:
+        This section contains <b>3</b> periods. At the beginning of each period, you will be 
+        endowed with <b>${{ Constants.endowment }}</b>. You will have the opportunity to donate 
+        some of your endowment to a charity organization. If one of your decisions in this section
+        is chosen for realization <b>AND</b>:
         <ul>
-    <li> If you donated a <b>positive</b> amount <b>(>$0)</b> in that decision, you will <b>receive</b> a <b>thank-you message</b> with
-        <b>information about your rebate</b> on <b>your computer screen</b> (only visible to you) from the LEEPS Lab with the charity name mentioned in the message.
-    <li> If you <b>did not</b> donate any amount <b>($0)</b> in that decision, you will <b>not receive</b> any messages on <b>your computer screen.</b></li>
+            <li>
+                If you donated a <b>positive</b> amount in that decision, you will
+                <b>receive</b> a <b>thank-you message</b> with <b>information about your rebate</b>
+                on <b>your computer screen</b> (only visible to you) from the LEEPS Lab with the 
+                charity name mentioned in the message.
+            </li>
+            <li>
+                If you <b>did not</b> donate any amount in that decision, you will
+                <b>not receive</b> any messages on <b>your computer screen.</b>
+            </li>
         </ul>
     </p>
 
@@ -91,47 +118,59 @@
         <h5>
             1. Suppose you donated $100 with a 50% rebate in public mode.
         </h5>
-        <br>
         <p>
             What will happen after the experiment?
         </p>
         <div>
             <p id="incorrect1" style="color: red;"></p>
-            <input type="radio" id="choice1" name="choice" value="1">
-            <label for="choice1">You will receive a thank-you message on your computer screen with rebate information, visible only to you.</label>
 
-            <p id="incorrect1" style="color: red;"></p>
-            <input type="radio" id="choice1" name="choice" value="1">
-            <label for="choice1">You will receive a thank-you message on your social media timeline without rebate information.</label>
-
+            <input type="radio" id="choice1" name="q1">
+            <label for="choice1">
+                You will receive a thank-you message on your computer screen with rebate 
+                information, visible only to you.
+            </label>
             <br>
-            <input type="radio" id="choice2" name="choice" value="2">
-            <label for="choice2">You will receive a thank-you message on your social media timeline with rebate information.</label>
+            <input type="radio" id="choice2" name="q1">
+            <label for="choice2">
+                You will receive a thank-you message on your social media timeline without rebate
+                information.
+            </label>
+            <br>
+            <input type="radio" id="choice3" name="q1">
+            <label for="choice3">
+                You will receive a thank-you message on your social media timeline with
+                rebate information.
+            </label>
+            <br>
         </div>
     </div>
-
     <div>
+        <br>
         <h5>
             2. Suppose you donated $0 with a 50% rebate in public mode.
         </h5>
-        <br>
         <p>
             What will happen after the experiment?
         </p>
         <div>
-            <p id="incorrect1" style="color: red;"></p>
-            <input type="radio" id="choice1" name="choice" value="1">
-            <label for="choice1">You will receive a thank-you message on your social media timeline with rebate information.</label>
-
+            <p id="incorrect2" style="color: red;"></p>
+            <input type="radio" id="choice4" name="q2">
+            <label for="choice1">
+                You will receive a thank-you message on your social media
+                timeline with rebate information
+            </label>
             <br>
-            <input type="radio" id="choice2" name="choice" value="2">
-            <label for="choice2">You will not receive any messages on your social media timeline</label>
+            <input type="radio" id="choice5" name="q2">
+            <label for="choice2">
+                You will not receive any messages on your social media timeline
+            </label>
         </div>
     </div>
     <hr>
 
     <div>
-        <button id="submit" class="btn btn-primary btn-large next-button" style="float: left;">Submit</button>
+        <button id="submit" class="btn btn-primary btn-large next-button"
+            style="float: left;">Submit</button>
     </div>
 
     <script type="text/javascript">

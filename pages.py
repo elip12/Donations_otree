@@ -28,6 +28,9 @@ class Charity(Page):
     form_model = 'player'
     form_fields = ['time_Charity', 'charity']
 
+    def charity_choices(self):
+        return [[i, self.participant.vars['charities'][i]] for i in range(len(Constants.charities))]
+
     def is_displayed(self):
         return self.round_number == 1
 
@@ -37,6 +40,16 @@ class ModeInstructionsCQ(Page):
 
     def is_displayed(self):
         return self.round_number == 1
+
+class InstructionSummary(Page):
+    form_model = 'player'
+    form_fields = ['time_InstructionSummary']
+
+    def is_displayed(self):
+        return self.round_number == 1
+
+    def vars_for_template(self):
+        return {'charity': self.participant.vars['charities'][self.player.in_round(1).charity]}
 
 class TaskInstructions(Page):
     form_model = 'player'
@@ -66,10 +79,10 @@ class Decision(Page):
 
     def vars_for_template(self):
         return {
-            'mode': Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][0],
+            'mode': Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][0].capitalize(),
             'rebate': round((Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][1] - 1) * 100),
             'round_num': self.round_number,
-            'charity': Constants.charity_map[self.player.in_round(1).charity]
+            'charity': self.participant.vars['charities'][self.player.in_round(1).charity]
         }
 
 
@@ -97,29 +110,77 @@ class Results(Page):
             'pr': pr,
             'mode': Constants.round_data[self.participant.id_in_session - 1][pr - 1][0],
             'rebate': round((Constants.round_data[self.participant.id_in_session - 1][pr - 1][1] - 1) * 100),
-            'charity': Constants.charity_map[self.player.in_round(1).charity],
+            'charity': self.participant.vars['charities'][self.player.in_round(1).charity],
             'payoff': payoff,
             'donation': round(donation)
         }
 
 class Survey(Page):
     form_model = 'player'
-    form_fields = ['time_Survey', 's1', 's2', 's3a', 's3b', 's4a', 's4b', 's5a', 's5b']
+
+    def get_pub_90_don(self):
+        rn = -1
+        # add clear documetnation here for why this is here
+        for index, round_data in enumerate(Constants.round_data[self.participant.id_in_session - 1]):
+            if round_data[0] == 'public' and round_data[1] == 1.9:
+                rn = index + 1
+                break
+
+        donation = self.player.in_round(rn).money_donated
+        return donation
+
+    def s8_choices(self):
+        don = self.get_pub_90_don()
+        charity = self.player.in_round(1).charity_dec
+        return [
+            [0, 'Donate $0 and have no message posted on your Facebook'],
+            [1, 'Donate $' + str(don) + ' and have the message "Thank you for donating $'
+                + str(don) + ' to ' + charity + ' with a 90% rebate support by UCSC \
+                LEEPS Lab!" posted on your Facebook']
+        ]
+
+    def vars_for_template(self):
+        don = self.get_pub_90_don()
+        if don == 0:
+            q9 = '8'
+            q10 = '9'
+            q11 = '10'
+        else:
+            q9 = '9'
+            q10 = '10'
+            q11 = '11'
+
+        return {
+            'pub_90_don': don,
+            'q9': q9,
+            'q10': q10,
+            'q11': q11
+        }
+
+    def get_form_fields(self):
+        don = self.get_pub_90_don()
+        if don == 0:
+            return ['time_Survey', 's1', 's2', 's3', 's4', 's5', 's6','s7',
+                's9a', 's9b', 's10a', 's10b', 's11a', 's11b']
+        else:
+            return ['time_Survey', 's1', 's2', 's3', 's4', 's5', 's6', 's7', 's8',
+                's9a', 's9b', 's10a', 's10b', 's11a', 's11b']
 
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
 
     def error_message(self, values):
-        if values['s3a'] + values['s3b'] != 10 or values['s4a'] + values['s4b'] != 10 or values['s5a'] + values['s5b'] != 10:
+        if values['s9a'] + values['s9b'] != 10 or values['s10a'] + values['s10b'] != 10 or values['s11a'] + values['s11b'] != 10:
             return 'The numbers must add up to 10'
 
 
 page_sequence = [
+    #Facebook,
     Instructions,
     ControlQuestions,
     Charity,
     ModeInstructionsCQ,
-    TaskInstructions,
+    InstructionSummary,
     Decision,
     Results,
     Survey
