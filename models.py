@@ -31,7 +31,9 @@ class Constants(BaseConstants):
         1: 'Santa Cruz Education Foundation',
         2: 'Año Nuevo Research at UCSC',
         3: 'Santa Cruz Homeless Garden Project',
-        4: 'Santa Cruz Humane Society'
+        4: 'Project Purrs Rescued Treasures',
+        5: 'Santa Cruz Humane Society',
+        6: 'Ankay'
     }
 
 
@@ -54,7 +56,10 @@ class Player(BasePlayer):
             [1, Constants.charity_map[1]],
             [2, Constants.charity_map[2]],
             [3, Constants.charity_map[3]],
-            [4, Constants.charity_map[4]]])
+            [4, Constants.charity_map[4]],
+            [5, Constants.charity_map[5]],
+            [6, Constants.charity_map[6]],
+        ])
 
     money_kept = models.FloatField()
     money_donated = models.IntegerField()
