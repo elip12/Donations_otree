@@ -31,7 +31,9 @@ class Constants(BaseConstants):
         'Santa Cruz Education Foundation',
         'Año Nuevo Research at UCSC',
         'Santa Cruz Homeless Garden Project',
-        'Santa Cruz Humane Society'
+        'Project Purrs Rescued Treasures',
+        'Santa Cruz Humane Society',
+        'Ankay'
     ]
 
 
@@ -53,6 +55,7 @@ class Player(BasePlayer):
 
     money_kept = models.FloatField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
     money_donated = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+
     mode = models.LongStringField()
     rebate = models.FloatField()
 
