@@ -10,7 +10,7 @@
 
 {% block title %}
     <h1>
-        <font color=#4b82c1>Mode Instructions</font>
+        <font color=#4b82c1>Donation Visibility</font>
     </h1>
 {% endblock %}
 
@@ -62,25 +62,27 @@
     
     <input type="hidden" name="time_ModeInstructionsCQ" id="arrive_time"/>
 
+    <p>
+        You will make 3 decisions under public mode and 3 decisions under private mode. At the beginning of each decision period,
+        you will be endowed with <b>${{ Constants.endowment }}</b>. You will have the opportunity to donate
+        some of your endowment to a charity organization.
+    </p>
     <h4>
         <font color=#4b82c1>Public Mode</font>
     </h4>
 
     <p>
-        This section contains <b>3</b> periods. At the beginning of each period, you will be 
-        endowed with <b>${{ Constants.endowment }}</b>. You will have the opportunity to donate 
-        some of your endowment to a charity organization. If one of your decisions in this section 
-        is chosen for realization <b>AND</b>:
+        If one of your decisions in this section is chosen for realization AND
         <ul>
             <li>
                 If you donated a <b>positive</b> amount in that decision, 
-                you will <b>receive</b> a <b>thank-you message</b> with <b>information about your 
-                rebate</b> on <b>your social media timeline</b> from the LEEPS Lab with the charity
+                you <b>will</b> receive a thank-you message with information about your
+                <b>rebate</b> on your <b>social media</b> timeline from the LEEPS Lab with the charity
                 being tagged.
             </li>
             <li>
                 If you <b>did not</b> donate any amount in that decision, 
-                you will <b>not receive</b> any messages on <b>your social media timeline</b>
+                you <b>will not</b> receive any messages on your social media timeline
             </li>
         </ul>
     </p>
@@ -89,20 +91,17 @@
         <font color=#4b82c1>Private Mode</font>
     </h4>
     <p>
-        This section contains <b>3</b> periods. At the beginning of each period, you will be 
-        endowed with <b>${{ Constants.endowment }}</b>. You will have the opportunity to donate 
-        some of your endowment to a charity organization. If one of your decisions in this section
-        is chosen for realization <b>AND</b>:
+        If one of your decisions in this section is chosen for realization AND
         <ul>
             <li>
-                If you donated a <b>positive</b> amount in that decision, you will
-                <b>receive</b> a <b>thank-you message</b> with <b>information about your rebate</b>
-                on <b>your computer screen</b> (only visible to you) from the LEEPS Lab with the 
+                If you donated a <b>positive</b> amount in that decision, you <b>will</b>
+                receive a thank-you message with information about your <b>rebate</b>
+                on your <b>computer screen</b> (only visible to you) from the LEEPS Lab with the
                 charity name mentioned in the message.
             </li>
             <li>
-                If you <b>did not</b> donate any amount in that decision, you will
-                <b>not receive</b> any messages on <b>your computer screen.</b>
+                If you <b>did not</b> donate any amount in that decision, you <b>will
+                not</b> receive any messages on your computer screen.
             </li>
         </ul>
     </p>
