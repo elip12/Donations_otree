@@ -106,7 +106,7 @@ perms =  [
 '''
 
 # this is where models will look for the current experiment data. When you are done with it, put it at the bottom, commented out
-data =  [   #first 12 permutations
+data =  [   #first 11 permutations
             [['pub', 0.0],   ['pub', 0.1],    ['pub', 0.9],    ['pri', 0.0],    ['pri', 0.1],    ['pri', 0.9]],
             [['pub', 0.0],   ['pub', 0.9],    ['pub', 0.1],    ['pri', 0.0],    ['pri', 0.9],    ['pri', 0.1]],
             [['pub', 0.1],   ['pub', 0.0],    ['pub', 0.9],    ['pri', 0.1],    ['pri', 0.0],    ['pri', 0.9]],
@@ -117,8 +117,7 @@ data =  [   #first 12 permutations
             [['pri', 0.0],   ['pri', 0.9],    ['pri', 0.1],    ['pub', 0.0],    ['pub', 0.9],    ['pub', 0.1]],
             [['pri', 0.1],   ['pri', 0.0],    ['pri', 0.9],    ['pub', 0.1],    ['pub', 0.0],    ['pub', 0.9]],
             [['pri', 0.1],   ['pri', 0.9],    ['pri', 0.0],    ['pub', 0.1],    ['pub', 0.9],    ['pub', 0.0]],
-            [['pri', 0.9],   ['pri', 0.0],    ['pri', 0.1],    ['pub', 0.9],    ['pub', 0.0],    ['pub', 0.1]],
-            [['pri', 0.9],   ['pri', 0.1],    ['pri', 0.0],    ['pub', 0.9],    ['pub', 0.1],    ['pub', 0.0]]
+            [['pri', 0.9],   ['pri', 0.0],    ['pri', 0.1],    ['pub', 0.9],    ['pub', 0.0],    ['pub', 0.1]]
         ]
 
 # exports data to a csv format
