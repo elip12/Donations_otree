@@ -106,18 +106,26 @@ perms =  [
 '''
 
 # this is where models will look for the current experiment data. When you are done with it, put it at the bottom, commented out
-data =  [   #first 11 permutations
-            [['pub', 0.0],   ['pub', 0.1],    ['pub', 0.9],    ['pri', 0.0],    ['pri', 0.1],    ['pri', 0.9]],
-            [['pub', 0.0],   ['pub', 0.9],    ['pub', 0.1],    ['pri', 0.0],    ['pri', 0.9],    ['pri', 0.1]],
-            [['pub', 0.1],   ['pub', 0.0],    ['pub', 0.9],    ['pri', 0.1],    ['pri', 0.0],    ['pri', 0.9]],
-            [['pub', 0.1],   ['pub', 0.9],    ['pub', 0.0],    ['pri', 0.1],    ['pri', 0.9],    ['pri', 0.0]],
-            [['pub', 0.9],   ['pub', 0.0],    ['pub', 0.1],    ['pri', 0.9],    ['pri', 0.0],    ['pri', 0.1]],
-            [['pub', 0.9],   ['pub', 0.1],    ['pub', 0.0],    ['pri', 0.9],    ['pri', 0.1],    ['pri', 0.0]],
-            [['pri', 0.0],   ['pri', 0.1],    ['pri', 0.9],    ['pub', 0.0],    ['pub', 0.1],    ['pub', 0.9]],
-            [['pri', 0.0],   ['pri', 0.9],    ['pri', 0.1],    ['pub', 0.0],    ['pub', 0.9],    ['pub', 0.1]],
-            [['pri', 0.1],   ['pri', 0.0],    ['pri', 0.9],    ['pub', 0.1],    ['pub', 0.0],    ['pub', 0.9]],
-            [['pri', 0.1],   ['pri', 0.9],    ['pri', 0.0],    ['pub', 0.1],    ['pub', 0.9],    ['pub', 0.0]],
-            [['pri', 0.9],   ['pri', 0.0],    ['pri', 0.1],    ['pub', 0.9],    ['pub', 0.0],    ['pub', 0.1]]
+data =  [   #second 16 permutations
+            [['pri', 0.9], ['pri', 0.1], ['pri', 0.0], ['pub', 0.9], ['pub', 0.1], ['pub', 0.0]],
+
+            [['pub', 0.0], ['pub', 0.1], ['pub', 0.9], ['pri', 0.0], ['pri', 0.9], ['pri', 0.1]],
+            [['pub', 0.0], ['pub', 0.1], ['pub', 0.9], ['pri', 0.1], ['pri', 0.0], ['pri', 0.9]],
+            [['pub', 0.0], ['pub', 0.1], ['pub', 0.9], ['pri', 0.1], ['pri', 0.9], ['pri', 0.0]],
+            [['pub', 0.0], ['pub', 0.1], ['pub', 0.9], ['pri', 0.9], ['pri', 0.0], ['pri', 0.1]],
+            [['pub', 0.0], ['pub', 0.1], ['pub', 0.9], ['pri', 0.9], ['pri', 0.1], ['pri', 0.0]],
+
+            [['pub', 0.0], ['pub', 0.9], ['pub', 0.1], ['pri', 0.0], ['pri', 0.9], ['pri', 0.1]],
+            [['pub', 0.0], ['pub', 0.9], ['pub', 0.1], ['pri', 0.1], ['pri', 0.0], ['pri', 0.9]],
+            [['pub', 0.0], ['pub', 0.9], ['pub', 0.1], ['pri', 0.1], ['pri', 0.9], ['pri', 0.0]],
+            [['pub', 0.0], ['pub', 0.9], ['pub', 0.1], ['pri', 0.9], ['pri', 0.0], ['pri', 0.1]],
+            [['pub', 0.0], ['pub', 0.9], ['pub', 0.1], ['pri', 0.9], ['pri', 0.1], ['pri', 0.0]],
+
+            [['pub', 0.1], ['pub', 0.0], ['pub', 0.9], ['pri', 0.0], ['pri', 0.9], ['pri', 0.1]],
+            [['pub', 0.1], ['pub', 0.0], ['pub', 0.9], ['pri', 0.1], ['pri', 0.0], ['pri', 0.9]],
+            [['pub', 0.1], ['pub', 0.0], ['pub', 0.9], ['pri', 0.1], ['pri', 0.9], ['pri', 0.0]],
+            [['pub', 0.1], ['pub', 0.0], ['pub', 0.9], ['pri', 0.9], ['pri', 0.0], ['pri', 0.1]],
+            [['pub', 0.1], ['pub', 0.0], ['pub', 0.9], ['pri', 0.9], ['pri', 0.1], ['pri', 0.0]]
         ]
 
 # exports data to a csv format
@@ -161,6 +169,18 @@ Before you put it here, you can export it to CSV format
 if you want, passing in the current date and session
 as the filename and data as the data.
 
+#first 11 permutations done on Friday, March 10, 2018
+            [['pub', 0.0],   ['pub', 0.1],    ['pub', 0.9],    ['pri', 0.0],    ['pri', 0.1],    ['pri', 0.9]],
+            [['pub', 0.0],   ['pub', 0.9],    ['pub', 0.1],    ['pri', 0.0],    ['pri', 0.9],    ['pri', 0.1]],
+            [['pub', 0.1],   ['pub', 0.0],    ['pub', 0.9],    ['pri', 0.1],    ['pri', 0.0],    ['pri', 0.9]],
+            [['pub', 0.1],   ['pub', 0.9],    ['pub', 0.0],    ['pri', 0.1],    ['pri', 0.9],    ['pri', 0.0]],
+            [['pub', 0.9],   ['pub', 0.0],    ['pub', 0.1],    ['pri', 0.9],    ['pri', 0.0],    ['pri', 0.1]],
+            [['pub', 0.9],   ['pub', 0.1],    ['pub', 0.0],    ['pri', 0.9],    ['pri', 0.1],    ['pri', 0.0]],
+            [['pri', 0.0],   ['pri', 0.1],    ['pri', 0.9],    ['pub', 0.0],    ['pub', 0.1],    ['pub', 0.9]],
+            [['pri', 0.0],   ['pri', 0.9],    ['pri', 0.1],    ['pub', 0.0],    ['pub', 0.9],    ['pub', 0.1]],
+            [['pri', 0.1],   ['pri', 0.0],    ['pri', 0.9],    ['pub', 0.1],    ['pub', 0.0],    ['pub', 0.9]],
+            [['pri', 0.1],   ['pri', 0.9],    ['pri', 0.0],    ['pub', 0.1],    ['pub', 0.9],    ['pub', 0.0]],
+            [['pri', 0.9],   ['pri', 0.0],    ['pri', 0.1],    ['pub', 0.9],    ['pub', 0.0],    ['pub', 0.1]]
 
 
 '''
