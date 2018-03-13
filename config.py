@@ -106,7 +106,7 @@ perms =  [
 '''
 
 # this is where models will look for the current experiment data. When you are done with it, put it at the bottom, commented out
-data =  [   #second 16 permutations
+data =  [   #second 16 permutations, for Tuesday March 13 3:30pm session
             [['pri', 0.9], ['pri', 0.1], ['pri', 0.0], ['pub', 0.9], ['pub', 0.1], ['pub', 0.0]],
 
             [['pub', 0.0], ['pub', 0.1], ['pub', 0.9], ['pri', 0.0], ['pri', 0.9], ['pri', 0.1]],
