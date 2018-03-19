@@ -199,7 +199,7 @@ page_sequence = [
     Charity,
     ModeInstructionsCQ,
     InstructionSummary,
-    #TaskInstructions
+    #TaskInstructions,
     Decision,
     Results,
     Survey

@@ -44,7 +44,7 @@ class Player(BasePlayer):
     time_Charity = models.LongStringField()
     time_ModeInstructionsCQ = models.LongStringField()
     time_InstructionSummary = models.LongStringField()
-    #time_TaskInstructions = models.LongStringField()
+    time_TaskInstructions = models.LongStringField()
     time_Decision = models.LongStringField()
     time_Results = models.LongStringField()
     time_Survey = models.LongStringField()
@@ -75,7 +75,7 @@ class Player(BasePlayer):
 
     # survey
     s1 = models.StringField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
-    s2 = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+    s2 = models.IntegerField(widget=widgets.NumberInput(attrs={'autocomplete': 'off'}))
     s3 = models.StringField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
     s4 = models.StringField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
     s5 = models.BooleanField(
