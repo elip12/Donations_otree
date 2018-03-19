@@ -1,6 +1,7 @@
 from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
+import random
 
 class Facebook(Page):
     form_model = 'player'
@@ -30,6 +31,12 @@ class Charity(Page):
 
     def charity_choices(self):
         return [[i, self.participant.vars['charities'][i]] for i in range(len(Constants.charities))]
+
+    def vars_for_template(self):
+        rnd_charities = [str(i) for i in range(len(Constants.charities))]
+        random.shuffle(rnd_charities)
+
+        return {'rnd_charities': rnd_charities}
 
     def is_displayed(self):
         return self.round_number == 1
@@ -150,7 +157,18 @@ class Survey(Page):
             q10 = '10'
             q11 = '11'
 
+        s9_r = random.randint(0, 10)
+        s10_r = random.randint(0, 10)
+        s11_r = random.randint(0, 10)
+
         return {
+            's7_initial': random.randint(1, 10),
+            's9_r': s9_r,
+            's9_l': 10 - s9_r,
+            's10_r': s10_r,
+            's10_l': 10 - s10_r,
+            's11_r': s11_r,
+            's11_l': 10 - s11_r,
             'pub_90_don': don,
             'q9': q9,
             'q10': q10,
@@ -181,6 +199,7 @@ page_sequence = [
     Charity,
     ModeInstructionsCQ,
     InstructionSummary,
+    #TaskInstructions
     Decision,
     Results,
     Survey

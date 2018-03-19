@@ -7,7 +7,72 @@
         {
             document.getElementById("arrive_time").value = (new Date()).toISOString()
         }
+
+        s7_update = function()
+        {
+            var sv = document.getElementById('s7').value
+            document.getElementById('s7_val').innerHTML = sv
+        }
+
+        sval_update = function(left, right, slider)
+        {
+            var sv = document.getElementById(slider).value
+            document.getElementById(right).innerHTML = sv
+            document.getElementById(left).innerHTML = 10 - sv
+        }
+
+        document.getElementById('submit').onclick = function()
+        {
+            var s9a = document.getElementById('s9_left').innerHTML
+            document.getElementById('s9a').value = parseInt(s9a)
+
+            var s9b = document.getElementById('s9_right').innerHTML
+            document.getElementById('s9b').value = parseInt(s9b)
+
+            var s10a = document.getElementById('s10_left').innerHTML
+            document.getElementById('s10a').value = parseInt(s10a)
+
+            var s10b = document.getElementById('s10_right').innerHTML
+            document.getElementById('s10b').value = parseInt(s10b)
+
+            var s11a = document.getElementById('s11_left').innerHTML
+            document.getElementById('s11a').value = parseInt(s11a)
+
+            var s11b = document.getElementById('s11_right').innerHTML
+            document.getElementById('s11b').value = parseInt(s11b)
+        }
     </script>
+{% endblock %}
+
+{% block styles %}
+    <style>
+        .slider
+        {
+            -webkit-appearance: none;
+            width: 100%;
+            outline: none;
+            background: lightgray;
+            height: 7px;
+            border-radius: 5px;
+        }
+        /*.slider::-webkit-slider-thumb
+        {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 4px;
+            background: #419bf9;
+            cursor: pointer;
+        }*/
+        .slider-val
+        {
+            border-style: solid;
+            border-width: 1px;
+            border-color: #419bf9;
+            border-radius: 4px;
+
+            text-align: center;
+        }
+    </style>
 {% endblock %}
 
 {% block title %}
@@ -17,6 +82,12 @@
 {% block content %}
     <div>
         <input type="hidden" name="time_Survey" id="arrive_time"/>
+        <input type="hidden" name="s9a" id="s9a">
+        <input type="hidden" name="s9b" id="s9b">
+        <input type="hidden" name="s10a" id="s10a">
+        <input type="hidden" name="s10b" id="s10b">
+        <input type="hidden" name="s11a" id="s11a">
+        <input type="hidden" name="s11b" id="s11b">
     </div>
     <div>
         <div>
@@ -61,7 +132,29 @@
             <p>
                 7. On a scale from 1 to 10, with 1 being the lowest and 10 being the highest, how much do you care about the missions of the charity of your choice?
             </p>
-            {% formfield player.s7 label=None %}
+            <div class="row">
+                <div class="col-6">
+                    <input id="s7" class="slider" type="range" min="1" max="10" name="s7"
+                        value="{{ s7_initial }}" oninput="s7_update()">
+                    <div class="row">
+                        <div class="col-6">
+                            <p style="text-align: left;">
+                                1
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <p style="text-align: right;">
+                                10
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <p id="s7_val" class="slider-val">
+                        {{ s7_initial }}
+                    </p>
+                </div>
+            </div>
         </div>
 
         {% if pub_90_don != 0 %}
@@ -73,30 +166,127 @@
 
         <div>
             <p>
-                {{ q9 }}. If Alex donated $20 without any rebate, split 10 points between the following states. You should assign more points to the statement that you agree more on.
+                {{ q9 }}. If Alex donated $20 without any rebate, split 10 points between the following states. You should assign more points to the statement that you agree more on. <b>Alex is donating because they care about:</b>
             </p>
-            {% formfield player.s9a label='Alex is donating because he cares about the charity and its mission' %}
-            {% formfield player.s9b label='Alex is donating because of the rebate' %}
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-6">
+                            <p style="text-align: left;">
+                                the charity and its mission
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <p style="text-align: right;">
+                                the rebate
+                            </p>
+                        </div>
+                    </div>
+                    <input id="s9" class="slider" type="range" min="0" max="10"
+                        value="{{ s9_r }}" oninput="sval_update('s9_left', 's9_right', 's9')">
+                    <div class="row">
+                        <div class="col-6">
+                            <p id="s9_left" style="text-align: left;">
+                                {{ s9_l }}
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <p id="s9_right" style="text-align: right;">
+                                {{ s9_r }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div>
             <p>
-                {{ q10 }}. If Alex donated $20 with a rebate of 5%, split 10 points between the following states. You should assign more points to the statement that you agree more on.
+                {{ q10 }}. If Alex donated $20 with a rebate of <b>5%</b>, split 10 points between the following states. You should assign more points to the statement that you agree more on. <b>Alex is donating because they care about:</b>
             </p>
-            {% formfield player.s10a label='Alex is donating because he cares about the charity and its mission' %}
-            {% formfield player.s10b label='Alex is donating because of the rebate' %}
+            
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-6">
+                            <p style="text-align: left;">
+                                the charity and its mission
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <p style="text-align: right;">
+                                the rebate
+                            </p>
+                        </div>
+                    </div>
+                    <input id="s10" class="slider" type="range" min="0" max="10"
+                        value="{{ s10_r }}" oninput="sval_update('s10_left', 's10_right', 's10')">
+                    <div class="row">
+                        <div class="col-6">
+                            <p id="s10_left" style="text-align: left;">
+                                {{ s10_l }}
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <p id="s10_right" style="text-align: right;">
+                                {{ s10_r }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div>
             <p>
-                {{ q11 }}. If Alex donated $20 with a rebate of 95%, split 10 points between the following states. You should assign more points to the statement that you agree more on.
+                {{ q11 }}. If Alex donated $20 with a rebate of <b>95%</b>, split 10 points between the following states. You should assign more points to the statement that you agree more on. <b>Alex is donating because they care about:</b>
             </p>
-            {% formfield player.s11a label='Alex is donating because he cares about the charity and its mission' %}
-            {% formfield player.s11b label='Alex is donating because of the rebate' %}
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-6">
+                            <p style="text-align: left;">
+                                the charity and its mission
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <p style="text-align: right;">
+                                the rebate
+                            </p>
+                        </div>
+                    </div>
+                    <input id="s11" class="slider" type="range" min="0" max="10"
+                        value="{{ s11_r }}" oninput="sval_update('s11_left', 's11_right', 's11')">
+                    <div class="row">
+                        <div class="col-6">
+                            <p id="s11_left" style="text-align: left;">
+                                {{ s11_l }}
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <p id="s11_right" style="text-align: right;">
+                                {{ s11_r }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div>
         <button id="submit" class="btn btn-primary btn-large next-button" style="float: left;">Submit</button>
     </div>
+
+    <!-- <script type="text/javascript">
+    $(document).ready(function() 
+    {
+        $('.next-button').click(function()
+        {
+            
+        })
+    })
+    </script> -->
 
 {% endblock %}
 

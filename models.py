@@ -87,14 +87,14 @@ class Player(BasePlayer):
             [1, 'Yes, part-time'],
             [2, 'Yes, full-time']],
         widget=widgets.RadioSelect)
-    s7 = models.IntegerField(min=1, max=10, widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+    s7 = models.IntegerField()
     s8 = models.IntegerField(widget=widgets.RadioSelect)
-    s9a = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
-    s9b = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
-    s10a = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
-    s10b = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
-    s11a = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
-    s11b = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+    s9a = models.IntegerField()
+    s9b = models.IntegerField()
+    s10a = models.IntegerField()
+    s10b = models.IntegerField()
+    s11a = models.IntegerField()
+    s11b = models.IntegerField()
 
     # pr is the paying round: this is randomly chosen 
     # in the Results class in Pages.py
