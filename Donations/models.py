@@ -6,7 +6,7 @@ from . import config
 import random
 from django.forms import widgets
 
-author = 'Eli Pandolfo'
+author = 'Eli Pandolfo, Rachel Zhang'
 
 doc = """
     Players choose to either donate to charity or keep 
