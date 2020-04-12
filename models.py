@@ -4,7 +4,7 @@ from otree.api import (
 )
 from . import config
 import random
-
+from django.forms import widgets
 
 author = 'Eli Pandolfo'
 
