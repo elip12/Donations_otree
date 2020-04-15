@@ -46,10 +46,10 @@
             else
                 document.getElementById('incorrect2').innerHTML = ""
 
-            if (a3 != '70')
+            if (a3 != '130')
             {
                 var i3 = document.getElementById('incorrect3')
-                i3.innerHTML = "The correct answer is 70"
+                i3.innerHTML = "The correct answer is 130"
                 toggle = false
             }
             else
@@ -73,9 +73,9 @@
     </h4>
 
     <p>
-        If you are offered a rebate of 60% on your donations, it means when you donate $100 to a
-        charity, you will be refunded $60 to your personal account. The charity will still receive 
-        $100, but since you received a $60 rebate, your actual spending for donating $100 is $40.
+        If you are offered a 50% matching subsidy (i.e. a 1:0.5 matching) on your donations, it means when you donate $100 to a
+        charity, an organization will match/add $50 ($100*50%=$50) to your donation. The charity will receive 
+        $150, while your actual spending for donating still $100.
     </p>
 
     <div>
@@ -86,27 +86,27 @@
     <hr>
     <div>
         <p>
-            Alex donated $100 with a rebate of 30% to the American Red Cross (ARC).
+            Alex donated $100 with a 30% matching subsidy to the American Red Cross (ARC).
         </p>
-        <br>
+	<br>
         <p>
-            a). How much money will the ARC receive in donations?
+            a). How much money did Alex take out of pocket for this donation?
         </p>
-        
         <p id="incorrect1" style="color: red;"></p>
         <input id="input1" autocomplete="off">
         <br>
         <p>
-            b). How much money will Alex receive from the rebate?.
+            b). How much money will be matched to Alex's donation?
         </p>
         <p id="incorrect2" style="color: red;"></p>
         <input id="input2" autocomplete="off">
         <br>
         <p>
-            c). Alex's actual spending for donating $100 is:
+            b). How much money will American Red Cross receive in this donation?
         </p>
         <p id="incorrect3" style="color: red;"></p>
         <input id="input3" autocomplete="off">
+        <br>
     </div>
     <hr>
 
