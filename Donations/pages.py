@@ -18,13 +18,6 @@ class Instructions(Page):
     def is_displayed(self):
         return self.round_number == 1
 
-class ControlQuestions(Page):
-    form_model = 'player'
-    form_fields = ['time_ControlQuestions']
-
-    def is_displayed(self):
-        return self.round_number == 1
-
 class Charity(Page):
     form_model = 'player'
     form_fields = ['time_Charity', 'charity']
@@ -40,6 +33,14 @@ class Charity(Page):
 
     def is_displayed(self):
         return self.round_number == 1
+
+class ControlQuestions(Page):
+    form_model = 'player'
+    form_fields = ['time_ControlQuestions']
+
+    def is_displayed(self):
+        return self.round_number == 1
+
 
 class ModeInstructionsCQ(Page):
     form_model = 'player'
