@@ -28,12 +28,12 @@ class Constants(BaseConstants):
     # otree dropdown menu only returns intgers, here we map them
     # to strings representing the charity names
     charities = [
-        'Santa Cruz Education Foundation',
+        'WHO COVID-19 Response Fund',
         'Año Nuevo Research at UCSC',
         'Santa Cruz Homeless Garden Project',
-        'Project Purrs Rescued Treasures',
-        'Santa Cruz Humane Society',
-        'Ankay'
+        'UCSF COVID-19 Response Fund',
+        'Santa Cruz County Animal Shelter',
+        'UCSC COVID-19 Slug Support Campaign'
     ]
 
 
