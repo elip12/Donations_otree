@@ -83,10 +83,11 @@ class TaskInstructions(Page):
 # Decision page. Includes instrucitons, and returns some input form fields for ease of recording data
 class Decision(Page):
     form_model = 'player'
-    form_fields = ['time_Decision', 'money_kept', 'money_donated', 'mode', 'rebate', 'charity_dec']
+    form_fields = ['time_Decision', 'donated_yes_no', 'money_kept', 'money_donated', 'mode', 'rebate', 'charity_dec']
 
     def vars_for_template(self):
         return {
+            'total_cash_available': Constants.endowment + Constants.participation_fee,
             'mode': Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][0].capitalize(),
             'rebate': round((Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][1] - 1) * 100),
             'round_num': self.round_number,
@@ -195,11 +196,11 @@ class Survey(Page):
 
 page_sequence = [
     #Facebook,
-    Instructions,
+#    Instructions,
     Charity,
-    ControlQuestions,   
-    ModeInstructionsCQ,
-    InstructionSummary,
+#    ControlQuestions,   
+#    ModeInstructionsCQ,
+#    InstructionSummary,
     #TaskInstructions,
     Decision,
     Results,

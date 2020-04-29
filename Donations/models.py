@@ -52,7 +52,9 @@ class Player(BasePlayer):
     # players first choose a charity.
     # otree's dropdown menus need to return an integer
     charity = models.IntegerField()
-
+    donated_yes_no = models.BooleanField(
+        choices=[[0, 'No'], [1, 'Yes']],
+        widget=widgets.RadioSelect)
     money_kept = models.FloatField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
     money_donated = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
 
