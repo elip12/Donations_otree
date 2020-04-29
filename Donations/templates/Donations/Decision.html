@@ -30,6 +30,20 @@
     </font>
 {% endblock %}
 
+{% block styles %}
+<style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
     
     <div>
@@ -40,6 +54,26 @@
         <input type="hidden" name="charity_dec" id="charity"/>
         
         <input type="hidden" name="money_kept" id="kept"/>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>Total Cash Available</th>
+                <th>Would you like to donate any to the charity?</th>
+                <th>{{ rebate }}% rebate cash back in your account?</th>
+                <th>Total cash left in your account now (including rebate)</th>
+            </tr>
+            <tr>
+                <td rowspan="2">$10 ($4 show-up fee + ${{ Constants.endowment }} endowment from task)</td>
+                <td>Yes: choose between $1 to $10: FORM. Your decision with rebate info
+                    will be posted on the LEEPS FB page.</td>
+                <td rowspan="2">AUTOPOPULATE</td>
+                <td rowspan="2">AUTOPOPULATE</td>
+            </tr>
+            <tr>
+                <td>No: $0. Your decision will NOT be posted on LEEPS FB page.</td>
+            </tr>
+        </table>
     </div>
     <div>
         <p>
