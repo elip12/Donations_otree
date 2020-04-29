@@ -1,0 +1,61 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree %}
+
+{% comment %}
+    
+{% endcomment %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        window.onload = function () 
+        {
+            document.getElementById("arrive_time").value = (new Date()).toISOString();
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+    <h1>
+        <font color=#4b82c1>Instruction Summary</font>
+    </h1>
+{% endblock %}
+
+{% block styles %}
+
+{% endblock %}
+
+
+{% block content %}
+
+    <input type="hidden" name="time_InstructionSummary" id="arrive_time"/>
+    
+    <p>
+        Before you start making the {{ Constants.num_rounds }} decisions about how to
+        allocate your real-money fund
+    </p>
+
+    <h5>
+        <font color=#4b82c1>Keep in mind that your decisions will affect 3 major things:</font>
+    </h5>
+
+    <p>
+        <ol>
+	    <li>
+	 	We will randomly choose 1 round of your decision for final payment. Please answer truthfully in each round of decisions
+	    </li>
+            <li>
+                Your actual spending, and how much the charity received due to the matching subsidy
+            </li>
+            <li>
+                The LEEPS Lab <b>will</b> will post your donation decision with the subsidy info if you donate, but <b>will not</b> post anything
+                if you don't
+            </li>
+            <li>
+                Whether the message is visible on the (<b>LEEPS FB Page </b>) or <b>private</b>
+            </li>
+        </ol>
+    </p>
+
+    {% next_button %}
+
+{% endblock %}

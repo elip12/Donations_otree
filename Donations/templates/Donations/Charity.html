@@ -1,0 +1,211 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block scripts %}
+    <script type="text/javascript">
+
+        window.onload = function () 
+        {
+            document.getElementById("arrive_time").value = (new Date()).toISOString();
+
+            var rnd_charities = {{ rnd_charities | json }}
+            var disp = document.getElementById('display')
+            for (i = 0; i < rnd_charities.length; i++)
+            {
+                console.log(rnd_charities[i])
+                disp.insertBefore(document.getElementById(rnd_charities[i]), document.getElementById('last'))
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+<font color=#4b82c1>Choose Your Charity</font>
+{% endblock %}
+
+{% block style %}
+    <style>
+        h4
+        {
+            color: red;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <!-- form field for page load time. Value attribute gets set by script on window load,
+        and the form gets returned here -->
+    <input type="hidden" name="time_Charity" id="arrive_time"/>
+    <div>
+        <p>
+            Here is a list of charities. You have <b>10</b> minutes to to learn more about their missions. Given the special 
+	    COVID-19 circumstances, we've selected charities and organizations that are on the front line fighting against 
+	    the virus. We are also presenting trusted local charities with a connection to the LEEPS Lab. After you are done 
+	    reading, please select <b>one</b> charity. If you choose to donate in any of the upcoming 6 periods, your donations 
+            will go to your selected charity.
+        </p>
+    </div>
+    <div id="display">
+        <div id="last"></div>
+    </div>
+    <div id="pre" style="display: none;">
+        <hr>
+        <div id="0" class="col-md-12">
+            <h4>
+                <font color=#4b82c1>WHO COVID-19 Response Fund</font>
+            </h4>
+            <img src="{% static "who.jpg" %}" width=300 align="left">
+            <p>
+		The world is facing an unprecedented challenge with communities and economies everywhere affected by the growing 
+		COVID-19 pandemic. The world is coming together to combat the COVID-19 pandemic bringing governments, 
+		organizations from across industries and sectors and individuals together to help respond to this global outbreak. 
+            </p>
+	    <p>
+           	The World Health Organization (WHO) is leading and coordinating the global effort with a range of partners, 
+		supporting countries to prevent, detect, and respond to the pandemic.
+            </p>    
+	    <b>Our Goals</b>:
+                <ul>
+                <li>Putting in place activities to Track and understand the spread of the virus; </li>
+		<li>Buying and ship essential supplies such as masks, gloves and protective wear for frontline workers; </li>
+		<li>Producing guidance for the general public and for particular groups on measures to take to prevent the 
+		    spread of the disease; </li>
+		<li>Accelerating efforts to develop vaccines, tests and treatments. </li>
+		</ul>
+            </P>
+        </div>
+        <hr>
+        <div id="1" class="col-md-12">
+            <h4>
+                <font color=#4b82c1>Año Nuevo Research at UCSC</font> <img src="{% static "ano_review.jpg" %}" width=150>
+            </h4>
+             <img src="{% static "ano_nuevo.jpg" %}" width=300 align="left">
+            <p>
+                Año Nuevo Reserve is one of the University of California's 39 Natural Reserves. It is located a short drive
+                north of Santa Cruz and is an important breeding site for an incredible diversity of marine mammals and birds.
+                Nearly 100,000 tourists visit the Reserve every year to see the northern elephant seals on docent-led tours.
+            </p>
+            <p>
+                The close proximity of the Reserve to UC Santa Cruz and several other universities make it a hotspot for
+                undergraduate experiential learning. Students obtain hands-on research experience while working on world-class
+                scientific research projects, resulting in dozens of peer-reviewed publlications annually.
+            </p>
+            <p>
+                <b>Recent research topics include:</b>
+                <ul>
+                    <li>Contaminant bioaccumulation in top predators</li>
+                    <li>The impact of acoustic disturbance on marine mammals</li>
+                    <li>Using animals as ocean sensors to study both animal behavior and the ocean environment</li>
+                </ul>
+            </p>
+        </div>
+        <hr>
+        <div id="2" class="col-md-12">
+            <h4>
+                <font color=#4b82c1>Santa Cruz Homeless Garden Project</font> <img src="{% static "hgp_review.jpg" %}" width=150>
+            </h4>
+            <img src="{% static "hgp.jpg" %}" width=300 align="left">
+            <p>
+                The Homeless Garden Project provides job training, transitional employment and support services to people who
+                are experiencing homelessness. HGP's vibrant education and volunteer program for the broad community blends formal,
+                experiential and service-learning. The programs take place in our 3-acre organic farm and related enterprises.
+            </p>
+            <p>
+                In May of 1990, the Citizens Committee for the Homeless, a Santa Cruz County non-profit, began a new project by
+                opening the gates of an organic garden on Pelton Avenue. The Homeless Garden Project would provide job-training
+                and meaningful work in a therapeutic environment. The Project began as a place to provide sanctuary, refuge
+                and meaningful work within the healing environment of the organic farm.
+            </p>
+            <p>
+                <b>Our Values</b>
+                <ul>
+                    <li>The capacity of every individual for growth and renewal</li>
+                    <li>The joy that comes from growing and sharing healthy food</li>
+                    <li>The well-being created by vibrant social and natural ecosystems</li>
+                </ul>
+            </p>
+        </div>
+        <hr>
+        <div id="3" class="col-md-12">
+            <h4>
+                <font color=#4b82c1>UCSF COVID-19 Response Fund</font>
+            </h4>
+            <img src="{% static "ucsf.jpg" %}" width=300 align="left">
+            <p>
+		University of California, San Francisco is among the top health sciences universities in the world. 
+		We are coordinating with colleagues across the Bay Area and Northern California to care for patients.
+		As the COVID-19 outbreak expands, teams throughout UCSF’s hospitals, clinics, and research labs are 
+		actively monitoring and responding to the evolving situation.
+            </p>
+ 	    <p>				    
+	       Your gift will be used to address the needs of patients and caregivers impacted by COVID-19, and to support 
+		emerging areas of greatest need, such as:
+                <ul>
+		    <li>expanding diagnostic and testing capacity. </li>
+		    <li>securing our ability to cover extended staff time and benefits for health care providers working 
+			directly on the crisis. </li>
+                    <li>utilizing next-generation sequencing and gene-editing technologies to develop novel methods for 
+			diagnosing the disease. </li>
+		    <li>using cell mapping and computational tools to uncover new or existing therapeutics for treating COVID-19. </li>
+		</ul>
+            </p>
+        </div>
+        <hr>
+        <div id="4" class="col-md-12">
+            <h4>
+                <font color=#4b82c1>Santa Cruz County Animal Shelter</font>
+            </h4>
+            <img src="{% static "sccas.jpg" %}" width=300 align="left">
+            <p>
+		The Santa Cruz County Animal Shelter is a non-profit Joint Powers Authority that provides 24-hour animal rescue 
+		and is Santa Cruz County’s only full service, open-admission animal shelter. We rescue and assure temporary shelter, 
+		veterinary and humane care for approximately 5,000 stray, unwanted, abandoned, mistreated, neglected and injured 
+		animals every year. 
+            </p>
+	    <p> 
+		The support of our community is crucial to sustaining and expanding our services. Effective October, 2019, we are 
+		initiating a three-stage expansion at our 7th Avenue/Rodriguez Street site.
+		<ul>
+		    <li>Phase I - 2020: Expand and Improve Shelter's Main Building to double the veterinary procedure area, create 
+			additional meeting & work space, relocate and improve cat and rabbit housing areas, open a community cat 
+			room, upgrade public reception areas and improve access to canine play yards. </li>
+		    <li>Phase II - 2021: New Cat Cafe – a cat adoption center with coffee shop service.  </li>
+		    <li>Phase III - 2022: New Training and Education Center for owners, pets and professional animal handlers 
+			will offer counseling for adopters, a behavioral hotline, and a range of workshops for the public. </li>
+		</ul>
+	    </p>
+        </div>
+        <hr>
+        <div id="5" class="col-md-12">
+            <h4>
+                <font color=#4b82c1>UCSC COVID-19 Slug Support Campaign</font>
+            </h4>
+            <img src="{% static "ucsc.jpg" %}" width=300 align="left">
+            <p>
+		These unprecedented times are challenging for all of us—but for some, the situation is dire. This is why our 
+		campus has created the COVID-19 Slug Support Campaign. Together, our Banana Slug community can help support 
+		students who are experiencing financial or personal crisis because of the infection and the drastic measures 
+		our state and country have had to take to curb it.
+            </p>
+	    <p>
+                Your gift today will help:
+                <ul>
+                    <li>Provide food stability through digital gift cards, Instacart purchases, and meal swipes to campus dining 
+			halls that remain open. </li>
+                    <li>Fund students in need of emergency housing and provide rent support for students who may have lost wages 
+			due to reduced work hours.</li>
+                    <li>Provide distance learning resources through a new laptop lending program called Slug Tech.</li>
+                </ul>
+            </p>
+        </div>
+        <hr>
+    </div>
+    <div>{% formfield player.charity %}</div>
+
+
+
+
+    {% next_button %}
+
+{% endblock %}
