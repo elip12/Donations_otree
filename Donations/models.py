@@ -22,8 +22,8 @@ class Constants(BaseConstants):
     name_in_url = 'Donations'
     players_per_group = None
     num_rounds = len(round_data[0])
-    endowment = 10
-    participation_fee = 5
+    endowment = 6
+    participation_fee = 4
 
     # otree dropdown menu only returns intgers, here we map them
     # to strings representing the charity names
