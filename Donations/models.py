@@ -49,7 +49,7 @@ class Player(BasePlayer):
     time_Results = models.LongStringField()
     time_Survey = models.LongStringField()
 
-    endowment = models.CurrencyField()
+    endowment = models.IntegerField()
     # players first choose a charity.
     # otree's dropdown menus need to return an integer
     charity = models.IntegerField()

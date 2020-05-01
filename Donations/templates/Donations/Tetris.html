@@ -5,10 +5,23 @@
 
 {% block scripts %}
     <script type="text/javascript">
+        let totalCorrect
+        let taskNumber
+        
         window.onload = function () 
         {
+            totalCorrect = 0
+            taskNumber = 0
             document.getElementById('arrive_time').value = (new Date()).toISOString()
+            document.getElementById('endowment').value = 6
         }
+
+		$(document).keypress(
+		  function(event){
+			if (event.which == '13') {
+			  event.preventDefault();
+			}
+		});
 
         function nextImage(taskNumber) {
             let oldImagePath = 'tetris' + (taskNumber - 1)
@@ -17,20 +30,30 @@
             document.getElementById(imagePath).style.display = 'block'
         }
 
-        let answers = {
-            navy_: [28, 0, 29],
-            lightblue_: [28, 0, 30],
-            pink_: [28, 0, 32],
-            yellow_: [40, 0, 44],
-            green_: [52, 0, 55],
-            orange_: [20, 0, 20]
+        function clearResponses(responses) {
+            for (let key in responses) {
+                if (!responses.hasOwnProperty(key))
+                    continue
+                document.getElementById(key).style.color = '#111111'
+                inputId = key.slice(0,-1)
+                console.log(inputId)
+                document.getElementById(inputId).value = ''
+            }
         }
 
-        let taskNumber = 0
+        let answers = {
+            navy_: [28, 29, 29],
+            lightblue_: [28, 28, 30],
+            pink_: [28, 31, 32],
+            yellow_: [40, 28, 44],
+            green_: [52, 58, 55],
+            orange_: [20, 23, 20]
+        }
+        
 
         checkAnswers = function() {
-            console.log('here')
-            let allCorrect = true
+            console.log(totalCorrect)
+			let taskCorrect = 0
             let responses = {
                 navy_: document.getElementById('navy').value,
                 lightblue_: document.getElementById('lightblue').value,
@@ -40,21 +63,26 @@
                 orange_: document.getElementById('orange').value
             }
             for (let key in responses) {
-                document.getElementById(key).style.color = '#1a0000'
                 if (!responses.hasOwnProperty(key))
                     continue
                 if (parseInt(responses[key]) !== answers[key][taskNumber]) {
-                    console.log(`INCORRECT: ${key}`)
-                    document.getElementById(key).style.color = '#e60000'
-                    allCorrect = false
-                }        
+                    document.getElementById(key).style.color = '#c60000'
+                }
+                else {
+                    taskCorrect++
+                    document.getElementById(key).style.color = '#00c600'
+                }
             }
-            if (allCorrect == true) {
-                taskNumber++
-                nextImage(taskNumber)
-                if (taskNumber == 2) {
+            if ((taskCorrect >= 5 && taskNumber < 2) || taskCorrect + totalCorrect >= 12) {
+                totalCorrect += taskCorrect
+                if (totalCorrect >= 12) {
                     document.getElementById('next').style.display = 'none'
                     document.getElementById('submit').style.display = 'block'
+                }
+                else {
+                    taskNumber++
+                    clearResponses(responses)
+                    nextImage(taskNumber)
                 }
             }
             
@@ -91,7 +119,7 @@ Tetris Task
             <br>
             <br>
             <label id="navy_" for="navy">Navy: &emsp;&emsp;</label>
-            <input type="number" id="navy" style="width: 50%;">
+            <input type="number" id="navy" style="width: 50%;" onkeypress="">
             <br>
             <label id="lightblue_" for="lightblue">Light Blue:</label>
             <input type="number" id="lightblue" style="width: 50%;">

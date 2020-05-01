@@ -37,10 +37,10 @@ class Charity(Page):
 class Tetris(Page):
     form_model = 'player'
     form_fields = ['endowment']
+    timeout_seconds = 600
 
     def is_displayed(self):
         return self.round_number == 1
-
 
 class ControlQuestions(Page):
     form_model = 'player'
@@ -94,8 +94,10 @@ class Decision(Page):
     form_fields = ['time_Decision', 'donated_yes_no', 'money_kept', 'money_donated', 'mode', 'rebate', 'charity_dec']
 
     def vars_for_template(self):
+        if self.round_number > 1:
+            self.player.endowment = self.player.in_round(1).endowment
         return {
-            'total_cash_available': Constants.endowment + Constants.participation_fee,
+            'total_cash_available': self.player.endowment + Constants.participation_fee,
             'mode': Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][0].capitalize(),
             'rebate': round((Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][1] - 1) * 100),
             'round_num': self.round_number,
@@ -203,13 +205,13 @@ class Survey(Page):
 
 
 page_sequence = [
-    #Facebook,
-#    Instructions,
-#    Charity,
+#   Facebook,
+    Instructions,
+    Charity,
     Tetris,
-#    ControlQuestions,   
-#    ModeInstructionsCQ,
-#    InstructionSummary,
+    #ControlQuestions,   
+    #ModeInstructionsCQ,
+    #InstructionSummary,
     #TaskInstructions,
     Decision,
     Results,
