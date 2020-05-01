@@ -22,28 +22,33 @@
 
     {% if mode == 'Public' %}
         <p>
-            This section contains <b>3</b> periods. At the beginning of each period, you will be endowed with <b>${{ Constants.endowment }}</b>.
-            You will have the opportunity to donate some of your endowment to a charity organization.
+            This section contains <b>3</b> periods. At the beginning of each period, your cash account will go back to its original
+	    balance of $10 (${{ Constants.participation_fee }} show-up fee + ${{Constants.endowment}} endowment from Tetris task).
+            You will have the opportunity to donate some of your cash to a charity organization.
             If one of your decisions in this section is chosen for payment <b>AND</b>:
             <ul>
-                <li> If you donated a <b>positive</b> amount <b>(>$0)</b> in that decision, you will <b>receive a thank-you message</b> on
-                <b>your social media timeline</b> from the LEEPS Lab with the charity being tagged, and <b>information on the rebate</b> you received.
+                <li> If you donated a <b>positive</b> amount <b>(>$0)</b> in that decision, the LEEPS Lab <b>will</b> post a 
+		     thank-you message containing your <b> donation amount</b> and <b>rebate rate</b> on the <b>LEEPS Facebook page</b>.
                 </li>
-                <li> If you <b>did not</b> donate any amount <b>($0)</b> in that decision, you will <b>not receive any messages</b> on <b>your social media timeline</b></li>
+                <li> If you <b>did not</b> donate any amount <b>($0)</b> in that decision, the LEEPS Lab will <b>not</b> post any message 
+		     on the LEEPS FB page.
+		</li>
             </ul>
         </p>
 
     {% elif mode == 'Private' %}
         <p>
-            This section contains <b>3</b> periods. At the beginning of each period, you will be endowed with <b>${{ Constants.endowment }}</b>.
-            You will have the opportunity to donate some of your endowment to a charity organization.
-            If one of your decisions in this section is chosen for payment <b>AND</b>:
+            This section contains <b>3</b> periods. At the beginning of each period, your cash account will go back to its original 
+            balance of $10 (${{ Constants.participation_fee }} show-up fee + ${{Constants.endowment}} endowment from Tetris task).
+            You will have the opportunity to donate some of your cash to a charity organization.
+	    If one of your decisions in this section is chosen for payment <b>AND</b>:
             <ul>
-                <li> If you donated a <b>positive</b> amount <b>(>$0)</b> in that decision, you will <b>receive a thank-you message</b> on
-                <b>your computer screen</b> from the LEEPS Lab with the charity name mentioned in the message, and <b>information on the rebate</b> you received.
+            	<li> If you donated a <b>positive</b> amount <b>(>$0)</b> in that decision, the LEEPS Lab <b>will</b> post a 
+                     thank-you message containing your <b> donation amount</b> and <b>rebate rate</b> on your <b>private computer screen</b>.
                 </li>
-                <li> If you <b>did not</b> donate any amount <b>($0)</b> in that decision, you will <b>not receive any messages</b> on <b>your computer screen</b></li>
-            </ul>
+                <li> If you <b>did not</b> donate any amount <b>($0)</b> in that decision, the LEEPS Lab will <b>not</b> post any message 
+                     on your computer screen.
+	    </ul>
         </p>
 
     {% endif %}
