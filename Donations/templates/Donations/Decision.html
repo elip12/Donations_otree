@@ -16,7 +16,7 @@
 
         calc_money_kept = function() {
             let donated = 0
-            if (document.getElementById('donated_submit').value > 0)
+            if (document.getElementById('donated_yes').checked == true)
                 donated = document.getElementById('donated').value
             document.getElementById('donated_submit').value = donated
             console.log(donated)

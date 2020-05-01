@@ -5,15 +5,16 @@
 
 {% block scripts %}
     <script type="text/javascript">
-        let totalCorrect
-        let taskNumber
+        let totalCorrect = 0
+        let taskNumber = 0
+        let taskCorrect = 0
         
-        window.onload = function () 
-        {
+        window.onload = function () {
             totalCorrect = 0
             taskNumber = 0
             document.getElementById('arrive_time').value = (new Date()).toISOString()
             document.getElementById('endowment').value = 6
+            updateMessage()
         }
 
 		$(document).keypress(
@@ -49,11 +50,15 @@
             green_: [52, 58, 55],
             orange_: [20, 23, 20]
         }
+
+        updateMessage = function() {
+            document.getElementById('message').innerHTML = `You have counted ${totalCorrect + taskCorrect} out of 12.` 
+        }
         
 
         checkAnswers = function() {
             console.log(totalCorrect)
-			let taskCorrect = 0
+			taskCorrect = 0
             let responses = {
                 navy_: document.getElementById('navy').value,
                 lightblue_: document.getElementById('lightblue').value,
@@ -75,6 +80,7 @@
             }
             if ((taskCorrect >= 5 && taskNumber < 2) || taskCorrect + totalCorrect >= 12) {
                 totalCorrect += taskCorrect
+                taskCorrect = 0
                 if (totalCorrect >= 12) {
                     document.getElementById('next').style.display = 'none'
                     document.getElementById('submit').style.display = 'block'
@@ -85,6 +91,7 @@
                     nextImage(taskNumber)
                 }
             }
+            updateMessage()
             
         }
     </script>
@@ -114,7 +121,10 @@ Tetris Task
             <img id="tetris2" style="width: 100%; display: none" src="{% static "Tetris3.jpg" %}"/>
         </div>
         <div class="col-3">
-            Count the number of squares of each color.
+            <p>
+                Count the number of squares of each color.
+            </p>
+            <p id="message"></p>
             <br>
             <br>
             <br>
