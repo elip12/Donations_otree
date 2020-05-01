@@ -22,7 +22,6 @@ class Constants(BaseConstants):
     name_in_url = 'Donations'
     players_per_group = None
     num_rounds = len(round_data[0])
-    endowment = 6
     participation_fee = 4
 
     # otree dropdown menu only returns intgers, here we map them
@@ -41,6 +40,7 @@ class Player(BasePlayer):
     #time_Facebook = models.LongStringField()
     time_Instructions = models.LongStringField()
     time_Charity = models.LongStringField()
+    time_tetris = models.LongStringField()
     time_ControlQuestions = models.LongStringField()  
     time_ModeInstructionsCQ = models.LongStringField()
     time_InstructionSummary = models.LongStringField()
@@ -49,6 +49,7 @@ class Player(BasePlayer):
     time_Results = models.LongStringField()
     time_Survey = models.LongStringField()
 
+    endowment = models.CurrencyField()
     # players first choose a charity.
     # otree's dropdown menus need to return an integer
     charity = models.IntegerField()

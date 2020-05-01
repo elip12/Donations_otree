@@ -1,0 +1,93 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+
+
+{% block scripts %}
+    <script type="text/javascript">
+        window.onload = function () 
+        {
+            document.getElementById('arrive_time').value = (new Date()).toISOString()
+            calc_money_kept()
+        }
+
+        let answers = {
+            navy: [0, 0, 0],
+            lightblue: [0, 0, 0],
+            pink: [0, 0, 0],
+            yellow: [0, 0, 0],
+            green: [0, 0, 0],
+            orange: [0, 0, 0]
+        }
+
+        let taskNumber = 0
+
+        checkAnswers = function(){
+            let allCorrect = True
+            let responses = {
+                navy: document.getElementById('navy').value,
+                lightblue: document.getElementById('lightblue').value,
+                pink: document.getElementById('pink').value,
+                yellow: document.getElementById('yellow').value,
+                green: document.getElementById('green').value,
+                orange: document.getElementById('orange').value
+            }
+            for (let key in responses) {
+                if (!responses.hasOwnProperty(key))
+                    continue
+                if (responses[key] != answers[key][taskNumber]) {
+                    console.log(`INCORRECT: {key}`
+                }        
+            }
+            if (allCorrect == True) {
+                taskNumber++
+                // switch picture, clear responses
+            }
+            
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+Tetris Task
+{% endblock %}
+
+{% block styles %}
+<style>
+    .otree-title {
+        color: #4b82c1;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-9">
+            <img id="tetris0" style="width: 50%;" src="{% static "Tetris1.jpg" %}"/>
+            <img id="tetris1" style="display: none" src="{% static "Tetris2.jpg" %}"/>
+            <img id="tetris2" style="display: none" src="{% static "Tetris3.jpg" %}"/>
+        </div>
+        <div class="col-3">
+            dsf
+        </div>
+    </div>
+    <div>
+        <!-- form fields for all metadata (not directly collected from players) -->
+        <input type="hidden" name="time_Tetris" id="arrive_time"/>
+        <input type="hidden" name="endowment" id="endowment"/>
+    </div>
+    <div>
+    <div>
+        <button id="next" class="btn btn-primary btn-large" 
+            style="float: right;" onclick="check_answers()">Next Task</button>
+        
+        <button id="submit" class="btn btn-primary btn-large next-button" 
+            style="float: right; display: none;" onclick="calc_money_kept()">Submit Decision</button>
+    </div>
+
+{% endblock %}
+
+
+{% comment %}
+
+{% endcomment %}

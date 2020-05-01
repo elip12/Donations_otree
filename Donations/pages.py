@@ -34,6 +34,14 @@ class Charity(Page):
     def is_displayed(self):
         return self.round_number == 1
 
+class Tetris(Page):
+    form_model = 'player'
+    form_fields = ['endowment']
+
+    def is_displayed(self):
+        return self.round_number == 1
+
+
 class ControlQuestions(Page):
     form_model = 'player'
     form_fields = ['time_ControlQuestions']
@@ -197,7 +205,8 @@ class Survey(Page):
 page_sequence = [
     #Facebook,
 #    Instructions,
-    Charity,
+#    Charity,
+    Tetris,
 #    ControlQuestions,   
 #    ModeInstructionsCQ,
 #    InstructionSummary,

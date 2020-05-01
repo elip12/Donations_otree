@@ -1,6 +1,6 @@
 *.pyc
 ./__init__.py
-.DS_Store
+*.DS_Store
 venv
 staticfiles
 ./db.sqlite3
