@@ -212,7 +212,7 @@ page_sequence = [
     ControlQuestions,   
     ModeInstructionsCQ,
     InstructionSummary,
-    TaskInstructions,
+#    TaskInstructions,
     Decision,
     Results,
     Survey
