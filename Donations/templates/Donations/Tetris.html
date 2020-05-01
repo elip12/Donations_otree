@@ -8,40 +8,54 @@
         window.onload = function () 
         {
             document.getElementById('arrive_time').value = (new Date()).toISOString()
-            calc_money_kept()
+        }
+
+        function nextImage(taskNumber) {
+            let oldImagePath = 'tetris' + (taskNumber - 1)
+            let imagePath = 'tetris' + taskNumber
+            document.getElementById(oldImagePath).style.display = 'none'
+            document.getElementById(imagePath).style.display = 'block'
         }
 
         let answers = {
-            navy: [0, 0, 0],
-            lightblue: [0, 0, 0],
-            pink: [0, 0, 0],
-            yellow: [0, 0, 0],
-            green: [0, 0, 0],
-            orange: [0, 0, 0]
+            navy_: [28, 0, 29],
+            lightblue_: [28, 0, 30],
+            pink_: [28, 0, 32],
+            yellow_: [40, 0, 44],
+            green_: [52, 0, 55],
+            orange_: [20, 0, 20]
         }
 
         let taskNumber = 0
 
-        checkAnswers = function(){
-            let allCorrect = True
+        checkAnswers = function() {
+            console.log('here')
+            let allCorrect = true
             let responses = {
-                navy: document.getElementById('navy').value,
-                lightblue: document.getElementById('lightblue').value,
-                pink: document.getElementById('pink').value,
-                yellow: document.getElementById('yellow').value,
-                green: document.getElementById('green').value,
-                orange: document.getElementById('orange').value
+                navy_: document.getElementById('navy').value,
+                lightblue_: document.getElementById('lightblue').value,
+                pink_: document.getElementById('pink').value,
+                yellow_: document.getElementById('yellow').value,
+                green_: document.getElementById('green').value,
+                orange_: document.getElementById('orange').value
             }
             for (let key in responses) {
+                document.getElementById(key).style.color = '#1a0000'
                 if (!responses.hasOwnProperty(key))
                     continue
-                if (responses[key] != answers[key][taskNumber]) {
-                    console.log(`INCORRECT: {key}`
+                if (parseInt(responses[key]) !== answers[key][taskNumber]) {
+                    console.log(`INCORRECT: ${key}`)
+                    document.getElementById(key).style.color = '#e60000'
+                    allCorrect = false
                 }        
             }
-            if (allCorrect == True) {
+            if (allCorrect == true) {
                 taskNumber++
-                // switch picture, clear responses
+                nextImage(taskNumber)
+                if (taskNumber == 2) {
+                    document.getElementById('next').style.display = 'none'
+                    document.getElementById('submit').style.display = 'block'
+                }
             }
             
         }
@@ -57,20 +71,45 @@ Tetris Task
     .otree-title {
         color: #4b82c1;
     }
+    input {
+        margin-bottom: 1em;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
+    {{ form.endowment.errors }}
     <div class="row">
         <div class="col-9">
-            <img id="tetris0" style="width: 50%;" src="{% static "Tetris1.jpg" %}"/>
-            <img id="tetris1" style="display: none" src="{% static "Tetris2.jpg" %}"/>
-            <img id="tetris2" style="display: none" src="{% static "Tetris3.jpg" %}"/>
+            <img id="tetris0" style="width: 100%;" src="{% static "Tetris1.jpg" %}"/>
+            <img id="tetris1" style="width: 100%; display: none" src="{% static "Tetris2.jpg" %}"/>
+            <img id="tetris2" style="width: 100%; display: none" src="{% static "Tetris3.jpg" %}"/>
         </div>
         <div class="col-3">
-            dsf
+            Count the number of squares of each color.
+            <br>
+            <br>
+            <br>
+            <label id="navy_" for="navy">Navy: &emsp;&emsp;</label>
+            <input type="number" id="navy" style="width: 50%;">
+            <br>
+            <label id="lightblue_" for="lightblue">Light Blue:</label>
+            <input type="number" id="lightblue" style="width: 50%;">
+            <br>
+            <label id="pink_" for="pink">Pink:&ensp;&emsp;&emsp;</label>
+            <input type="number" id="pink" style="width: 50%;">
+            <br>
+            <label id="yellow_" for="yellow">Yellow:&ensp;&emsp;</label>
+            <input type="number" id="yellow" style="width: 50%;">
+            <br>
+            <label id="green_" for="green">Green:&ensp;&emsp;</label>
+            <input type="number" id="green" style="width: 50%;">
+            <br>
+            <label id="orange_"for="orange">Orange:&emsp;</label>
+            <input type="number" id="orange" style="width: 50%;">
         </div>
     </div>
+
     <div>
         <!-- form fields for all metadata (not directly collected from players) -->
         <input type="hidden" name="time_Tetris" id="arrive_time"/>
@@ -78,11 +117,11 @@ Tetris Task
     </div>
     <div>
     <div>
-        <button id="next" class="btn btn-primary btn-large" 
-            style="float: right;" onclick="check_answers()">Next Task</button>
+        <button id="next" class="btn btn-large" type="button" 
+            style="float: right;" onclick="checkAnswers()">Next Task</button>
         
         <button id="submit" class="btn btn-primary btn-large next-button" 
-            style="float: right; display: none;" onclick="calc_money_kept()">Submit Decision</button>
+            style="float: right; display: none;">Continue</button>
     </div>
 
 {% endblock %}
