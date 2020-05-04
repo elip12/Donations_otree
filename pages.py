@@ -18,6 +18,13 @@ class Instructions(Page):
     def is_displayed(self):
         return self.round_number == 1
 
+class ControlQuestions(Page):
+    form_model = 'player'
+    form_fields = ['time_ControlQuestions']
+
+    def is_displayed(self):
+        return self.round_number == 1
+
 class Charity(Page):
     form_model = 'player'
     form_fields = ['time_Charity', 'charity']
@@ -33,22 +40,6 @@ class Charity(Page):
 
     def is_displayed(self):
         return self.round_number == 1
-
-class Tetris(Page):
-    form_model = 'player'
-    form_fields = ['endowment']
-    timeout_seconds = 600
-
-    def is_displayed(self):
-        return self.round_number == 1
-
-class ControlQuestions(Page):
-    form_model = 'player'
-    form_fields = ['time_ControlQuestions']
-
-    def is_displayed(self):
-        return self.round_number == 1
-
 
 class ModeInstructionsCQ(Page):
     form_model = 'player'
@@ -91,13 +82,10 @@ class TaskInstructions(Page):
 # Decision page. Includes instrucitons, and returns some input form fields for ease of recording data
 class Decision(Page):
     form_model = 'player'
-    form_fields = ['time_Decision', 'donated_yes_no', 'money_kept', 'money_donated', 'mode', 'rebate', 'charity_dec']
+    form_fields = ['time_Decision', 'money_kept', 'money_donated', 'mode', 'rebate', 'charity_dec']
 
     def vars_for_template(self):
-        if self.round_number > 1:
-            self.player.endowment = self.player.in_round(1).endowment
         return {
-            'total_cash_available': self.player.endowment + Constants.participation_fee,
             'mode': Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][0].capitalize(),
             'rebate': round((Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][1] - 1) * 100),
             'round_num': self.round_number,
@@ -205,14 +193,13 @@ class Survey(Page):
 
 
 page_sequence = [
-#   Facebook,
+    #Facebook,
     Instructions,
+    ControlQuestions,
     Charity,
-    Tetris,
-    ControlQuestions,   
     ModeInstructionsCQ,
     InstructionSummary,
-#    TaskInstructions,
+    #TaskInstructions,
     Decision,
     Results,
     Survey

@@ -1,0 +1,47 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        window.onload = function () 
+        {
+            document.getElementById("arrive_time").value = (new Date()).toISOString()
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+    Social Media Information
+{% endblock %}
+
+{% block content %}
+
+    <!-- form field for page load time. Value attribute gets set by script on window load,
+        and the form gets returned here -->
+    <input type="hidden" name="time_Facebook" id="arrive_time"/>
+
+    <p>
+        Upon signing up for this experiment, you gave <b>authorization</b> for an organization with a <b>positive image</b> (like the
+        UCSC LEEPS Lab) to write a message, <b>IN POSITIVE TERMS ONLY</b>, on your Facebook Timeline. Please provide your <b>Facebook
+        Name</b> and <b>ID</b> in the following boxes. You will have a <b>50% chance</b> of receiving a message on your Facebook Timeline.
+    </p>
+
+    <p>
+        You <b>Facebook Name</b> is your name as it appears on your personal page.
+    </p>
+
+    <p>
+        You <b>Facebook ID</b> is <b>PUBLIC INFORMATION</b> which can be used to identify you. It is a transformed version of your name.
+        For example: rachel.zhang.79 for the Experimenter Rachel Zhang. It can be found in 2 ways:
+        <ul>
+            <li>FB app on Phone: go to your profile, About, More About You, In the Contact Info--Facebook</li>
+            <li>FB website on Laptop: go to your profile, your FB ID is the extension after "https://www.facebook.com/" </li>
+        </ul>
+    </p>
+
+    {% formfield player.FB_name %}
+    {% formfield player.FB_ID %}
+    
+{% next_button %}
+
+{% endblock %}
