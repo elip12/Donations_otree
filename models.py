@@ -22,26 +22,26 @@ class Constants(BaseConstants):
     name_in_url = 'Donations'
     players_per_group = None
     num_rounds = len(round_data[0])
-    participation_fee = 4
+    endowment = 10
+    participation_fee = 5
 
     # otree dropdown menu only returns intgers, here we map them
     # to strings representing the charity names
     charities = [
-        'WHO COVID-19 Response Fund',
+        'Santa Cruz Education Foundation',
         'Año Nuevo Research at UCSC',
         'Santa Cruz Homeless Garden Project',
-        'UCSF COVID-19 Response Fund',
-        'Santa Cruz County Animal Shelter',
-        'UCSC COVID-19 Slug Support Campaign'
+        'Project Purrs Rescued Treasures',
+        'Santa Cruz Humane Society',
+        'Ankay'
     ]
 
 
 class Player(BasePlayer):
     #time_Facebook = models.LongStringField()
     time_Instructions = models.LongStringField()
+    time_ControlQuestions = models.LongStringField()
     time_Charity = models.LongStringField()
-    time_tetris = models.LongStringField()
-    time_ControlQuestions = models.LongStringField()  
     time_ModeInstructionsCQ = models.LongStringField()
     time_InstructionSummary = models.LongStringField()
     time_TaskInstructions = models.LongStringField()
@@ -49,13 +49,10 @@ class Player(BasePlayer):
     time_Results = models.LongStringField()
     time_Survey = models.LongStringField()
 
-    endowment = models.IntegerField()
     # players first choose a charity.
     # otree's dropdown menus need to return an integer
     charity = models.IntegerField()
-    donated_yes_no = models.BooleanField(
-        choices=[[0, 'No'], [1, 'Yes']],
-        widget=widgets.RadioSelect)
+
     money_kept = models.FloatField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
     money_donated = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
 

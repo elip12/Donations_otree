@@ -1,0 +1,186 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree %}
+
+{% comment %}
+    <!--
+        Principal maintainer: Eli Pandolfo <epandolf@ucsc.edu>
+        Contributors: Rachel Zhang <rzhang37@ucsc.edu>
+    -->
+{% endcomment %}
+
+{% block title %}
+    <h1>
+        <font color=#4b82c1>Donation Visibility</font>
+    </h1>
+{% endblock %}
+
+{% block styles %}
+   
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+
+        var toggle = true
+
+        check_answers = function()
+        {
+
+            var a3 = document.getElementById('choice3')
+            var a5 = document.getElementById('choice5')
+
+            toggle = true
+
+            if (!a3.checked)
+            {
+                var i1 = document.getElementById('incorrect1')
+                i1.innerHTML = "Please try again"
+                toggle = false
+            }
+            else
+                document.getElementById('incorrect1').innerHTML = ""
+
+            if (!a5.checked)
+            {
+                var i2 = document.getElementById('incorrect2')
+                i2.innerHTML = "Please try again"
+                toggle = false
+            }
+            else
+                document.getElementById('incorrect2').innerHTML = ""
+
+        }
+
+        window.onload = function() 
+        {
+            document.getElementById("arrive_time").value = (new Date()).toISOString()
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    
+    <input type="hidden" name="time_ModeInstructionsCQ" id="arrive_time"/>
+
+    <p>
+        You will make 3 decisions under public mode and 3 decisions under private mode. At the beginning of each decision period,
+        you will be endowed with <b>${{ Constants.endowment }}</b>. You will have the opportunity to donate
+        some of your endowment to a charity organization.
+    </p>
+    <h4>
+        <font color=#4b82c1>Public Mode</font>
+    </h4>
+
+    <p>
+        If one of your decisions in this section is chosen for payment AND
+        <ul>
+            <li>
+                If you donated a <b>positive</b> amount in that decision, 
+                you <b>will</b> receive a thank-you message with information about your
+                <b>rebate</b> on your <b>social media</b> timeline from the LEEPS Lab with the charity
+                being tagged.
+            </li>
+            <li>
+                If you <b>did not</b> donate any amount in that decision, 
+                you <b>will not</b> receive any messages on your social media timeline
+            </li>
+        </ul>
+    </p>
+
+    <h4>
+        <font color=#4b82c1>Private Mode</font>
+    </h4>
+    <p>
+        If one of your decisions in this section is chosen for payment AND
+        <ul>
+            <li>
+                If you donated a <b>positive</b> amount in that decision, you <b>will</b>
+                receive a thank-you message with information about your <b>rebate</b>
+                on your <b>computer screen</b> (only visible to you) from the LEEPS Lab with the
+                charity name mentioned in the message.
+            </li>
+            <li>
+                If you <b>did not</b> donate any amount in that decision, you <b>will
+                not</b> receive any messages on your computer screen.
+            </li>
+        </ul>
+    </p>
+
+    <br>
+    <div>
+        <h4>
+            <font color=#4b82c1>You must answer correctly before proceeding to the paying task.</font>
+        </h4>
+    </div>
+    <br>
+    <div>
+        <h5>
+            1. Suppose you donated $100 with a 50% rebate in public mode.
+        </h5>
+        <br>
+        <p>
+            What will happen after the experiment?
+        </p>
+        <div>
+            <p id="incorrect1" style="color: red;"></p>
+
+            <input type="radio" id="choice1" name="q1">
+            <label for="choice1">
+                You will receive a thank-you message on your computer screen with rebate 
+                information, visible only to you.
+            </label>
+            <br>
+            <input type="radio" id="choice2" name="q1">
+            <label for="choice2">
+                You will receive a thank-you message on your social media timeline without rebate
+                information.
+            </label>
+            <br>
+            <input type="radio" id="choice3" name="q1">
+            <label for="choice3">
+                You will receive a thank-you message on your social media timeline with
+                rebate information.
+            </label>
+            <br>
+        </div>
+    </div>
+    <div>
+
+        <h5>
+            2. Suppose you donated $0 with a 50% rebate in public mode.
+        </h5>
+        <p>
+            What will happen after the experiment?
+        </p>
+        <div>
+            <p id="incorrect2" style="color: red;"></p>
+            <input type="radio" id="choice4" name="q2">
+            <label for="choice1">
+                You will receive a thank-you message on your social media
+                timeline with rebate information
+            </label>
+            <br>
+            <input type="radio" id="choice5" name="q2">
+            <label for="choice2">
+                You will not receive any messages on your social media timeline
+            </label>
+        </div>
+    </div>
+    <hr>
+
+    <div>
+        <button id="submit" class="btn btn-primary btn-large next-button"
+            style="float: left;">Submit</button>
+    </div>
+
+    <script type="text/javascript">
+    $(document).ready(function() 
+    {
+        $('.next-button').click(function()
+        {
+            check_answers()
+            return toggle
+        })
+    })
+    </script>
+{% endblock %}
