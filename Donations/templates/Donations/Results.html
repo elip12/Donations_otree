@@ -1,0 +1,66 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        window.onload = function () 
+        {
+            document.getElementById("arrive_time").value = (new Date()).toISOString()
+            document.getElementById('pr').value = {{ pr | json }}
+            document.getElementById('mode').value = {{ mode | json }}
+            document.getElementById('charity').value = {{ charity | json }}
+            document.getElementById('rebate').value = {{ rebate | json }}
+            document.getElementById('donation').value = {{ donation | json }}
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+<font color=#4b82c1>Results</font>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <input type="hidden" name="time_Results" id="arrive_time"/>
+        <input type="hidden" name="chosen_pr" id="pr"/>
+        <input type="hidden" name="chosen_mode" id="mode"/>
+        <input type="hidden" name="chosen_charity" id="charity"/>
+        <input type="hidden" name="chosen_rebate" id="rebate"/>
+        <input type="hidden" name="chosen_donation" id="donation"/>
+    </div>
+    <div>
+        <h5>
+            <font color=#4b82c1>Round {{ pr }} was chosen as the paying round.</font>
+        </h5>
+    </div>
+    <div>
+        {% if donation != 0 and mode == 'private'%}
+            <p>
+                {% if rebate != 0 %}
+                    <b>Thank you for donating ${{ donation }} to {{ charity }}, with a {{ rebate }}% rebate offered by the UCSC LEEPS Lab!</b>
+                {% else %}
+                    <b>Thank you for donating ${{ donation }} to {{ charity }}!</b>
+                {% endif %}
+            </p>
+        {% elif donation != 0 %}
+            <p>
+                The LEEPS Lab will post the following message on the LEEPS Facebook page:
+                {% if rebate != 0 %}
+                    <b>“Thank you for donating ${{ donation }} to {{ charity }}, with a {{ rebate }}% rebate offered by the UCSC LEEPS Lab!”</b>
+                {% else %}
+                    <b>“Thank you for donating ${{ donation }} to {{ charity }}!"</b>
+                {% endif %}
+            </p>
+        {% endif %}
+    </div>
+    <div>
+        <h5>
+            <font color=#4b82c1>Your payoff is {{ payoff }}.</font>
+        </h5>
+    </div>
+
+    {% next_button %}
+
+{% endblock %}
+
+

@@ -1,0 +1,58 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        window.onload = function () 
+        {
+            document.getElementById("arrive_time").value = (new Date()).toISOString();
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+    Instructions - {{ mode }}
+{% endblock %}
+
+{% block content %}
+
+    <!-- form field for page load time. Value attribute gets set by script on window load,
+        and the form gets returned here -->
+    <input type="hidden" name="time_TaskInstructions" id="arrive_time"/>
+
+    {% if mode == 'Public' %}
+        <p>
+            This section contains <b>3</b> periods. At the beginning of each period, your cash account will go back to its original
+	    balance of $10 (${{ Constants.participation_fee }} show-up fee + ${{Constants.endowment}} endowment from Tetris task).
+            You will have the opportunity to donate some of your cash to a charity organization.
+            If one of your decisions in this section is chosen for payment <b>AND</b>:
+            <ul>
+                <li> If you donated a <b>positive</b> amount <b>(>$0)</b> in that decision, the LEEPS Lab <b>will</b> post a 
+		     thank-you message containing your <b> donation amount</b> and <b>rebate rate</b> on the <b>LEEPS Facebook page</b>.
+                </li>
+                <li> If you <b>did not</b> donate any amount <b>($0)</b> in that decision, the LEEPS Lab will <b>not</b> post any message 
+		     on the LEEPS FB page.
+		</li>
+            </ul>
+        </p>
+
+    {% elif mode == 'Private' %}
+        <p>
+            This section contains <b>3</b> periods. At the beginning of each period, your cash account will go back to its original 
+            balance of $10 (${{ Constants.participation_fee }} show-up fee + ${{Constants.endowment}} endowment from Tetris task).
+            You will have the opportunity to donate some of your cash to a charity organization.
+	    If one of your decisions in this section is chosen for payment <b>AND</b>:
+            <ul>
+            	<li> If you donated a <b>positive</b> amount <b>(>$0)</b> in that decision, the LEEPS Lab <b>will</b> post a 
+                     thank-you message containing your <b> donation amount</b> and <b>rebate rate</b> on your <b>private computer screen</b>.
+                </li>
+                <li> If you <b>did not</b> donate any amount <b>($0)</b> in that decision, the LEEPS Lab will <b>not</b> post any message 
+                     on your computer screen.
+	    </ul>
+        </p>
+
+    {% endif %}
+
+    {% next_button %}
+
+{% endblock %}

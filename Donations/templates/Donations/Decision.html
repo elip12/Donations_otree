@@ -1,0 +1,122 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        window.onload = function () 
+        {
+            document.getElementById('arrive_time').value = (new Date()).toISOString()
+            document.getElementById('mode').value = {{ mode | json }}
+            document.getElementById('rebate').value = {{ rebate | json }}
+            document.getElementById('charity').value = {{ charity | json }}
+            calc_money_kept()
+        }
+
+        calc_money_kept = function() {
+            let donated = 0
+            if (document.getElementById('donated_yes').checked == true)
+                donated = document.getElementById('donated').value
+            document.getElementById('donated_submit').value = donated
+            console.log(donated)
+            rebate = {{ rebate | json }} / 100 * donated
+            document.getElementById('disp_rebate').innerHTML = '$' + rebate.toFixed(2)
+            total_cash_left = {{ total_cash_available }} - donated + rebate
+            document.getElementById('total_cash_left').innerHTML = '$' + total_cash_left.toFixed(2)
+            document.getElementById('kept').value = {{ total_cash_available }} - donated
+            if (donated > 0) {
+                let basemsg = `Thank you, subject X, for donating \$${donated} to charity ${ {{ charity | json }} } with a ${ {{ rebate | json }} }% rebate provided by the LEEPS Lab!`
+                if ({{ mode | json }} == 'public')
+                    msg = 'The following message will be posted on LEEPS FB page:\n' + basemsg
+                else
+                    msg = 'The following message will be displayed on your computer screen:\n' + basemsg
+                document.getElementById('message').innerHTML = msg
+            }
+        }
+
+        visible_number_input = function(v) {
+            document.getElementById('donated').style.visibility = v
+            document.getElementById('message').style.visibility = v
+            if (v == 'hidden') {
+                document.getElementById('donated_submit').value = 0
+            }
+            else
+                document.getElementById('donated_submit').value = 1
+                document.getElementById('donated').value = 1
+            calc_money_kept()
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+Decision {{ round_num }} - <b>{{ mode }}</b> with <b>{{ rebate }}%</b> matching subsidy
+{% endblock %}
+
+{% block styles %}
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    .otree-title {
+        color: #4b82c1;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    
+    <div>
+        <!-- form fields for all metadata (not directly collected from players) -->
+        <input type="hidden" name="time_Decision" id="arrive_time"/>
+        <input type="hidden" name="mode" id="mode"/>
+        <input type="hidden" name="rebate" id="rebate"/>
+        <input type="hidden" name="charity_dec" id="charity"/> 
+        <input type="hidden" name="money_donated" id="donated_submit">
+        <input type="hidden" name="money_kept" id="kept"/>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>Total Cash Available</th>
+                <th>Would you like to donate any to the charity?</th>
+                <th>{{ rebate }}% rebate cash back in your account</th>
+                <th>Total cash left in your account now (including rebate)</th>
+            </tr>
+            <tr>
+                <td rowspan="2"><b>${{ total_cash_available }}</b> (${{ Constants.participation_fee  }}
+                    show-up fee + ${{ player.endowment }} endowment from task)</td>
+                <td><input type="radio" name="donated_yes_no" id="donated_yes" value="1"
+                        onclick="visible_number_input('visible')"/> 
+                    <b>Yes</b>: choose between $1 to $10:
+                    <input type="number" id="donated" max="10" min="1"
+                        style="width: 30px; visibility: hidden" oninput="calc_money_kept()"/>
+                    <br/>Your decision with rebate info will be posted on the LEEPS FB page.</td>
+                <td rowspan="2" id="disp_rebate"></td>
+                <td rowspan="2" id="total_cash_left"></td>
+            </tr>
+            <tr>
+                <td><input type="radio" name="donated_yes_no" id="donated_no" value="0"
+                    onclick="visible_number_input('hidden')"/>
+                    <b>No</b> $0. Your decision will NOT be posted on LEEPS FB page.</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <p id="message"></p>
+    </div>
+    <div>
+        <button id="submit" class="btn btn-primary btn-large next-button" 
+            style="float: right;" onclick="calc_money_kept()">Submit Decision</button>
+    </div>
+
+{% endblock %}
+
+
+{% comment %}
+
+{% endcomment %}

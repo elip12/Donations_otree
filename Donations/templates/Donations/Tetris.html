@@ -1,0 +1,170 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        let totalCorrect = 0
+        let taskNumber = 0
+        let taskCorrect = 0
+        
+        window.onload = function () {
+            totalCorrect = 0
+            taskNumber = 0
+            document.getElementById('arrive_time').value = (new Date()).toISOString()
+            document.getElementById('endowment').value = 6
+            updateMessage()
+        }
+
+		$(document).keypress(
+		  function(event){
+			if (event.which == '13') {
+			  event.preventDefault();
+			}
+		});
+
+        function nextImage(taskNumber) {
+            let oldImagePath = 'tetris' + (taskNumber - 1)
+            let imagePath = 'tetris' + taskNumber
+            document.getElementById(oldImagePath).style.display = 'none'
+            document.getElementById(imagePath).style.display = 'block'
+        }
+
+        function clearResponses(responses) {
+            for (let key in responses) {
+                if (!responses.hasOwnProperty(key))
+                    continue
+                document.getElementById(key).style.color = '#111111'
+                inputId = key.slice(0,-1)
+                console.log(inputId)
+                document.getElementById(inputId).value = ''
+            }
+        }
+
+        let answers = {
+            navy_: [28, 29, 29],
+            lightblue_: [28, 28, 30],
+            pink_: [28, 31, 32],
+            yellow_: [40, 28, 44],
+            green_: [52, 58, 55],
+            orange_: [20, 23, 20]
+        }
+
+        updateMessage = function() {
+            document.getElementById('message').innerHTML = `You have counted ${totalCorrect + taskCorrect} out of 12.` 
+        }
+        
+
+        checkAnswers = function() {
+            console.log(totalCorrect)
+			taskCorrect = 0
+            let responses = {
+                navy_: document.getElementById('navy').value,
+                lightblue_: document.getElementById('lightblue').value,
+                pink_: document.getElementById('pink').value,
+                yellow_: document.getElementById('yellow').value,
+                green_: document.getElementById('green').value,
+                orange_: document.getElementById('orange').value
+            }
+            for (let key in responses) {
+                if (!responses.hasOwnProperty(key))
+                    continue
+                if (parseInt(responses[key]) !== answers[key][taskNumber]) {
+                    document.getElementById(key).style.color = '#c60000'
+                }
+                else {
+                    taskCorrect++
+                    document.getElementById(key).style.color = '#00c600'
+                }
+            }
+            if ((taskCorrect >= 5 && taskNumber < 2) || taskCorrect + totalCorrect >= 12) {
+                totalCorrect += taskCorrect
+                taskCorrect = 0
+                if (totalCorrect >= 12) {
+                    document.getElementById('next').style.display = 'none'
+                    document.getElementById('submitbutton').style.display = 'block'
+                }
+                else {
+                    taskNumber++
+                    clearResponses(responses)
+                    nextImage(taskNumber)
+                }
+            }
+            updateMessage()
+            
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+Tetris Task
+{% endblock %}
+
+{% block styles %}
+<style>
+    .otree-title {
+        color: #4b82c1;
+    }
+    input {
+        margin-bottom: 1em;
+    }
+    .otree-btn-next {
+        float: right;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-9">
+            <img id="tetris0" style="width: 100%;" src="{% static "Tetris1.jpg" %}"/>
+            <img id="tetris1" style="width: 100%; display: none" src="{% static "Tetris2.jpg" %}"/>
+            <img id="tetris2" style="width: 100%; display: none" src="{% static "Tetris3.jpg" %}"/>
+        </div>
+        <div class="col-3">
+            <p>
+                Count the number of squares of each color.
+            </p>
+            <p id="message"></p>
+            <br>
+            <br>
+            <br>
+            <label id="navy_" for="navy">Navy: &emsp;&emsp;</label>
+            <input type="number" id="navy" style="width: 50%;" onkeypress="">
+            <br>
+            <label id="lightblue_" for="lightblue">Light Blue:</label>
+            <input type="number" id="lightblue" style="width: 50%;">
+            <br>
+            <label id="pink_" for="pink">Pink:&ensp;&emsp;&emsp;</label>
+            <input type="number" id="pink" style="width: 50%;">
+            <br>
+            <label id="yellow_" for="yellow">Yellow:&ensp;&emsp;</label>
+            <input type="number" id="yellow" style="width: 50%;">
+            <br>
+            <label id="green_" for="green">Green:&ensp;&emsp;</label>
+            <input type="number" id="green" style="width: 50%;">
+            <br>
+            <label id="orange_"for="orange">Orange:&emsp;</label>
+            <input type="number" id="orange" style="width: 50%;">
+        </div>
+    </div>
+
+    <div>
+        <!-- form fields for all metadata (not directly collected from players) -->
+        <input type="hidden" name="time_Tetris" id="arrive_time"/>
+        <input type="hidden" name="endowment" id="endowment"/>
+    </div>
+    <div>
+        <button id="next" class="btn btn-large" type="button" 
+            style="float: right; background: #eeeeee" onclick="checkAnswers()">Next Task</button>
+        
+        <button id="submitbutton" class="btn btn-primary otree-btn-next" 
+            style="float: right; display: none;">Continue</button>
+        
+    </div>
+
+{% endblock %}
+
+
+{% comment %}
+
+{% endcomment %}
