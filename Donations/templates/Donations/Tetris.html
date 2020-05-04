@@ -1,8 +1,6 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree %}
 
-
-
 {% block scripts %}
     <script type="text/javascript">
         let totalCorrect = 0
@@ -83,7 +81,7 @@
                 taskCorrect = 0
                 if (totalCorrect >= 12) {
                     document.getElementById('next').style.display = 'none'
-                    document.getElementById('submit').style.display = 'block'
+                    document.getElementById('submitbutton').style.display = 'block'
                 }
                 else {
                     taskNumber++
@@ -109,11 +107,13 @@ Tetris Task
     input {
         margin-bottom: 1em;
     }
+    .otree-btn-next {
+        float: right;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
-    {{ form.endowment.errors }}
     <div class="row">
         <div class="col-9">
             <img id="tetris0" style="width: 100%;" src="{% static "Tetris1.jpg" %}"/>
@@ -154,12 +154,12 @@ Tetris Task
         <input type="hidden" name="endowment" id="endowment"/>
     </div>
     <div>
-    <div>
         <button id="next" class="btn btn-large" type="button" 
-            style="float: right;" onclick="checkAnswers()">Next Task</button>
+            style="float: right; background: #eeeeee" onclick="checkAnswers()">Next Task</button>
         
-        <button id="submit" class="btn btn-primary btn-large next-button" 
+        <button id="submitbutton" class="btn btn-primary otree-btn-next" 
             style="float: right; display: none;">Continue</button>
+        
     </div>
 
 {% endblock %}
