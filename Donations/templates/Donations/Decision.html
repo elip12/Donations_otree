@@ -24,11 +24,11 @@
             document.getElementById('total_cash_left').innerHTML = '$' + total_cash_left.toFixed(2)
             document.getElementById('kept').value = {{ total_cash_available }} - donated
             if (donated > 0) {
-                let basemsg = `Thank you, subject X, for donating \$${donated} to charity ${ {{ charity | json }} } with a ${ {{ rebate | json }} }% rebate provided by the LEEPS Lab!`
-                if ({{ mode | json }} == 'public')
+                let basemsg = `<b>Thank you, 'your name', for donating \$${donated} to ${ {{ charity | json }} } with a ${ {{ rebate | json }} }% rebate provided by the LEEPS Lab!</b>`
+                if ({{ mode | json }} == 'pub')
                     msg = 'The following message will be posted on LEEPS FB page:\n' + basemsg
                 else
-                    msg = 'The following message will be displayed on your computer screen:\n' + basemsg
+                    msg = 'The following message will be displayed on your computer screen (only visible to you):\n' + basemsg
                 document.getElementById('message').innerHTML = msg
             }
         }
@@ -48,7 +48,7 @@
 {% endblock %}
 
 {% block title %}
-Decision {{ round_num }} - <b>{{ mode }}</b> with <b>{{ rebate }}%</b> matching subsidy
+Decision {{ round_num }} - <b>{{ mode }}</b> with <b>{{ rebate }}%</b> Rebate
 {% endblock %}
 
 {% block styles %}
