@@ -25,7 +25,7 @@
             document.getElementById('kept').value = {{ total_cash_available }} - donated
             if (donated > 0) {
                 let basemsg = `<b>Thank you, 'your name', for donating \$${donated} to ${ {{ charity | json }} } with a ${ {{ rebate | json }} }% rebate provided by the LEEPS Lab!</b>`
-                if ({{ mode | json }} == 'pub')
+                if ({{ mode | json }} == 'public')
                     msg = 'The following message will be posted on LEEPS FB page:\n' + basemsg
                 else
                     msg = 'The following message will be displayed on your computer screen (only visible to you):\n' + basemsg

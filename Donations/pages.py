@@ -141,7 +141,7 @@ class Survey(Page):
         rn = -1
         # add clear documetnation here for why this is here
         for index, round_data in enumerate(Constants.round_data[self.participant.id_in_session - 1]):
-            if round_data[0] == 'public' and round_data[1] == 1.9:
+            if round_data[0] == 'public' and round_data[1] == 1.5:
                 rn = index + 1
                 break
 
@@ -152,10 +152,10 @@ class Survey(Page):
         don = self.get_pub_90_don()
         charity = self.player.in_round(1).charity_dec
         return [
-            [0, 'Donate $0 and have no message posted on your Facebook'],
+            [0, 'Donate $0 and have no message posted on the LEEPS Facebook page'],
             [1, 'Donate $' + str(don) + ' and have the message "Thank you for donating $'
-                + str(don) + ' to ' + charity + ' with a 90% rebate support by UCSC \
-                LEEPS Lab!" posted on your Facebook']
+                + str(don) + ' to ' + charity + ' with a 50% rebate supported by UCSC \
+                LEEPS Lab!" posted on the LEEPS Facebook page']
         ]
 
     def vars_for_template(self):
