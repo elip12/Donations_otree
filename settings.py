@@ -101,6 +101,11 @@ ROOMS = [
         'name': 'live_demo',
         'display_name': 'Room for live demo (no participant labels)',
     },
+    {
+        'name': 'donation',
+        'display_name': 'Donation Decision',
+        'participant_label_file': '_rooms/donation.txt',
+    }
 ]
 
 
