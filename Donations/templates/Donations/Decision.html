@@ -24,11 +24,11 @@
             document.getElementById('total_cash_left').innerHTML = '$' + total_cash_left.toFixed(2)
             document.getElementById('kept').value = {{ total_cash_available }} - donated
             if (donated > 0) {
-                let basemsg = `<b>Thank you, 'your name', for donating \$${donated} to ${ {{ charity | json }} } with a ${ {{ rebate | json }} }% rebate provided by the LEEPS Lab!</b>`
-                if ({{ mode | json }} == 'public')
-                    msg = 'The following message will be posted on LEEPS FB page:\n' + basemsg
+                let basemsg = `"Thank you, 'your name', for donating <b>\$${donated}</b> to ${ {{ charity | json }} } with a <b>${ {{ rebate | json }} }% rebate</b> provided by the LEEPS Lab!</b>"`
+                if ({{ mode | json }} == 'Public')
+                    msg = 'The following message will be posted on LEEPS FB page (<b>visible to everyone</b>):\n' + basemsg
                 else
-                    msg = 'The following message will be displayed on your computer screen (only visible to you):\n' + basemsg
+                    msg = 'The following message will be displayed on your computer screen (<b>only visible to you</b>):\n' + basemsg
                 document.getElementById('message').innerHTML = msg
             }
         }
@@ -95,7 +95,7 @@ Decision {{ round_num }} - <b>{{ mode }}</b> with <b>{{ rebate }}%</b> Rebate
                     <b>Yes</b>: choose between $1 to $10:
                     <input type="number" id="donated" max="10" min="1"
                         style="width: 30px; visibility: hidden" oninput="calc_money_kept()"/>
-                    <br/>Your decision with rebate info will be posted on the LEEPS FB page.</td>
+		    <br/>Your decision with rebate info will be posted on the LEEPS FB page.</td>
                 <td rowspan="2" id="disp_rebate"></td>
                 <td rowspan="2" id="total_cash_left"></td>
             </tr>
