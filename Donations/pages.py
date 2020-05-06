@@ -191,10 +191,10 @@ class Survey(Page):
         don = self.get_pub_90_don()
         if don == 0:
             return ['time_Survey', 's1', 's2', 's3', 's4', 's5', 's6','s7',
-                's9a', 's9b', 's10a', 's10b', 's11a', 's11b']
+                's9a', 's9b', 's10a', 's10b', 's11a', 's11b', 's12', 's13']
         else:
             return ['time_Survey', 's1', 's2', 's3', 's4', 's5', 's6', 's7', 's8',
-                's9a', 's9b', 's10a', 's10b', 's11a', 's11b']
+                's9a', 's9b', 's10a', 's10b', 's11a', 's11b', 's12', 's13']
 
     def is_displayed(self):
         return self.round_number == Constants.num_rounds

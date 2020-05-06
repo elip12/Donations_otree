@@ -45,7 +45,7 @@
 	    if ( {{ mode | json }}== 'Public')
 		instruction='Your decision with rebate info will be posted on <b>LEEPS FB page</b>.'
 	    else
-		instruction='Your decision with rebate will be posted on <b>your computer screen</b>.'
+		instruction='Your decision with rebate will be shown on <b>your own screen</b>.'
 	    document.getElementById('instruction').innerHTML=instruction
         }
 
@@ -105,7 +105,7 @@ Decision {{ round_num }} - <b>{{ mode }}</b> with <b>{{ rebate }}%</b> Rebate
             </tr>
             <tr>
                 <td rowspan="2"><b>${{ total_cash_available }}</b> (${{ Constants.participation_fee  }}
-                    show-up fee + ${{ player.endowment }} endowment from task)</td>
+                    participation fee + ${{ player.endowment }} from task)</td>
                 <td><input type="radio" name="donated_yes_no" id="donated_yes" value="1"
                         onclick="visible_number_input('visible')"/> 
                     <b>Yes</b>: choose between $1 to $10:

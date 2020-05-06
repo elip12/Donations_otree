@@ -98,6 +98,14 @@ class Player(BasePlayer):
     s10b = models.IntegerField()
     s11a = models.IntegerField()
     s11b = models.IntegerField()
+    s12 = models.IntegerField(
+        choices=[
+            [0, 'At least once a day'],
+            [1, 'At least once a week'],
+            [2, 'At least once a month'],
+            [3, 'I rarely use Facebook']],
+        widget=widgets.RadioSelect)
+    s13 = models.StringField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
 
     # pr is the paying round: this is randomly chosen 
     # in the Results class in Pages.py
