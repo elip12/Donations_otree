@@ -42,13 +42,20 @@ class Tetris(Page):
     def is_displayed(self):
         return self.round_number == 1
 
+class TetrisResults(Page):
+    form_model = 'player'
+    form_fields = ['time_TetrisResults']
+
+    def is_displayed(self):
+        return self.round_number == 1
+
+    
 class ControlQuestions(Page):
     form_model = 'player'
     form_fields = ['time_ControlQuestions']
 
     def is_displayed(self):
         return self.round_number == 1
-
 
 class ModeInstructionsCQ(Page):
     form_model = 'player'
@@ -209,6 +216,7 @@ page_sequence = [
     Instructions,
     Charity,
     Tetris,
+    TetrisResults,
     ControlQuestions,   
     ModeInstructionsCQ,
     InstructionSummary,

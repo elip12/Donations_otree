@@ -1,0 +1,40 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree %}
+
+{% comment %}
+
+{% endcomment %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        window.onload = function ()
+        {
+            document.getElementById("arrive_time").value = (new Date()).toISOString();
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+    <h1>
+        <font color=#4b82c1>Tetris Results</font>
+    </h1>
+{% endblock %}
+
+{% block styles %}
+
+{% endblock %}
+
+
+{% block content %}
+
+    <input type="hidden" name="time_TetrisResults" id="arrive_time"/>
+
+    <h5>
+        Congratulations! You've earned $6 from your Tetris task!
+    </h5>
+
+    {% next_button %}
+
+{% endblock %}
+
+
