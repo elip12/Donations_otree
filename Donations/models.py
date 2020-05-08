@@ -39,9 +39,9 @@ class Constants(BaseConstants):
 class Player(BasePlayer):
     #time_Facebook = models.LongStringField()
     time_Instructions = models.LongStringField()
-    time_Charity = models.LongStringField()
     time_tetris = models.LongStringField()
     time_TetrisResults = models.LongStringField()
+    time_Charity = models.LongStringField()
     time_ControlQuestions = models.LongStringField()  
     time_ModeInstructionsCQ = models.LongStringField()
     time_InstructionSummary = models.LongStringField()

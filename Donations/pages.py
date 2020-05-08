@@ -214,9 +214,9 @@ class Survey(Page):
 page_sequence = [
 #   Facebook,
     Instructions,
-    Charity,
     Tetris,
     TetrisResults,
+    Charity,    
     ControlQuestions,   
     ModeInstructionsCQ,
     InstructionSummary,
