@@ -29,10 +29,10 @@
 		let basemsg = `"Thank you, 'your name', for donating <b>\$${donated}</b> to ${ {{ charity | json }} }`
 		let basemsg1=` with a <b>${ {{ rebate | json }} }% rebate</b> provided by the LEEPS Lab!"`
                 if ({{ mode | json }} == 'Public' & rebate_rate !=0)
-                    msg = 'The following message will be posted on LEEPS FB page (<b>visible to everyone</b>):\n'+
+                    msg = 'We will tag you in the following post on LEEPS FB page (<b>visible to everyone</b>):\n'+
 			basemsg+basemsg1
                 else if ({{ mode | json }} == 'Public' & rebate_rate ==0)
-		    msg = 'The following message will be posted on LEEPS FB page (<b>visible to everyone</b>):\n'+
+		    msg = 'We will tag you in the following post on LEEPS FB page (<b>visible to everyone</b>):\n'+
 			basemsg +'!"'
 		else if ({{ mode | json }} == 'Private' & rebate_rate !=0)
 		    msg = 'The following message will be displayed on your computer screen (<b>only visible to you</b>):\n' 
@@ -56,8 +56,8 @@
                 document.getElementById('donated_submit').value = 0
             }
             else
-                document.getElementById('donated_submit').value = 1
-                document.getElementById('donated').value = 1
+                document.getElementById('donated_submit').value = null
+                document.getElementById('donated').value = null 
             calc_money_kept()
         }
     </script>
@@ -96,7 +96,11 @@ Decision {{ round_num }} - <b>{{ mode }}</b> with <b>{{ rebate }}%</b> Rebate
         <input type="hidden" name="money_kept" id="kept"/>
     </div>
     <div>
-        <table>
+	<h5> 
+	 <font color=#4b82c1>You have $10 in your cash account (${{ Constants.participation_fee  }}
+                    participation fee + ${{ player.endowment }} from Tetris).</font>	
+        </h5>
+	<table>
             <tr>
                 <th>Total Cash Available</th>
                 <th>Would you like to donate any to the charity?</th>
@@ -106,7 +110,7 @@ Decision {{ round_num }} - <b>{{ mode }}</b> with <b>{{ rebate }}%</b> Rebate
             <tr>
                 <td rowspan="2"><b>${{ total_cash_available }}</b> (${{ Constants.participation_fee  }}
                     participation fee + ${{ player.endowment }} from task)</td>
-                <td><input type="radio" name="donated_yes_no" id="donated_yes" value="1"
+                <td><input type="radio" name="donated_yes_no" id="donated_yes" value="1" 
                         onclick="visible_number_input('visible')"/> 
                     <b>Yes</b>: choose between $1 to $10:
                     <input type="number" id="donated" max=10 min=1
