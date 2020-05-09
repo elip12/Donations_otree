@@ -106,7 +106,12 @@ class Player(BasePlayer):
             [2, 'At least once a month'],
             [3, 'I rarely use Facebook']],
         widget=widgets.RadioSelect)
-    s13 = models.StringField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+    s13 = models.StringField(widget=widgets.TextInput(attrs={'autocomplete': 'off'})),
+    s14 = models.IntegerField(
+        choices=[
+            [0, 'The rebate makes my donation appear less generous'],
+            [1, 'The rebate has an advertising effect that will attract more friends to donate']]
+        widget=widgets.RadioSelect)
 
     # pr is the paying round: this is randomly chosen 
     # in the Results class in Pages.py

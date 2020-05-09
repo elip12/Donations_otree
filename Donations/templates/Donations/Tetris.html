@@ -50,7 +50,7 @@
         }
 
         updateMessage = function() {
-            document.getElementById('message').innerHTML = `You have correctly counted ${totalCorrect + taskCorrect} out of 12.` 
+            document.getElementById('message').innerHTML = `You have correctly counted ${totalCorrect + taskCorrect} out of <b>12</b>.` 
         }
         
 
@@ -122,8 +122,10 @@ Tetris Task
         </div>
         <div class="col-3">
             <p>
-                Count the number of 1X1 squares of each color. 
-		Click on 'Next Task' to check your answers. 
+                Count the number of 1X1 squares of each color.
+	    </p>
+	    <p> 
+		Click on <b>'Next Task'</b> to check answers.	
 		Incorrect answers will be displayed in red font.
             </p>
             <p id="message"></p>
