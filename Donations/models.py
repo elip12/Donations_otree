@@ -62,7 +62,7 @@ class Player(BasePlayer):
 
     exit_choice = models.BooleanField(
         choices=[[0, 'No'], [1, 'Yes']],
-        widget=wiedgets.RadioSelect)
+        widget=widgets.RadioSelect)
 
     mode = models.LongStringField()
     rebate = models.FloatField()
