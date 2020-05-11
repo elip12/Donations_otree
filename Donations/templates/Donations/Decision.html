@@ -18,39 +18,42 @@
                 donated = document.getElementById('donated').value
             document.getElementById('donated_submit').value = donated
             console.log(donated)
-	    let exit_fee = 0
+	        let exit_fee = 0
             if (document.getElementById('exit_yes').checked == true)
                 exit_fee = 0.2
             document.getElementById('exit_submit').value = exit_fee
-            rebate_rate= {{ rebate | json }}
-	    mode={{ mode | json }}
-	    rebate = {{ rebate | json }} / 100 * donated
+            rebate_rate = {{ rebate | json }}
+	        mode = {{ mode | json }}
+	        rebate = {{ rebate | json }} / 100 * donated
             document.getElementById('disp_rebate').innerHTML = '$' + rebate.toFixed(2)
             total_cash_left = {{ total_cash_available }} - donated + rebate - exit_fee
             document.getElementById('total_cash_left').innerHTML = '$' + total_cash_left.toFixed(2)
             document.getElementById('kept').value = {{ total_cash_available }} - donated - exit_fee
             if (donated > 0) {
-		let basemsg = `"Thank you, 'your name', for donating <b>\$${donated}</b> to ${ {{ charity | json }} }`
-		let basemsg1=` with a <b>${ {{ rebate | json }} }% rebate</b> provided by the LEEPS Lab!"`
-                if ({{ mode | json }} == 'Public' & rebate_rate !=0 & exit_fee == 0)
-                    msg = 'We will tag you in the following post on LEEPS FB page (<b>visible to everyone</b>):\n'+
-			basemsg+basemsg1
-                else if ({{ mode | json }} == 'Public' & (rebate_rate == 0 | exit_fee !=0))
-		    msg = 'We will tag you in the following post on LEEPS FB page (<b>visible to everyone</b>):\n'+
-			basemsg +'!"'
-		else if ({{ mode | json }} == 'Private' & rebate_rate !=0)
-		    msg = 'The following message will be displayed on your computer screen (<b>only visible to you</b>):\n' 
-			+ basemsg+basemsg1
-		else 
-		    msg = 'The following message will be displayed on your computer screen (<b>only visible to you</b>):\n' 
-			+ basemsg+'!"'
+                document.getElementById('message').style.visibility = 'visible'
+		        let basemsg = `"Thank you, 'your name', for donating <b>\$${donated}</b> to ${ {{ charity | json }} }`
+		        let basemsg1=` with a <b>${ {{ rebate | json }} }% rebate</b> provided by the LEEPS Lab!"`
+                if (mode == 'Public' & rebate_rate !=0 & exit_fee == 0)
+                    msg = 'We will tag you in the following post on LEEPS FB page (<b>visible to everyone</b>):\n' +
+			        basemsg + basemsg1
+                else if (mode == 'Public' & (rebate_rate == 0 | exit_fee != 0))
+		            msg = 'We will tag you in the following post on LEEPS FB page (<b>visible to everyone</b>):\n'+
+			        basemsg +'!"'
+		        else if (mode == 'Private' & rebate_rate != 0)
+		            msg = 'The following message will be displayed on your computer screen (<b>only visible to you</b>):\n' 
+			        + basemsg + basemsg1
+		        else 
+		            msg = 'The following message will be displayed on your computer screen (<b>only visible to you</b>):\n' 
+			        + basemsg + '!"'
                 document.getElementById('message').innerHTML = msg
             }
-	    if ( {{ mode | json }}== 'Public')
-		instruction='Your decision with rebate info will be posted on <b>LEEPS FB page</b>.'
-	    else
-		instruction='Your decision with rebate will be shown on <b>your own screen</b>.'
-	    document.getElementById('instruction').innerHTML=instruction
+            else
+                document.getElementById('message').style.visibility = 'hidden'
+	        if ( mode == 'Public')
+		        instruction = 'Your decision with rebate info will be posted on <b>LEEPS FB page</b>.'
+	        else
+		        instruction='Your decision with rebate will be shown on <b>your own screen</b>.'
+	        document.getElementById('instruction').innerHTML=instruction
         }
 
         visible_number_input = function(v) {
