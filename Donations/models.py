@@ -114,7 +114,7 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect)
 
     # pr is the paying round: this is randomly chosen 
-    # in the Results class in Pages.py
+    # in creating_session
     def set_payoffs(self, pr):
         # gets money kept in paying round
         kept = self.in_round(pr).money_kept
