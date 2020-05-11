@@ -107,6 +107,7 @@ class Decision(Page):
             'total_cash_available': self.player.endowment + Constants.participation_fee,
             'mode': Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][0].capitalize(),
             'rebate': round((Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][1] - 1) * 100),
+            'exit_fee': Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][2],
             'round_num': self.round_number,
             'charity': self.participant.vars['charities'][self.player.in_round(1).charity]
         }
