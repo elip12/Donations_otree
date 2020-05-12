@@ -10,7 +10,7 @@
 
 {% block title %}
     <h1>
-        <font color=#4b82c1>Donation Visibility</font>
+        <font color=#4b82c1>Instructions on Decision-Making Periods</font>
     </h1>
 {% endblock %}
 
@@ -63,114 +63,49 @@
     <input type="hidden" name="time_ModeInstructionsCQ" id="arrive_time"/>
 
     <p>
-        You will make 3 decisions under public mode and 3 decisions under private mode. 
-	Every decision period is independent, so your money and donation decision from one period will not transfer to the next.
-	At the beginning of each period, your cash account will refresh to its original balance of your 
-	${{ Constants.participation_fee }} participation fee+ ${{ player.endowment }} income from the Tetris task.
-	You will have the opportunity to donate some of your cash to a charity organization, but you will not be 
-	obligated to donate a positive amount.
+        The upcoming decision-making part of the experiment has {{ Constants.num_rounds }} indepdent periods. 
+	Your money and donation decision from one period will not impact or transfer to the next. 
+	After you are done with all {{ Constants.num_rounds }} periods, we will <b>randomly</b> choose <b>1</b> period to payout 
+	your donation decision and post any corresponding message you may receive.
     </p>
-    <h4>
-        <font color=#4b82c1>Public Mode</font>
-    </h4>
-
     <p>
-        If one of your decisions in this section is chosen for payment AND
-        <ul>
-            <li>
-                If you donated a <b>positive</b> amount in that decision, 
-                the LEEPS Lab <b>will</b> tag you in a thank-you message containing your <b>donation</b> amount 
-		and <b>rebate</b> rate on the <b>LEEPS Facebook page</b> (visible to everyone).
-            </li>
-            <li>
-                If you <b>did not</b> donate any amount in that decision, 
-                the LEEPS Lab <b>will not</b> post anything about your decision on the LEEPS Facebook page. 
-            </li>
-        </ul>
+	At the beginning of each period, your cash account will refresh to its <b>original balance</b> of your
+        ${{ Constants.participation_fee }} participation fee+ ${{ player.endowment }} income from the Tetris task.
+        You will have the opportunity to donate some of your cash to a charity organization, but you will not be
+        obligated to donate a positive amount.
     </p>
-
-    <h4>
-        <font color=#4b82c1>Private Mode</font>
-    </h4>
     <p>
-        If one of your decisions in this section is chosen for payment AND
-        <ul>
-            <li>
-                If you donated a <b>positive</b> amount in that decision, you <b>will</b>
-                receive a thank-you message containing your <b>donation</b> amount and <b>rebate</b> rate
-                on your <b>computer screen</b> (only visible to you).
+	The scenarios you may encounter during your decision-making periods include:
+	<ul>
+	    <li>
+		<b><font color=#4b82c1>Public</font></b> or <b><font color=#4b82c1>Private</font></b> Donations: 
+			Your donation information may be posted on LEEPS Facebook page (visible to everyone) or on your computer screen (only visible to you).
+	    </li>
+	    <li>
+               <b> <font color=#4b82c1>Different Rebates</font></b>: The LEEPS Lab may offer you different rebate amounts on your donations.
             </li>
-            <li>
-                If you <b>did not</b> donate any amount in that decision, you <b>will
-                not</b> receive any messages on your computer screen.
-            </li>
-        </ul>
+	</ul>
+    </p>
+    <p>
+	Before you make each decision, please <b>pay attention</b> to:
+	<ul>
+	    <li>
+		Whether donation is public or private, and the rebate you receive.
+	    </li>
+	    <li>
+		What information about your donation will be posted on Facebook.
+	    </li>
+	</ul>
+	Make each decision carefully as you <b>cannot go back to change your previous decisions</b>, and each decision has an equal probability 
+		of being chosen for realization.
     </p>
 
-    <br>
-    <div>
-        <h4>
-            <font color=#4b82c1>Please answer correctly before proceeding to the paying task.</font>
-        </h4>
-    </div>
-    <br>
-    <div>
-        <h5>
-            1. Suppose you donated $100 with a 20% rebate in public mode.
-        </h5>
-        <br>
-        <p>
-            What will happen after the experiment?
-        </p>
-        <div>
-            <p id="incorrect1" style="color: red;"></p>
 
-            <input type="radio" id="choice1" name="q1">
-            <label for="choice1">
-                You will receive a thank-you message on your computer screen with your donation and rebate info, visible only to you.
-            </label>
-            <br>
-            <input type="radio" id="choice2" name="q1">
-            <label for="choice2">
-                LEEPS Lab will post a thank-you message on the LEEPS Facebook page with your donation but 
-		without rebate information.
-            </label>
-            <br>
-            <input type="radio" id="choice3" name="q1">
-            <label for="choice3">
-                LEEPS Lab will post a thank-you message on the LEEPS Facebook page with your donation and
-                rebate information.
-            </label>
-            <br>
-        </div>
-    </div>
-    <div>
-
-        <h5>
-            2. Suppose you donated $0 (you chose not to donate) with a 20% rebate in public mode.
-        </h5>
-        <p>
-            What will happen after the experiment?
-        </p>
-        <div>
-            <p id="incorrect2" style="color: red;"></p>
-            <input type="radio" id="choice4" name="q2">
-            <label for="choice1">
-                LEEPS Lab will post a thank-you message on the LEEPS Facebook page with your donation and
-                rebate information.
-            </label>
-            <br>
-            <input type="radio" id="choice5" name="q2">
-            <label for="choice2">
-                LEEPS Lab will not post anything about your donation decision.
-            </label>
-        </div>
-    </div>
     <hr>
 
     <div>
         <button id="submit" class="btn btn-primary btn-large next-button"
-            style="float: left;">Submit</button>
+            style="float: left;">Next</button>
     </div>
 
     <script type="text/javascript">

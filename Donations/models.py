@@ -112,6 +112,9 @@ class Player(BasePlayer):
             [0, 'The rebate makes my donation appear less generous'],
             [1, 'The rebate has an advertising effect that will attract more friends to donate']],
         widget=widgets.RadioSelect)
+    s15a = models.IntegerField(widget=widgets.NumberInput(attrs={'autocomplete': 'off'}))
+    s15b = models.IntegerField(widget=widgets.NumberInput(attrs={'autocomplete': 'off'}))
+    s15c = models.IntegerField(widget=widgets.NumberInput(attrs={'autocomplete': 'off'}))
 
     # pr is the paying round: this is randomly chosen 
     # in the Results class in Pages.py
