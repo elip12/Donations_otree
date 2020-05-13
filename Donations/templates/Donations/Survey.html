@@ -179,11 +179,17 @@
 		contributing $5 and LEEPS lab contributing $5 (also called a 1:1 matching). 
 		Rank the following message from your most preferred (1) to least preferred (3) way of publicly announcing your donations.
 		<ul>
-		    <li>{% formfield player.s15a label=None %}"Thank you, 'your name', for donating $10 to ARC! </li>
-		    <li>{% formfield player.s15b label=None %}"Thank you, 'your name', for donating $10 to ARC, with the LEEPS Lab offering                  
-                        a $5 rebate to you! </li>
-		    <li>{% formfield player.s15c label=None %}"Thank you, 'your name', for donating $5 to ARC, with the LEEPS Lab matching $5. 
-			ARC received $10 total in donations! </li>
+		    <li>{% formfield player.s15a %} 
+			<!-- "Thank you, 'your name', for donating $10 to ARC!" -->
+		    </li>
+		    <li>{% formfield player.s15b %} 
+			<!-- "Thank you, 'your name', for donating $10 to ARC, with the LEEPS Lab offering
+			a $5 rebate to you!" -->
+		    </li>
+		    <li>{% formfield player.s15c %}
+			<!-- "Thank you, 'your name', for donating $5 to ARC, with the LEEPS Lab matching $5. 
+			ARC received $10 total in donations! -->
+		     </li>
 		</ul>
 		
 	    </p>
