@@ -18,28 +18,28 @@
                 donated = document.getElementById('donated').value
             document.getElementById('donated_submit').value = donated
             console.log(donated)
-	        let exit_fee = {{ exit_fee | json }}.toFixed(2)
-            if (exit_fee != 0 && document.getElementById('exit_no').checked == true)
-                exit_fee = '0.00'
-            document.getElementById('exit_submit').value = exit_fee
+	        let recorded_exit_fee = {{ exit_fee | json }}.toFixed(2)
+            if (recorded_exit_fee != 0 && document.getElementById('exit_no').checked == true)
+                recorded_exit_fee = '0.00'
+            document.getElementById('exit_amount').value = recorded_exit_fee
             let rebate_rate = {{ rebate | json }}
 	        let mode = {{ mode | json }}
 	        let rebate = {{ rebate | json }} / 100 * donated
             document.getElementById('disp_rebate').innerHTML = '$' + rebate.toFixed(2)
-            total_cash_left = {{ total_cash_available }} - donated + rebate - exit_fee
+            total_cash_left = {{ total_cash_available }} - donated + rebate - recorded_exit_fee
             document.getElementById('total_cash_left').innerHTML = '$' + total_cash_left.toFixed(2)
-            document.getElementById('kept').value = {{ total_cash_available }} - donated - exit_fee
+            document.getElementById('kept').value = {{ total_cash_available }} - donated - recorded_exit_fee
             if (donated > 0) {
                 document.getElementById('message').style.visibility = 'visible'
 		        let basemsg = `"Thank you, 'your name', for donating <b>\$${donated}</b> to ${ {{ charity | json }} }`
 		        let basemsg1=` with a <b>${ rebate_rate }% rebate</b> provided by the LEEPS Lab!"`
-                if (mode == 'Public' & rebate_rate !=0 & exit_fee == 0)
+                if (mode == 'Public' && rebate_rate != 0 & recorded_exit_fee == 0)
                     msg = 'We will tag you in the following post on LEEPS FB page (<b>visible to everyone</b>):\n' +
 			        basemsg + basemsg1
-                else if (mode == 'Public' & (rebate_rate == 0 | exit_fee != 0))
+                else if (mode == 'Public' && (rebate_rate == 0 || recorded_exit_fee != 0))
 		            msg = 'We will tag you in the following post on LEEPS FB page (<b>visible to everyone</b>):\n'+
 			        basemsg +'!"'
-		        else if (mode == 'Private' & rebate_rate != 0)
+		        else if (mode == 'Private' && rebate_rate != 0)
 		            msg = 'The following message will be displayed on your computer screen (<b>only visible to you</b>):\n' 
 			        + basemsg + basemsg1
 		        else 
@@ -92,7 +92,7 @@ Decision {{ round_num }} - <b>{{ mode }}</b> with <b>{{ rebate }}%</b> Rebate
 {% endblock %}
 
 {% block content %}
-    
+   {{ form.exit_choice.errors }} 
     <div>
         <!-- form fields for all metadata (not directly collected from players) -->
         <input type="hidden" name="time_Decision" id="arrive_time"/>
@@ -101,7 +101,7 @@ Decision {{ round_num }} - <b>{{ mode }}</b> with <b>{{ rebate }}%</b> Rebate
         <input type="hidden" name="charity_dec" id="charity"/> 
         <input type="hidden" name="money_donated" id="donated_submit">
         <input type="hidden" name="money_kept" id="kept"/>
-    	<input type="hidden" name="exit" id="exit_submit"/>
+    	<input type="hidden" name="exit_amount" id="exit_amount"/>
     </div>
     <div>
 	<h5> 
@@ -112,7 +112,7 @@ Decision {{ round_num }} - <b>{{ mode }}</b> with <b>{{ rebate }}%</b> Rebate
             <tr>
                 <th>Total Cash Available</th>
                 <th>Would you like to donate any to the charity?</th>
-		        {% if {{ exit_fee | json }} != 0 %}
+		        {% if exit_fee != 0 %}
                 <th>Would you like us to not announce the rebate you received in the FB post?</th>
                 {% endif %}
                 <th>{{ rebate }}% rebate cash back in your account</th>
@@ -129,9 +129,9 @@ Decision {{ round_num }} - <b>{{ mode }}</b> with <b>{{ rebate }}%</b> Rebate
                     <dr>
 		        <p id="instruction"></p>
 		        </td>
-                {% if {{ exit_fee | json }} != 0 %}
+                {% if exit_fee != 0 %}
 		        <td>
-		            <input type="radio" name="exit_yes_no" id="exit_yes" value="1"
+		            <input type="radio" name="exit_choice" id="exit_yes" value="1"
                         onclick="calc_money_kept()"/>
                     <b>Yes</b>: we will deduct ${{exit_fee}} from your personal account
 		        </td>
@@ -145,8 +145,8 @@ Decision {{ round_num }} - <b>{{ mode }}</b> with <b>{{ rebate }}%</b> Rebate
                     onclick="visible_number_input('hidden')"/>
                     <b>No:</b> $0. Your decision will <b>NOT</b> be posted.
                 </td>
-                {% if {{ exit_fee | json }} != 0 %}
-            	<td><input type="radio" name="exit_yes_no" id="exit_no" value="0"
+                {% if exit_fee != 0 %}
+            	<td><input type="radio" name="exit_choice" id="exit_no" value="0"
                     onclick="calc_money_kept()"/>
                     <b>No</b>
 		        </td>

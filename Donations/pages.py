@@ -98,7 +98,8 @@ class TaskInstructions(Page):
 # Decision page. Includes instrucitons, and returns some input form fields for ease of recording data
 class Decision(Page):
     form_model = 'player'
-    form_fields = ['time_Decision', 'donated_yes_no', 'money_kept', 'money_donated', 'mode', 'rebate', 'charity_dec']
+    form_fields = ['time_Decision', 'donated_yes_no', 'money_kept', 
+    'money_donated', 'mode', 'rebate', 'charity_dec', 'exit_choice', 'exit_amount']
 
     def vars_for_template(self):
         if self.round_number > 1:
@@ -220,7 +221,7 @@ page_sequence = [
     Charity,    
     ControlQuestions,   
     ModeInstructionsCQ,
-#    InstructionSummary,
+    InstructionSummary,
 #    TaskInstructions,
     Decision,
     Results,

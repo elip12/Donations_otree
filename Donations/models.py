@@ -61,8 +61,10 @@ class Player(BasePlayer):
     money_donated = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
 
     exit_choice = models.BooleanField(
+        blank=True,
         choices=[[0, 'No'], [1, 'Yes']],
         widget=widgets.RadioSelect)
+    exit_amount = models.FloatField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
 
     mode = models.LongStringField()
     rebate = models.FloatField()
