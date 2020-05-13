@@ -62,10 +62,19 @@
             document.getElementById('message').style.visibility = v
             if (v == 'hidden') {
                 document.getElementById('donated_submit').value = 0
+                if ({{ exit_fee | json }} > 0) {
+                    document.getElementById('exit_no').checked = true
+                    document.getElementById('exit_yes').checked = false
+                    document.getElementById('exit_yes').disabled = true
+                }
             }
-            else
+            else {
                 document.getElementById('donated_submit').value = null
                 document.getElementById('donated').value = null 
+                if ({{ exit_fee | json }} > 0) {
+                    document.getElementById('exit_yes').disabled = false
+                }
+            }
             calc_money_kept()
         }
     </script>
@@ -153,7 +162,7 @@ Decision {{ round_num }} - <b>{{ mode }}</b> with <b>{{ rebate }}%</b> Rebate
                 </td>
                 {% if exit_fee != 0 %}
             	<td><input type="radio" name="exit_choice" id="exit_no" value="0"
-                    onclick="calc_money_kept()"/>
+                    checked="checked" onclick="calc_money_kept()"/>
                     <b>No</b>
 		        </td>
                 {% endif %}
