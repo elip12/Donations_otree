@@ -60,9 +60,8 @@ class Player(BasePlayer):
     money_kept = models.FloatField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
     money_donated = models.IntegerField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
 
+    exit_choice_available = models.BooleanField()
     exit_choice = models.BooleanField(
-        default=0,
-        blank=True,
         choices=[[0, 'No'], [1, 'Yes']],
         widget=widgets.RadioSelect)
     exit_amount = models.FloatField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))

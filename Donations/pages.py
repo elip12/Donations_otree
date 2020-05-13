@@ -99,16 +99,24 @@ class TaskInstructions(Page):
 class Decision(Page):
     form_model = 'player'
     form_fields = ['time_Decision', 'donated_yes_no', 'money_kept', 
-    'money_donated', 'mode', 'rebate', 'charity_dec', 'exit_choice', 'exit_amount']
+    'money_donated', 'mode', 'rebate', 'charity_dec', 
+    'exit_choice_available', 'exit_choice', 'exit_amount']
 
     def vars_for_template(self):
         if self.round_number > 1:
             self.player.endowment = self.player.in_round(1).endowment
+        exit_fee = Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][2]
+        if exit_fee == 0:
+            self.player.exit_choice_available = False
+            self.player.exit_choice = False
+            self.player.exit_amount = 0
+        else:
+            self.player.exit_choice_available = True
         return {
             'total_cash_available': self.player.endowment + Constants.participation_fee,
             'mode': Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][0].capitalize(),
             'rebate': round((Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][1] - 1) * 100),
-            'exit_fee': Constants.round_data[self.participant.id_in_session - 1][self.round_number - 1][2],
+            'exit_fee': exit_fee,
             'round_num': self.round_number,
             'charity': self.participant.vars['charities'][self.player.in_round(1).charity]
         }
