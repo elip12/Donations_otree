@@ -102,7 +102,10 @@ Decision {{ round_num }} - <b>{{ mode }}</b> with <b>{{ rebate }}%</b> Rebate
 {% endblock %}
 
 {% block content %}
-   {{ form.exit_choice.errors }} 
+    {{ form.exit_choice.errors }} 
+    {{ form.money_donated.errors }}
+    {{ form.exit_amount.errors }}
+    {{ form.donated_yes_no.errors }}
     <div>
         <!-- form fields for all metadata (not directly collected from players) -->
         <input type="hidden" name="time_Decision" id="arrive_time"/>
