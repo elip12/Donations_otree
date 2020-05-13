@@ -27,10 +27,11 @@ General Instructions
     <input type="hidden" name="time_Instructions" id="arrive_time"/>
 
     <p>
-    	You are now taking part in an economics experiment, financed by the UCSC LEEPS Lab. 
-	If you carefully read the following instructions, you can earn—depending on your decisions during the experiment—
-	a considerable amount of money, which will, together with the show-up fee of ${{ Constants.participation_fee }}, 
-	be paid out to you via Venmo immediately after the experiment.
+    	You are now taking part in an economics experiment, funded by the UCSC LEEPS Lab. 
+	This is a short experiment, please take your time to carefully read the instructions before making your decisions.
+	By participating in this session, you will earn a ${{ Constants.participation_fee }} participation fee. 
+	Also, depending on your decisions and the decisions of others, you will earn additional payoffs.
+	After the experiment, your total earnings will be paid out to you via Venmo immediately.
     </p>
 
     <p>
@@ -64,14 +65,16 @@ General Instructions
     </p>
 
     <p>
-        All 6 periods of decisions are independent, so your money and donation decision from one period will not impact the others. 
-	After your decisions in all 6 periods, the experimenter will 
+        All {{ Constants.num_rounds }} periods of decisions are independent, so your money and donation decision from one 
+	period will not impact or transfer to the next. 
+	After your decisions in all {{ Constants.num_rounds }} periods, the experimenter will 
         <b>randomly choose one period to pay out your donation decision</b>. Your final payment will be your personal
         account balance from that <b>chosen</b> period.
     </p>
 
     <p>
-        If you chose to donate a positive amount, the charity will actually receive that money. We will make one donation that totals 
+        In making your decisions, make sure your donation does not exceed the total available cash (participation fee+income) in your account.
+	If you chose to donate a positive amount, the charity will actually receive that money. We will make one donation that totals 
 	all subjects' individual donations to the charity and email you a receipt.
     </p>
 
