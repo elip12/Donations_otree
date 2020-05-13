@@ -32,7 +32,8 @@
             if (donated > 0) {
                 document.getElementById('message').style.visibility = 'visible'
 		        let basemsg = `"Thank you, 'your name', for donating <b>\$${donated}</b> to ${ {{ charity | json }} }`
-		        let basemsg1=` with a <b>${ rebate_rate }% rebate</b> provided by the LEEPS Lab!"`
+			<!-- let basemsg1=`, with the LEEPS Lab offering you a \$${rebate} rebate!` -->
+		        let basemsg1=` with a <b>${ rebate_rate }%</b> rebate provided by the LEEPS Lab!"`
                 if (mode == 'Public' && rebate_rate != 0 & recorded_exit_fee == 0)
                     msg = 'We will tag you in the following post on LEEPS FB page (<b>visible to everyone</b>):\n' +
 			        basemsg + basemsg1
@@ -104,6 +105,11 @@ Decision {{ round_num }} - <b>{{ mode }}</b> with <b>{{ rebate }}%</b> Rebate
     	<input type="hidden" name="exit_amount" id="exit_amount"/>
     </div>
     <div>
+	{% if exit_fee != 0 %}
+	<h5>
+	You have the option to <b>NOT</b> announce the rebate you received in the FB post
+	</h5>
+	{% endif %}
 	<h5> 
 	 <font color=#4b82c1>You have $10 in your cash account (${{ Constants.participation_fee  }}
                     participation fee + ${{ player.endowment }} from Tetris).</font>	
