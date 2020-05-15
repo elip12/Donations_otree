@@ -28,15 +28,20 @@
             let rebate_rate = {{ rebate | json }}
 	        let mode = {{ mode | json }}
 	        let rebate = {{ rebate | json }} / 100 * donated
+	    	rebate_shown=rebate.toFixed(2)
             document.getElementById('disp_rebate').innerHTML = '$' + rebate.toFixed(2)
             total_cash_left = {{ total_cash_available }} - donated + rebate - recorded_exit_fee
             document.getElementById('total_cash_left').innerHTML = '$' + total_cash_left.toFixed(2)
             document.getElementById('kept').value = {{ total_cash_available }} - donated - recorded_exit_fee
             if (donated > 0) {
                 document.getElementById('message').style.visibility = 'visible'
-		        let basemsg = `"We want to thank 'Your Name' for donating <b>\$${donated}</b> to ${ {{ charity | json }} }`
+		        let basemsg = `"We want to thank <font color=#4b82c1>@[Your Name]</font> for donating <b>\$${donated}</b> to ${ {{ charity | json }} }`
+			let basemsg2=`"We want to thank you for donating <b>\$${donated}</b> to ${ {{ charity | json }} }`
 			<!-- let basemsg1=`, with the LEEPS Lab offering you a \$${rebate} rebate!` -->
-		        let basemsg1=`. 'Your Name' received a <b>${ rebate_rate }%</b> (\$${rebate}) rebate from the LEEPS Lab!"`
+		        let basemsg1=`. <font color=#4b82c1>@[Your Name]</font> received a <b>${ rebate_rate }%</b> (<b>\$${rebate_shown}</b>) 
+					rebate from the LEEPS Lab!"`
+			let basemsg4=`. You received a <b>${ rebate_rate }%</b> (<b>\$${rebate_shown}</b>)
+                                        rebate from the LEEPS Lab!"`
                 if (mode == 'Public' && rebate_rate != 0 & recorded_exit_fee == 0)
                     msg = 'We will tag you in the following post on LEEPS FB page (<b>visible to everyone</b>):\n' +
 			        basemsg + basemsg1
@@ -45,10 +50,10 @@
 			        basemsg +'!"'
 		        else if (mode == 'Private' && rebate_rate != 0)
 		            msg = 'The following message will be displayed on your computer screen (<b>only visible to you</b>):\n' 
-			        + basemsg + basemsg1
+			        + basemsg2 + basemsg4
 		        else 
 		            msg = 'The following message will be displayed on your computer screen (<b>only visible to you</b>):\n' 
-			        + basemsg + '!"'
+			        + basemsg2 + '!"'
                 document.getElementById('message').innerHTML = msg
             }
             else
