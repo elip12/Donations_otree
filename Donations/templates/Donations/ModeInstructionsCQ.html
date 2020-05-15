@@ -63,14 +63,14 @@
     <input type="hidden" name="time_ModeInstructionsCQ" id="arrive_time"/>
 
     <p>
-        The upcoming decision-making part of the experiment has {{ Constants.num_rounds }} indepdent periods. 
-	Your money and donation decision from one period will not impact or transfer to the next. 
-	After you are done with all {{ Constants.num_rounds }} periods, we will <b>randomly</b> choose <b>1</b> period to payout 
-	your donation decision and post any corresponding message you may receive.
+        The upcoming decision-making part of the experiment has {{ Constants.num_rounds }} indepdent decisions. 
+	Your money and donation from one decision will not impact or transfer to the next. 
+	After you are done with all {{ Constants.num_rounds }} decisions, the computer will <b>randomly</b> choose <b>1</b> decision to payout 
+	your donations and post any corresponding message you may receive.
     </p>
     <p>
-	At the beginning of each period, your cash account will refresh to its <b>original balance</b> of your
-        ${{ Constants.participation_fee }} participation fee+ ${{ player.endowment }} income from the Tetris task.
+	At the beginning of each decision, your cash account will refresh to its <b>original balance</b> of your
+        ${{ Constants.participation_fee }} participation fee+ ${{ player.endowment }} income from the square counting task.
         You will have the opportunity to donate some of your cash to a charity organization, but you will not be
         obligated to donate a positive amount.
     </p>
@@ -97,7 +97,7 @@
 	    </li>
 	</ul>
 	Make each decision carefully as you <b>cannot go back to change your previous decisions</b>, and each decision has an equal probability 
-		of being chosen for realization.
+		to be implemented.
     </p>
 
 

@@ -33,9 +33,9 @@
             document.getElementById('kept').value = {{ total_cash_available }} - donated - recorded_exit_fee
             if (donated > 0) {
                 document.getElementById('message').style.visibility = 'visible'
-		        let basemsg = `"Thank you, 'your name', for donating <b>\$${donated}</b> to ${ {{ charity | json }} }`
+		        let basemsg = `"We want to thank 'Your Name' for donating <b>\$${donated}</b> to ${ {{ charity | json }} }`
 			<!-- let basemsg1=`, with the LEEPS Lab offering you a \$${rebate} rebate!` -->
-		        let basemsg1=` with a <b>${ rebate_rate }%</b> rebate provided by the LEEPS Lab!"`
+		        let basemsg1=`. 'Your Name' received a <b>${ rebate_rate }%</b> rebate from the LEEPS Lab!"`
                 if (mode == 'Public' && rebate_rate != 0 & recorded_exit_fee == 0)
                     msg = 'We will tag you in the following post on LEEPS FB page (<b>visible to everyone</b>):\n' +
 			        basemsg + basemsg1
@@ -131,7 +131,7 @@ Decision {{ round_num }} - <b>{{ mode }}</b> with <b>{{ rebate }}%</b> Rebate
 	{% endif %}
 	<h5> 
 	 <font color=#4b82c1>You have $10 in your cash account (${{ Constants.participation_fee  }}
-                    participation fee + ${{ player.endowment }} from Tetris).</font>	
+                    participation fee + ${{ player.endowment }} from counting task).</font>	
         </h5>
 	<table>
             <tr>
