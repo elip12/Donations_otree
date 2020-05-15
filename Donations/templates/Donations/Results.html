@@ -37,18 +37,19 @@
         {% if donation != 0 and mode == 'private'%}
             <p>
                 {% if rebate != 0 %}
-                    <b>Thank you for donating ${{ donation }} to {{ charity }}, with a {{ rebate }}% rebate offered by the UCSC LEEPS Lab!</b>
+                    <b>We want to thank you for donating ${{ donation }} to {{ charity }}. You received a {{ rebate }}% rebate from the UCSC LEEPS Lab!</b>
                 {% else %}
-                    <b>Thank you for donating ${{ donation }} to {{ charity }}!</b>
+                    <b>We want to thank you for donating ${{ donation }} to {{ charity }}!</b>
                 {% endif %}
             </p>
         {% elif donation != 0 %}
             <p>
-                The LEEPS Lab will post the following message on the LEEPS Facebook page:
+                The LEEPS Lab will tag you in the following message on the LEEPS Facebook page:
                 {% if rebate != 0 %}
-                    <b>“Thank you for donating ${{ donation }} to {{ charity }}, with a {{ rebate }}% rebate offered by the UCSC LEEPS Lab!”</b>
+                    <b>“We want to thank <font color=#4b82c1>@[Your Name]</font> for donating ${{ donation }} to {{ charity }}.
+			<font color=#4b82c1>@[Your Name]</font> received a {{ rebate }}% rebate from the UCSC LEEPS Lab!”</b>
                 {% else %}
-                    <b>“Thank you for donating ${{ donation }} to {{ charity }}!"</b>
+                    <b>“We want to thank <font color=#4b82c1>@[Your Name]</font> for donating ${{ donation }} to {{ charity }}!"</b>
                 {% endif %}
             </p>
         {% endif %}
