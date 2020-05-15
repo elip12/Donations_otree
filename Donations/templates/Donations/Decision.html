@@ -36,7 +36,7 @@
                 document.getElementById('message').style.visibility = 'visible'
 		        let basemsg = `"We want to thank 'Your Name' for donating <b>\$${donated}</b> to ${ {{ charity | json }} }`
 			<!-- let basemsg1=`, with the LEEPS Lab offering you a \$${rebate} rebate!` -->
-		        let basemsg1=`. 'Your Name' received a <b>${ rebate_rate }%</b> rebate from the LEEPS Lab!"`
+		        let basemsg1=`. 'Your Name' received a <b>${ rebate_rate }%</b> (\$${rebate}) rebate from the LEEPS Lab!"`
                 if (mode == 'Public' && rebate_rate != 0 & recorded_exit_fee == 0)
                     msg = 'We will tag you in the following post on LEEPS FB page (<b>visible to everyone</b>):\n' +
 			        basemsg + basemsg1
