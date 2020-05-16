@@ -3,7 +3,7 @@
 
 {% block title %}
     <h1>
-        <font color=#4b82c1>Donation Rebate</font>
+        <font color=#4b82c1>Rebate Explained</font>
         <!--
             Principal maintainer: Eli Pandolfo <epandolf@ucsc.edu>
         -->
@@ -28,28 +28,28 @@
 
             toggle = true
 
-            if (a1 != '100')
+            if (a1 != '10')
             {
                 var i1 = document.getElementById('incorrect1')
-                i1.innerHTML = "The correct answer is 100"
+                i1.innerHTML = "The correct answer is 10"
                 toggle = false
             }
             else
                 document.getElementById('incorrect1').innerHTML = ""
 
-            if (a2 != '30')
+            if (a2 != '3')
             {
                 var i2 = document.getElementById('incorrect2')
-                i2.innerHTML = "The correct answer is 30"
+                i2.innerHTML = "The correct answer is 3"
                 toggle = false
             }
             else
                 document.getElementById('incorrect2').innerHTML = ""
 
-            if (a3 != '70')
+            if (a3 != '7')
             {
                 var i3 = document.getElementById('incorrect3')
-                i3.innerHTML = "The correct answer is 70"
+                i3.innerHTML = "The correct answer is 7"
                 toggle = false
             }
             else
@@ -70,9 +70,10 @@
 
 
     <p>
-        If you are offered a rebate of 60% on your donations, it means when you donate $100 to a
-        charity, you will be refunded $60 to your personal account. The charity will still receive 
-        $100, but since you received a $60 rebate, your actual spending for donating $100 is $40.
+        If you are offered a rebate of 60% on your donations, it means when you donate $10 to a
+        charity, you will be refunded $6 to your personal account. The charity will still receive 
+        $10, but since you received a $6 rebate, your actual net spending for donating $10 is $4.
+	The rebate is paid by the LEEPS Lab.
     </p>
 
     <div>
@@ -83,7 +84,7 @@
     <hr>
     <div>
         <p>
-            Alex donated $100 with a rebate of 30% to the American Red Cross (ARC).
+            Alex donated $10 with a rebate of 30% to the American Red Cross (ARC).
         </p>
         <br>
         <p>
@@ -94,13 +95,13 @@
         <input id="input1" autocomplete="off">
         <br>
         <p>
-            b). How much money will Alex receive from the rebate?.
+            b). How much money will Alex receive as a rebate?.
         </p>
         <p id="incorrect2" style="color: red;"></p>
         <input id="input2" autocomplete="off">
         <br>
         <p>
-            c). Alex's actual spending for donating $100 is:
+            c). Alex's actual spending for donating $10 is:
         </p>
         <p id="incorrect3" style="color: red;"></p>
         <input id="input3" autocomplete="off">
