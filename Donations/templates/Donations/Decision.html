@@ -58,9 +58,11 @@
             }
             else
                 document.getElementById('message').style.visibility = 'hidden'
-	        if ( mode == 'Public')
+	        if ( mode == 'Public' && recorded_exit_fee == 0)
 		        instruction = 'Your decision with rebate info will be posted on <b>LEEPS FB page</b>.'
-	        else
+	        else if ( mode == 'Public' && recorded_exit_fee != 0)
+			instruction = 'Your decision without rebate info will be posted on <b>LEEPS FB page</b>.'
+		else if (mode == 'Private')
 		        instruction='Your decision with rebate will be shown on <b>your own screen</b>.'
 	        document.getElementById('instruction').innerHTML=instruction
         }
