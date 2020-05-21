@@ -121,7 +121,10 @@ class Player(BasePlayer):
     s15a = models.IntegerField(widget=widgets.NumberInput(attrs={'autocomplete': 'off'}), label='We want to thank \'your name\' for donating $10 to ARC!')
     s15b = models.IntegerField(widget=widgets.NumberInput(attrs={'autocomplete': 'off'}), label='We want to thank \'your name\' for donating $10 to ARC. \'Your Name\' received a 50% rebate ($5) from LEEPS!')
     s15c = models.IntegerField(widget=widgets.NumberInput(attrs={'autocomplete': 'off'}), label='We want to thank \'your name\' for donating $5 to ARC, with the LEEPS Lab matching $5. ARC received $10 in total donations!')
+    s16 = models.StringField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
+    s17 = models.StringField(widget=widgets.TextInput(attrs={'autocomplete': 'off'}))
 
+    
     # pr is the paying round: this is randomly chosen 
     # in creating_session
     def set_payoffs(self, pr):
